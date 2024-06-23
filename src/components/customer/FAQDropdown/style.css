@@ -1,0 +1,9 @@
+.accordion-item {
+  margin-bottom: 16px;
+  border: 1px solid #d4d4d4 !important;
+}
+
+.accordion-button {
+  font-size: 14px;
+  font-weight: bold;
+}

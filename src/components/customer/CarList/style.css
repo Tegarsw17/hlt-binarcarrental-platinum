@@ -1,0 +1,14 @@
+.car-list {
+  max-width: 1047px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .car-list {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

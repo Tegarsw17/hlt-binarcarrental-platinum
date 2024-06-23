@@ -1,0 +1,37 @@
+.whyus-list-item {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+}
+
+.whyus-list-item-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whyus-list-item img {
+  width: 20px;
+  height: 20px;
+}
+
+.whyus-list-item h4 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  margin-bottom: 0px;
+}
+
+.whyus-list-item p {
+  width: 220px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 0px;
+}

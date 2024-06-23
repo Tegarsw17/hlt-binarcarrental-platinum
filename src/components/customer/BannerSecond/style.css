@@ -1,0 +1,14 @@
+.banner-second {
+  display: flex;
+  justify-content: space-between;
+  padding: 38px 0px 0px 136px;
+  background-color: #f1f3ff;
+  align-items: center;
+  padding-top: 150px;
+}
+
+@media screen and (max-width: 450px) {
+  .banner-second {
+    padding-top: 80px;
+  }
+}

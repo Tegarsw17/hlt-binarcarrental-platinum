@@ -1,0 +1,135 @@
+.our-service-wrapper {
+  background-color: #ffffff;
+  margin: 150px 0px 0px 0px;
+}
+
+.our-service {
+  max-width: 1027px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.our-service-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.our-service-bacground-circle {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background-color: #0d28a6;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* .our-service-image img{
+    bottom: 35px;
+    position: relative;
+    z-index: 1;
+    width: 360px;  
+    height: 450px;  
+    object-fit: cover;
+    border-radius: 50%;
+} */
+
+.our-service-circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.our-service-circle.green {
+  width: 133px;
+  height: 133px;
+  background-color: #92d094;
+  top: -50px;
+  left: -75px;
+}
+.our-service-circle.yellow {
+  width: 48px;
+  height: 48px;
+  background-color: #f9cc00;
+  bottom: 85px;
+  left: -50px;
+}
+.our-service-circle.red {
+  width: 25px;
+  height: 25px;
+  background-color: #fa2c5a;
+  top: 20px;
+  right: 50px;
+}
+
+.our-service-text {
+  width: 468px;
+}
+
+.our-service-text h3 {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+  margin-bottom: 24px;
+}
+
+.our-service-text p {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+
+.our-service-list li {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.our-service-list li::before {
+  content: '\2714';
+  color: #0d28a6;
+  background-color: #cfd4ed;
+  border-radius: 50%;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  margin-right: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .our-service-image img {
+    width: 250px;
+  }
+
+  .our-service-wrapper {
+    margin-top: 75px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .our-service {
+    flex-direction: column;
+    width: 350px;
+    gap: 50px;
+  }
+
+  .our-service-image img {
+    width: 350px;
+  }
+
+  .our-service-text {
+    width: 370px;
+  }
+
+  .our-service-text ul {
+    padding: 0;
+  }
+}
