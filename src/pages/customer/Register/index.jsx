@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 // import './style.css';
 import BannerAuthImage from '../../../assets/auth-image.png';
 import Logo from '../../../components/customer/Logo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -16,9 +20,28 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    const payload = {
+      ...form,
+      role: 'customer',
+    };
+    try {
+      const apiURL =
+        'https://api-car-rental.binaracademy.org/customer/auth/register';
+      const res = await axios.post(apiURL, payload);
+      setError(null);
+      setSuccess(res.statusText);
+      console.log(res);
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    } catch (error) {
+      setSuccess(null);
+      setError(error.response.data.message);
+      console.log(error.response.data.message);
+    }
+    // console.log(payload);
   };
   return (
     <div className="wrapper-auth">
@@ -26,8 +49,11 @@ const Register = () => {
         <div className="form-auth">
           <Logo />
           <h1>Sign Up</h1>
+          {error && <h2 style={{ color: 'red' }}>{error}</h2>}
+          {success && <h2 style={{ color: 'green' }}>{success}</h2>}
+          {/* <h2>ini tanda</h2> */}
           <div className="form-auth-content">
-            <label htmlFor="">Name*</label>
+            <label htmlFor="name">Name*</label>
             <input
               onChange={handleOnChange}
               id="name"
@@ -35,7 +61,7 @@ const Register = () => {
               placeholder="Nama lengkap"
               type="text"
             />
-            <label htmlFor="">Email*</label>
+            <label htmlFor="email">Email*</label>
             <input
               onChange={handleOnChange}
               id="email"
@@ -43,7 +69,7 @@ const Register = () => {
               placeholder="Contoh: johndee@gmail.com"
               type="text"
             />
-            <label htmlFor="">Create Password*</label>
+            <label htmlFor="password">Create Password*</label>
             <input
               onChange={handleOnChange}
               id="password"
