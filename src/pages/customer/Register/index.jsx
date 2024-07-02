@@ -85,9 +85,11 @@ const Register = () => {
         </div>
       </div>
       <div className="banner-auth">
-        <h1>BINAR CAR RENTAL</h1>
-        <div className="img-auth">
-          <img src={BannerAuthImage}></img>
+        <div className="banner-auth-content">
+          <h1>BINAR CAR RENTAL</h1>
+          <div className="img-auth">
+            <img src={BannerAuthImage}></img>
+          </div>
         </div>
       </div>
     </div>

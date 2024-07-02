@@ -46,21 +46,29 @@
   flex-direction: column;
   width: 100%;
   background-color: #0d28a6;
-  justify-content: flex-end;
+  align-items: end;
+}
+
+.banner-auth-content {
+  height: 100%;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .banner-auth h1 {
-  align-self: center;
+  /* align-self: center; */
   color: #ffffff;
 }
 
 .img-auth {
   margin-top: 20px;
-  align-self: flex-end;
+  display: flex;
 }
 
 .img-auth img {
-  /* width: 95%; */
+  width: 100%;
   max-width: 100%;
   height: auto;
   /* border-radius: 8px; */
