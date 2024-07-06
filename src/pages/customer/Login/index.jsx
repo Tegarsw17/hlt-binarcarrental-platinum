@@ -29,7 +29,7 @@ const Login = () => {
       const res = await axios.post(apiURL, payload);
       setToken(res.data.access_token);
       const token = res.data.access_token;
-      localStorage.setItem('token_key', token);
+      localStorage.setItem('access_token', token);
       setTimeout(() => {
         navigate('/');
       }, 1000);
