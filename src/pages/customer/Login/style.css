@@ -1,0 +1,87 @@
+.wrapper-auth {
+  display: flex;
+  height: 100vh;
+}
+
+.form-auth-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-auth {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.form-auth p {
+  align-self: center;
+}
+
+.form-auth-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-auth input {
+  padding: 10px 15px;
+  border: 1px solid #0000001a;
+  color: #a5a5a5;
+}
+
+.form-auth button {
+  background-color: #0d28a6;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 2px;
+  border-style: none;
+}
+
+.banner-auth {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #0d28a6;
+  align-items: end;
+}
+
+.banner-auth-content {
+  height: 100%;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.banner-auth h1 {
+  /* align-self: center; */
+  color: #ffffff;
+}
+
+.img-auth {
+  margin-top: 20px;
+  display: flex;
+}
+
+.img-auth img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  /* border-radius: 8px; */
+}
+
+@media screen and (max-width: 768px) {
+  .banner-auth {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .form-auth {
+    margin: 10px;
+  }
+}
