@@ -11,7 +11,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CarDetailCard = ({ data, id }) => {
   const navigate = useNavigate();
-  // const [showInfo, setShowInfo] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [form, setForm] = useState({
     start_rent_at: '',
@@ -48,11 +49,18 @@ const CarDetailCard = ({ data, id }) => {
         config
       );
       console.log(response);
+      setShowSuccess(true);
       setTimeout(() => {
+        setShowSuccess(false);
         navigate(`/payment/${response.data.id}`);
       }, 2000);
     } catch (error) {
       console.log(error.response);
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+        navigate(`/payment/${response.data.id}`);
+      }, 2000);
     }
   };
 
@@ -143,9 +151,8 @@ const CarDetailCard = ({ data, id }) => {
             <p>Total</p>
             <p>{formatRupiah(data.price)}</p>
           </div>
-          {/* {showInfo && <p style={{ color: 'green' }}>Mobil sukses dipilih</p>} */}
           <button onClick={handleSubmit} className="rent-button">
-            Lanjutkan Pembayaran
+            {showSuccess ? 'Loading ...' : 'Pilih Tanggal'}
           </button>
         </div>
       </div>

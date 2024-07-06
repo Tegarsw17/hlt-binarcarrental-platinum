@@ -1,14 +1,11 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const axiosCustomer = axios.create();
-// const navigate = useNavigate();
 
 axiosCustomer.interceptors.request.use(
   (config) => {
     if (config.useAuth) {
       const token = localStorage.getItem('access_token');
-      console.log(token);
       if (token) {
         config.headers['access_token'] = `${token}`;
       } else {
