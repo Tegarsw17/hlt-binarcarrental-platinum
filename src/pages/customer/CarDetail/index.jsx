@@ -29,7 +29,7 @@ const CarDetail = () => {
       <Navbar />
       <BannerSecond />
       <SearchCar isDisabled={true} />
-      <CarDetailCard data={detailCarData} />
+      <CarDetailCard data={detailCarData} id={id} />
       <Footer />
     </div>
   );
