@@ -1,0 +1,46 @@
+.popup-delete-size {
+  width: 387px;
+  height: 333px;
+  padding: 24px 32px;
+}
+
+.img-delete {
+  width: 153px;
+  height: 121px;
+}
+
+.headfont-popup-delete {
+  font:
+    700 16px 'arial',
+    sans-serif;
+  line-height: 24px;
+}
+
+.bodyfont-popup-delete {
+  font:
+    400 16px 'arial',
+    sans-serif;
+  line-height: 24px;
+}
+
+.size-btn-delete {
+  width: 87px;
+  height: 36px;
+  border-radius: 2px;
+  border: 1px solid;
+  padding: 8px 12px;
+  font:
+    700 14px 'arial',
+    sans-serif;
+  line-height: 20px;
+}
+
+.btn-popup-delete button:nth-child(1) {
+  background-color: #0d28a6;
+  color: #ffffff;
+}
+.btn-popup-delete button:nth-child(2) {
+  background-color: #ffffff;
+  color: #0d28a6;
+  border-color: #0d28a6;
+}

@@ -3,7 +3,7 @@ import Home from '../pages/customer/Home';
 import Search from '../pages/customer/Search';
 import Car from '../pages/customer/Car';
 import CarDetail from '../pages/customer/CarDetail';
-import AdminShowCar from '../pages/admin/ShowCar';
+import AdminListCar from '../pages/admin/ListCar/index';
 export const routeList = createBrowserRouter([
   {
     path: '/',
@@ -22,7 +22,7 @@ export const routeList = createBrowserRouter([
     element: <CarDetail />,
   },
   {
-    path: '/admin/showcar',
-    element: <AdminShowCar />,
+    path: '/admin/listcar',
+    element: <AdminListCar />,
   },
 ]);
