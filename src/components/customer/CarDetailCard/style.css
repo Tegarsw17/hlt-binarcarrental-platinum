@@ -125,6 +125,10 @@
   font-size: 14px;
 }
 
+.rent-button:disabled {
+  background-color: #35b0a733;
+}
+
 .rent-button {
   width: 100%;
   background-color: #5cb85f;

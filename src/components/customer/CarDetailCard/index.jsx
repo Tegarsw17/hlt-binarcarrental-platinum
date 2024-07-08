@@ -151,7 +151,11 @@ const CarDetailCard = ({ data, id }) => {
             <p>Total</p>
             <p>{formatRupiah(data.price)}</p>
           </div>
-          <button onClick={handleSubmit} className="rent-button">
+          <button
+            disabled={form.start_rent_at && form.finish_rent_at ? false : true}
+            onClick={handleSubmit}
+            className="rent-button"
+          >
             {showSuccess ? 'Loading ...' : 'Pilih Tanggal'}
           </button>
         </div>
