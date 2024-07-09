@@ -50,19 +50,91 @@
   margin-bottom: 0;
 }
 
-.car-detail-image div:nth-child(3) {
+.car-detail-size {
   display: flex;
   font-size: 10px;
   color: #8a8a8a;
   align-items: center;
   gap: 4px;
-  margin-bottom: 55px;
+  margin-bottom: 18px;
+}
+.car-detail-calender {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 27px;
+  gap: 4px;
 }
 
-.car-detail-image div:nth-child(4) {
+.car-detail-calender label {
+  font-size: 12px;
+  font-weight: 300;
+}
+.car-detail-calender input {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: #999999;
+  padding: 9px;
+  border: 1px solid #009c96;
+  border-radius: 2px;
+}
+
+.car-detail-calender .calendar-input-wrapper {
+  /* Added wrapper for relative positioning */
+  position: relative;
+}
+
+.car-detail-calender-show {
+  width: 100%;
+  position: absolute;
+  /* top: -50px; */
+  left: 0;
+  z-index: 10;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.custom-calender {
+  width: 100%;
+}
+
+.rdrCalendarWrapper {
+  width: 100%;
+}
+
+.rdrDateDisplayWrapper {
+  display: none;
+}
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.car-detail-price {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.calender-button {
+  border: none;
+  background-color: #35b0a7;
+  color: #ffffff;
+  margin: 0px 16px 15px 16px;
+  padding: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.rent-button:disabled {
+  background-color: #35b0a733;
+}
+
+.rent-button {
+  width: 100%;
+  background-color: #5cb85f;
+  color: #ffffff;
+  border-radius: 2px;
+  padding: 8px;
 }
 
 @media screen and (max-width: 450px) {
