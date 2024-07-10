@@ -182,3 +182,11 @@ export const detailCar = {
     ],
   },
 };
+
+export const paymentInstruction = [
+  'Masukkan kartu ATM, lalu PIN',
+  "Pilih menu 'Transaksi Lainnya' - 'Transfer' - 'Ke Rek BCA Virtual Account'",
+  'Masukkan nomor BCA Virtual Account: 70020+Order ID \n Contoh \n No. Peserta: 12345678, maka ditulis 7002012345678',
+  'Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk menyelesaikan transaksi',
+  'Ambil dan simpanlah bukti transaksi tersebut',
+];
