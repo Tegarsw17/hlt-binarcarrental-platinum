@@ -1,0 +1,24 @@
+.btn-category-container {
+  display: flex;
+  gap: 16px;
+  height: auto;
+}
+
+.base-btn-category {
+  width: auto;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  color: #aeb7e1;
+  border: 1px solid #aeb7e1;
+  border-radius: 2px;
+  font:
+    700 14px 'arial',
+    sans-serif;
+  line-height: 20px;
+}
+
+.btn-actived {
+  border-color: #0d28a6;
+  background-color: #cfd4ed;
+  color: #0d28a6;
+}

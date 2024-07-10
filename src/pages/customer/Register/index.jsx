@@ -4,6 +4,7 @@ import BannerAuthImage from '../../../assets/auth-image.png';
 import Logo from '../../../components/customer/Logo';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Alert } from 'react-bootstrap';
 
 const Register = () => {
   const [error, setError] = useState(null);
@@ -49,8 +50,8 @@ const Register = () => {
         <div className="form-auth">
           <Logo />
           <h1>Sign Up</h1>
-          {error && <h2 style={{ color: 'red' }}>{error}</h2>}
-          {success && <h2 style={{ color: 'green' }}>{success}</h2>}
+          {error && <Alert variant="danger">{error}</Alert>}
+          {success && <Alert variant="success">account success created</Alert>}
           {/* <h2>ini tanda</h2> */}
           <div className="form-auth-content">
             <label htmlFor="name">Name*</label>
@@ -75,7 +76,7 @@ const Register = () => {
               id="password"
               name="password"
               placeholder="6+ karakter"
-              type="text"
+              type="password"
             />
           </div>
           <button onClick={handleSubmit}>Sign Up</button>

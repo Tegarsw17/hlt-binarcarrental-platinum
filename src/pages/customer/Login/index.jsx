@@ -4,6 +4,7 @@ import BannerAuthImage from '../../../assets/auth-image.png';
 import Logo from '../../../components/customer/Logo';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Alert } from 'react-bootstrap';
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -27,16 +28,15 @@ const Login = () => {
       'https://api-car-rental.binaracademy.org/customer/auth/login';
     try {
       const res = await axios.post(apiURL, payload);
+      setError(null);
       setToken(res.data.access_token);
       const token = res.data.access_token;
       localStorage.setItem('access_token', token);
       setTimeout(() => {
         navigate('/');
       }, 1000);
-      console.log(res.data.access_token);
     } catch (error) {
       setError(error.response.data.message);
-      console.log(error.response);
     }
   };
 
@@ -46,8 +46,8 @@ const Login = () => {
         <div className="form-auth">
           <Logo />
           <h1>Welcome Back!</h1>
-          {error && <h2 style={{ color: 'red' }}>{error}</h2>}
-          {token && <h2 style={{ color: 'green' }}>Login Success</h2>}
+          {error && <Alert variant="danger">{error}</Alert>}
+          {token && <Alert variant="success">Login Success</Alert>}
           <div className="form-auth-content">
             <label htmlFor="email">Email</label>
             <input
@@ -63,7 +63,7 @@ const Login = () => {
               id="password"
               name="password"
               placeholder="6+ karakter"
-              type="text"
+              type="password"
             />
           </div>
           <button onClick={handleSubmit}>Sign In</button>

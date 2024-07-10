@@ -1,0 +1,32 @@
+.admin-tag-page {
+  font:
+    400 12px 'Text S/Light',
+    sans-serif;
+  line-height: 18px;
+  margin: 0;
+  margin-top: 32px;
+}
+
+.admin-tag-page span {
+  font:
+    700 12px 'arial',
+    sans-serif;
+  line-height: 18px;
+}
+
+.max-width-container {
+  max-width: 1101px;
+}
+
+.gap-component {
+  gap: 24px;
+  flex-direction: column;
+}
+
+.header-title-admin {
+  font:
+    700 20px 'arial',
+    sans-serif;
+  line-height: 30px;
+  margin: 0px;
+}

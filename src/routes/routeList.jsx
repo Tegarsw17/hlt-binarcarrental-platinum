@@ -3,11 +3,10 @@ import Home from '../pages/customer/Home';
 import Search from '../pages/customer/Search';
 import Car from '../pages/customer/Car';
 import CarDetail from '../pages/customer/CarDetail';
+import AdminListCar from '../pages/admin/ListCar/index';
 import Payment from '../pages/customer/Payment';
 import Login from '../pages/customer/Login';
 import Register from '../pages/customer/Register';
-
-
 export const routeList = createBrowserRouter([
   {
     path: '/',
@@ -36,5 +35,9 @@ export const routeList = createBrowserRouter([
   {
     path: '/payment/:id',
     element: <Payment />,
+  },
+  {
+    path: '/admin/listcar',
+    element: <AdminListCar />,
   },
 ]);
