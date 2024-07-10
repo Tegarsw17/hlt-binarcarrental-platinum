@@ -1,0 +1,112 @@
+.order-detail-wrapper {
+  position: relative;
+}
+
+.order-detail {
+  max-width: 1047px;
+  margin: 0 auto;
+  height: 124px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 24px 24px 18px 24px;
+  bottom: 50px;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0px 0px 34px -3px rgba(0, 0, 0, 0.1);
+}
+
+.order-detail-column {
+  flex: 1;
+  text-align: left;
+}
+
+.order-detail-title-main {
+  font-weight: 700;
+}
+
+.order-detail-desc {
+  color: #8a8a8a;
+}
+
+.order-detail p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.payment-content {
+  max-width: 1047px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.bank-transfer {
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  padding: 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  height: max-content;
+}
+
+.car-price-detail {
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  padding: 24px;
+  border-radius: 8px;
+}
+.bank-transfer-title {
+  font-weight: 700;
+}
+.bank-list {
+  margin-top: 44px;
+}
+
+.bank-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bank-detail-info {
+  display: flex;
+  align-items: baseline;
+  font-size: 12px;
+}
+
+.bank-detail-logo {
+  width: 61px;
+  border: 1px solid #d0d0d0;
+  margin-right: 16px;
+  padding: 6px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.bank-detail-name {
+  margin-bottom: 0px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.car-price-detail p {
+  margin-bottom: 0px;
+}
+
+.car-price-detail-size {
+  margin-top: 5px;
+  display: flex;
+  font-size: 10px;
+  color: #8a8a8a;
+  align-items: center;
+  gap: 8px;
+}
