@@ -189,7 +189,7 @@ export const paymentInstruction = [
   'Masukkan nomor BCA Virtual Account: 70020+Order ID \n Contoh \n No. Peserta: 12345678, maka ditulis 7002012345678',
   'Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk menyelesaikan transaksi',
   'Ambil dan simpanlah bukti transaksi tersebut',
-  
+];
 export const itemListadmin = [
   {
     id: 1,
