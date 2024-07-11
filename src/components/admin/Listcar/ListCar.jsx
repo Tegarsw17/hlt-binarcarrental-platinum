@@ -22,7 +22,8 @@ const ListCar = () => {
 
   useEffect(() => {
     const size = 'all';
-    dispatch(getList({ size }));
+    const namecar = '';
+    dispatch(getList({ size, namecar }));
   }, []);
 
   return (
