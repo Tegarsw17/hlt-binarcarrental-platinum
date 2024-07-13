@@ -1,36 +1,29 @@
 import React, { useState } from 'react';
 import './style.css';
+import { useSearchParams } from 'react-router-dom';
 
 const SearchCar = ({ isDisabled = false, onSearch }) => {
   const [isFormFocused, setIsFormFocused] = useState(false);
-  const [nameCar, setNameCar] = useState('');
-  const [capacityCar, setCapacityCar] = useState('');
-  const [priceCar, setPriceCar] = useState('');
-  const [statusCar, setStatusCar] = useState('');
 
-  const handleInputName = (event) => {
-    setNameCar(event.target.value);
-  };
-  const handleSelectCapacity = (event) => {
-    setCapacityCar(event.target.value);
-  };
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [form, setForm] = useState({
+    name: searchParams.get('name') || '',
+    category: searchParams.get('category') || '',
+    price: searchParams.get('price') || '',
+    status: searchParams.get('status') || '',
+  });
 
-  const handleSelectPrice = (event) => {
-    setPriceCar(event.target.value);
-  };
-
-  const handleSelectStatus = (event) => {
-    setStatusCar(event.target.value);
+  const handleOnChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const sendQueryApi = () => {
-    onSearch({
-      nameCar,
-      capacityCar,
-      priceCar,
-      statusCar,
-    });
     setIsFormFocused(false);
+    setSearchParams(form);
+    onSearch(form);
   };
 
   return (
@@ -49,9 +42,11 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
             <label htmlFor="car_name">Nama Mobil</label>
             <input
               type="text"
+              name="name"
+              value={form.name}
               placeholder="Ketik nama/tipe mobil"
               className="input-field"
-              onChange={handleInputName}
+              onChange={handleOnChange}
               disabled={isDisabled}
             />
           </div>
@@ -59,7 +54,9 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
             <label htmlFor="category">Kategori</label>
             <select
               className="input-field"
-              onChange={handleSelectCapacity}
+              name="category"
+              value={form.category}
+              onChange={handleOnChange}
               disabled={isDisabled}
             >
               <option value={''} className="">
@@ -71,7 +68,7 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
               <option value={'medium'} className="">
                 4 - 6 orang
               </option>
-              <option value={'hard'} className="">
+              <option value={'large'} className="">
                 6 - 8 orang
               </option>
             </select>
@@ -80,7 +77,9 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
             <label htmlFor="price">Harga</label>
             <select
               className="input-field"
-              onChange={handleSelectPrice}
+              name="price"
+              value={form.price}
+              onChange={handleOnChange}
               disabled={isDisabled}
             >
               <option value={''} className="">
@@ -101,7 +100,9 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
             <label htmlFor="status">Status</label>
             <select
               className="input-field"
-              onChange={handleSelectStatus}
+              name="status"
+              value={form.status}
+              onChange={handleOnChange}
               disabled={isDisabled}
             >
               <option value={''} className="">
