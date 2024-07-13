@@ -1,0 +1,72 @@
+.navpayment {
+  margin: 0 auto;
+  max-width: 1050px;
+}
+
+.navpayment-wrapper {
+  position: absolute;
+  top: 120px;
+  /* margin: 20px 80px; */
+  width: 1042px;
+  display: flex;
+  justify-content: space-between;
+  align-items: first baseline;
+}
+
+.navpayment-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.navpayment-id {
+  font-size: 12px;
+}
+
+.navpayment-wrapper p {
+  margin-bottom: 0;
+}
+
+.navpayment-back {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.navpayment-progres {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navpayment-progres-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navpayment-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  border: 1px solid #0d28a6;
+  color: #000000;
+}
+
+.navpayment-progres-item p {
+  font-size: 12px;
+}
+
+.navpayment-list {
+  width: 25px;
+  height: 1px;
+  background-color: black;
+}
+
+.navpayment-progres-item.active :nth-child(1) {
+  background-color: #0d28a6;
+  color: #ffffff;
+}
