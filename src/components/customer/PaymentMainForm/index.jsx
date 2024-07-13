@@ -3,6 +3,7 @@ import PaymentMethodForm from '../PaymentMethodForm';
 import PaymentForm from '../PaymentForm';
 import PaymentTicketForm from '../PaymentTicketForm';
 import { useParams } from 'react-router-dom';
+import NavPayment from '../NavPayment';
 
 const PaymentMainForm = () => {
   const { id } = useParams();
@@ -29,7 +30,12 @@ const PaymentMainForm = () => {
     <PaymentTicketForm bank={bank} id={id} />,
   ];
   //   console.log(bank);
-  return <div>{steps[step]}</div>;
+  return (
+    <div>
+      <NavPayment step={step} prevStep={prevStep} bank={bank} id={id} />
+      <div>{steps[step]}</div>
+    </div>
+  );
 };
 
 export default PaymentMainForm;

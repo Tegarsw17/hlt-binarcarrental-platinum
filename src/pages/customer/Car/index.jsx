@@ -5,17 +5,16 @@ import Footer from '../../../components/customer/Footer';
 import BannerSecond from '../../../components/customer/BannerSecond';
 import CarList from '../../../components/customer/CarList';
 import PaginationNumber from '../../../components/customer/Pagination';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { minMaxPriceValue } from '../../../utils/formatUtil';
 import Spinner from '../../../components/customer/SpinnerLoading';
 import { axiosCustomer } from '../../../helpers/api';
 
 const Car = () => {
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState([]);
   const [curentPage, setCurentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [queryApi, setQueryApi] = useState({});
   const [loading, setLoading] = useState(true);
 
   const handleSearch = async (queries, page = 1) => {
@@ -51,28 +50,29 @@ const Car = () => {
   };
 
   useEffect(() => {
-    if (location.state) {
-      setQueryApi(location.state);
-      handleSearch(location.state, 1);
-    }
-  }, [location.state]);
+    const initialQueries = {
+      nameCar: searchParams.get('name') || '',
+      capacityCar: searchParams.get('category') || '',
+      priceCar: searchParams.get('price') || '',
+      statusCar: searchParams.get('status') || '',
+    };
+
+    handleSearch(initialQueries, searchParams.get('page') || 1);
+  }, [searchParams]);
 
   const handlePageChange = (page) => {
+    const newParams = { ...Object.fromEntries(searchParams), page };
+    setSearchParams(newParams);
     setLoading(true);
-    handleSearch(queryApi, page);
+    handleSearch(newParams, page);
     setCurentPage(page);
-  };
-
-  const searchCar = (q) => {
-    setQueryApi(q);
-    handleSearch(q, 1);
   };
 
   return (
     <div>
       <Navbar />
       <BannerSecond />
-      <SearchCar onSearch={searchCar} />
+      <SearchCar />
       {loading ? <Spinner /> : <CarList data={data} />}
       {/* <CarList data={data} /> */}
       <PaginationNumber
