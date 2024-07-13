@@ -109,9 +109,9 @@ const PaymentForm = ({ bank, id, nextStep }) => {
           <div className="bank-pay-card bank-pay-info-number">
             <div className="bank-info-detail-title">Lakukan Transfer Ke</div>
             <div className="bank-info-detail">
-              <div className="bank-detail-logo">BCA</div>
+              <div className="bank-detail-logo">{bank.toUpperCase()}</div>
               <div className="bank-info-detail-number">
-                <p>BCA Transfer</p>
+                <p>{bank.toUpperCase()} Transfer</p>
                 <p>a.n Binar Car Rental</p>
               </div>
             </div>
@@ -140,8 +140,12 @@ const PaymentForm = ({ bank, id, nextStep }) => {
               id="uncontrolled-tab-example"
               className="mb-3 custom-main-tab"
             >
-              <Tab className="custom-tab" eventKey="atm" title="ATM BCA">
-                <ul>
+              <Tab
+                className="custom-tab"
+                eventKey="atm"
+                title={`ATM ${bank.toUpperCase()}`}
+              >
+                <ul className="payment-instruction-list">
                   {paymentInstruction.map((item, index) => (
                     <li key={index}>
                       {item.split('\n').map((str, idx) => (
@@ -154,8 +158,12 @@ const PaymentForm = ({ bank, id, nextStep }) => {
                   ))}
                 </ul>
               </Tab>
-              <Tab className="custom-tab" eventKey="mbank" title="m-BCA">
-                <ul>
+              <Tab
+                className="custom-tab"
+                eventKey="mbank"
+                title={`M-${bank.toUpperCase()}`}
+              >
+                <ul className="payment-instruction-list">
                   {paymentInstruction.map((item, index) => (
                     <li key={index}>
                       {item.split('\n').map((str, idx) => (
@@ -168,8 +176,12 @@ const PaymentForm = ({ bank, id, nextStep }) => {
                   ))}
                 </ul>
               </Tab>
-              <Tab className="custom-tab" eventKey="bankklik" title="BCA KLIK">
-                <ul>
+              <Tab
+                className="custom-tab"
+                eventKey="bankklik"
+                title={`${bank.toUpperCase()} Klik`}
+              >
+                <ul className="payment-instruction-list">
                   {paymentInstruction.map((item, index) => (
                     <li key={index}>
                       {item.split('\n').map((str, idx) => (
@@ -187,7 +199,7 @@ const PaymentForm = ({ bank, id, nextStep }) => {
                 eventKey="internet"
                 title="Internet Banking"
               >
-                <ul>
+                <ul className="payment-instruction-list">
                   {paymentInstruction.map((item, index) => (
                     <li key={index}>
                       {item.split('\n').map((str, idx) => (
