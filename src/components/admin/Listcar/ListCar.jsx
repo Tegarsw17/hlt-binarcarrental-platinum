@@ -28,16 +28,13 @@ const ListCar = () => {
 
   useEffect(() => {
     const size = 'all';
-    console.log('try get param :', namecar);
-    if (namecar !== '' && namecar !== 'all') {
-      console.log('get all');
-      dispatch(getList({ size, namecar }));
-    } else if (namecar === 'all' || namecar === '') {
-      const emptycar = '';
-      console.log('get empty');
-      dispatch(getList({ size, emptycar }));
-    }
+    dispatch(getList({ size, namecar }));
   }, []);
+
+  useEffect(() => {
+    const size = 'all';
+    dispatch(getList({ size, namecar }));
+  }, [namecar]);
 
   return (
     <div className="container max-w-6xl">

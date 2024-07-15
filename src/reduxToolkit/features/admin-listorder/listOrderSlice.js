@@ -21,9 +21,9 @@ export const getListOrder = createAsyncThunk(
         sort = 'desc';
       }
 
-      console.log('get : ', sortBy, sort);
+      // console.log('get : ', sortBy, sort);
       if (sortBy === '') {
-        console.log('condition : 1');
+        // console.log('condition : 1');
         response = await axios.get(
           'https://api-car-rental.binaracademy.org/admin/v2/order?page=1&pageSize=10',
           payload
@@ -35,7 +35,7 @@ export const getListOrder = createAsyncThunk(
           payload
         );
       }
-      console.log('success get data : ', response.data.orders);
+      // console.log('success get data : ', response.data.orders);
       return response?.data;
     } catch (error) {
       // console.log('failed get data : ', error.response.data);

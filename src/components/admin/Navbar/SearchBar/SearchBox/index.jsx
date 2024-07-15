@@ -1,12 +1,9 @@
 import './index.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getList } from '../../../../../reduxToolkit/features/admin-list/listSlice';
 
 const SearchBox = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleEnter = (event) => {
@@ -25,7 +22,6 @@ const SearchBox = () => {
       const namecar = searchTerm;
 
       navigate(`/admin/listcar/${namecar}`);
-      window.location.reload();
       // dispatch(getList({ size, namecar }));
     }
   };

@@ -12,10 +12,13 @@ export const getList = createAsyncThunk(
       },
     };
 
-    console.log('get data : ', size, namecar);
+    // console.log('get data : ', size, namecar);
     try {
       let response;
-      if (size === 'all' && (namecar === '' || namecar === undefined)) {
+      if (
+        size === 'all' &&
+        (namecar === '' || namecar === undefined || namecar === 'all')
+      ) {
         response = await axios.get(
           'https://api-car-rental.binaracademy.org/admin/v2/car?page=1&pageSize=10',
           payload
