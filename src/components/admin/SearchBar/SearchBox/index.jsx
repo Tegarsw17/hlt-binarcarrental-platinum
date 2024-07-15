@@ -2,11 +2,17 @@ import './index.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getList } from '../../../reduxToolkit/features/admin-list/listSlice';
+import { getList } from '../../../../reduxToolkit/features/admin-list/listSlice';
 const SearchBox = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
+
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
+      handleClick();
+    }
+  };
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -23,6 +29,7 @@ const SearchBox = () => {
   return (
     <div className="flex justify-center align-middle search-box-container">
       <input
+        onKeyDown={handleEnter}
         onChange={handleChange}
         type="text"
         placeholder="Search"

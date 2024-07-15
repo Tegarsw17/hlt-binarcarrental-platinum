@@ -4,17 +4,17 @@ import './index.css';
 const ProfileBox = () => {
   return (
     <div className="flex justify-between align-middle profile-box-container gap-2 ">
-      <button className="w-9 h-9 icon-profile-admin">
+      <button className="flex items-center justify-center w-9 h-9 icon-profile-admin">
         <span className="self-center text-">U</span>
       </button>
       <p className="flex self-center m-0 box-name-admin">Unis Badri</p>
 
       <button
         type="button"
-        className="flex items-center justify-between w-6  font-medium rtl:text-right text-black gap-3"
+        className="flex items-center justify-center w-6 font-medium rtl:text-right text-black gap-3"
       >
         <svg
-          className="w-3 h-3 rotate-180 shrink-0"
+          className="w-3 h-3 rotate-180 shrink-0 "
           aria-hidden="true"
           fill="none"
           viewBox="0 0 10 6"

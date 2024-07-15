@@ -7,6 +7,7 @@ import AdminListCar from '../pages/admin/ListCar/index';
 import Payment from '../pages/customer/Payment';
 import Login from '../pages/customer/Login';
 import Register from '../pages/customer/Register';
+import Dashboard from '../pages/admin/Dashboard/Dashboard';
 export const routeList = createBrowserRouter([
   {
     path: '/',
@@ -39,5 +40,9 @@ export const routeList = createBrowserRouter([
   {
     path: '/admin/listcar',
     element: <AdminListCar />,
+  },
+  {
+    path: '/admin/dashboard',
+    element: <Dashboard />,
   },
 ]);

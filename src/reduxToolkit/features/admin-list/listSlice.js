@@ -24,13 +24,19 @@ export const getList = createAsyncThunk(
           `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}&page=1&pageSize=30`,
           payload
         );
+      } else if (size !== 'all' && namecar === '') {
+        response = await axios.get(
+          `https://api-car-rental.binaracademy.org/admin/v2/car?category=${size}&page=1&pageSize=30`,
+          payload
+        );
       } else {
         response = await axios.get(
           `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}?category=${size}&page=1&pageSize=30`,
           payload
         );
       }
-      console.log('success get data : ', response.data);
+      // console.log('success get size : ', size, namecar);
+      // console.log('success get data : ', response.data);
       return response?.data;
     } catch (error) {
       // console.log('failed get data : ', error.response.data);

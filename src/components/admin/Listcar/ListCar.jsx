@@ -1,14 +1,19 @@
 import './ListCar.css';
+
 import imgTrash from '../../../assets/img-trash.png';
 import imgEdit from '../../../assets/img-edit.png';
-
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { getList } from '../../../reduxToolkit/features/admin-list/listSlice';
-// import popupSlice from '../../../reduxToolkit/features/admin-popup/popupSlice';
-import { showPopupDelete } from '../../../reduxToolkit/features/admin-popup/popupSlice';
+import iconUsers from '../../../assets/fi_users.png';
+import iconClock from '../../../assets/fi_clock.png';
 import Popupdelete from '../PopupDelete/index';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getList } from '../../../reduxToolkit/features/admin-list/listSlice';
+import { showPopupDelete } from '../../../reduxToolkit/features/admin-popup/popupSlice';
+import {
+  formatRupiah,
+  formatSizeCar,
+  formatDate,
+} from '../../../utils/formatUtil';
 
 const ListCar = () => {
   // todo button delete dan edit akan dibuatkan komponen terpisah dan di panggil
@@ -28,7 +33,7 @@ const ListCar = () => {
 
   return (
     <div className="container max-w-6xl">
-      <div className="grid grid-cols-3">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 ">
         {listcar.map((item) => (
           // <div className="col-md-4 size-card-container">
           <div
@@ -43,13 +48,19 @@ const ListCar = () => {
                   alt=""
                 />
                 <p>
-                  {item.name}/{item.category}
+                  {item.name} / {item.category}
                 </p>
                 <p>
-                  <span>{item.price} / hari</span>
+                  <span>{formatRupiah(item.price)} / hari</span>
                 </p>
-                <p>{item.category}</p>
-                <p>{item.updatedAt}</p>
+                <div className=" flex justify-start items-center gap-2">
+                  <img src={iconUsers} alt="" />
+                  <p>{formatSizeCar(item.category)}</p>
+                </div>
+                <div className=" flex justify-start items-center gap-2">
+                  <img src={iconClock} alt="" />
+                  <p>Updated At {formatDate(item.updatedAt)}</p>
+                </div>
               </div>
               {/* todo : sepertinya lebih bagus kalau button dibuatkan comp terpisah */}
               <div className="admin-card-btn-container justify-content-center d-flex">
