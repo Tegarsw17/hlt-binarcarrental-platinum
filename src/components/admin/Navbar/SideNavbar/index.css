@@ -1,0 +1,14 @@
+.sidebar-container {
+  background-color: #0d28a6;
+}
+
+.btn-sidebar {
+  width: 70px;
+  height: 64px;
+  margin: 10px 10px 10px 10px;
+}
+
+.btn-sidebar span {
+  color: white;
+  width: 63px;
+}

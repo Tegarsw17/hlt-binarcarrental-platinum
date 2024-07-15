@@ -38,7 +38,7 @@ export const routeList = createBrowserRouter([
     element: <Payment />,
   },
   {
-    path: '/admin/listcar',
+    path: '/admin/listcar/:namecar',
     element: <AdminListCar />,
   },
   {

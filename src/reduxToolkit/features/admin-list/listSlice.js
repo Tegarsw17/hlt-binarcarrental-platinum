@@ -12,26 +12,27 @@ export const getList = createAsyncThunk(
       },
     };
 
+    console.log('get data : ', size, namecar);
     try {
       let response;
-      if (size === 'all' && namecar === '') {
+      if (size === 'all' && (namecar === '' || namecar === undefined)) {
         response = await axios.get(
-          'https://api-car-rental.binaracademy.org/admin/v2/car?page=1&pageSize=30',
+          'https://api-car-rental.binaracademy.org/admin/v2/car?page=1&pageSize=10',
           payload
         );
       } else if (size === 'all' && namecar !== '') {
         response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}&page=1&pageSize=30`,
+          `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}&page=1&pageSize=10`,
           payload
         );
-      } else if (size !== 'all' && namecar === '') {
+      } else if (size !== 'all' && (namecar === '' || namecar === undefined)) {
         response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/car?category=${size}&page=1&pageSize=30`,
+          `https://api-car-rental.binaracademy.org/admin/v2/car?category=${size}&page=1&pageSize=10`,
           payload
         );
       } else {
         response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}?category=${size}&page=1&pageSize=30`,
+          `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}?category=${size}&page=1&pageSize=10`,
           payload
         );
       }

@@ -14,9 +14,10 @@ import {
   formatSizeCar,
   formatDate,
 } from '../../../utils/formatUtil';
-
+import { useParams } from 'react-router-dom';
 const ListCar = () => {
   // todo button delete dan edit akan dibuatkan komponen terpisah dan di panggil
+  const { namecar } = useParams();
   const dispatch = useDispatch();
   const { listcar, loading, error } = useSelector((state) => state.listSlice);
   const isVisible = useSelector((state) => state.popupSlice.isVisible);
@@ -27,8 +28,15 @@ const ListCar = () => {
 
   useEffect(() => {
     const size = 'all';
-    const namecar = '';
-    dispatch(getList({ size, namecar }));
+    console.log('try get param :', namecar);
+    if (namecar !== '' && namecar !== 'all') {
+      console.log('get all');
+      dispatch(getList({ size, namecar }));
+    } else if (namecar === 'all' || namecar === '') {
+      const emptycar = '';
+      console.log('get empty');
+      dispatch(getList({ size, emptycar }));
+    }
   }, []);
 
   return (

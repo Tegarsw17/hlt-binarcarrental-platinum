@@ -54,7 +54,7 @@ const TableListOrder = () => {
 
   return (
     <div>
-      <table className="table-container divide-y divide-gray-200 ">
+      <table className="bg-white table-container divide-y divide-gray-200 ">
         <thead className=" color-thead">
           <tr>
             {HeaderNames.map((item, index) => (

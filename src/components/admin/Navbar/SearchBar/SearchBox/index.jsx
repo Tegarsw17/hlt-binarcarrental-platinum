@@ -2,7 +2,8 @@ import './index.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getList } from '../../../../reduxToolkit/features/admin-list/listSlice';
+import { getList } from '../../../../../reduxToolkit/features/admin-list/listSlice';
+
 const SearchBox = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,11 +20,14 @@ const SearchBox = () => {
   };
 
   const handleClick = () => {
-    const size = 'all';
-    const namecar = searchTerm;
-    console.log('namecar :' + namecar + ' size :' + size);
-    dispatch(getList({ size, namecar }));
-    // navigate('/admin/listcar');
+    if (searchTerm) {
+      const size = 'all';
+      const namecar = searchTerm;
+
+      navigate(`/admin/listcar/${namecar}`);
+      window.location.reload();
+      // dispatch(getList({ size, namecar }));
+    }
   };
 
   return (
