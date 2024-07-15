@@ -30,3 +30,22 @@ export const minMaxPriceValue = (priceRange) => {
     return ['', ''];
   }
 };
+
+export const formatDate = (dateString) => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-GB', options).format(date);
+};
+
+export const getDaysDifference = (date1, date2) => {
+  const startDate = new Date(date1);
+  const endDate = new Date(date2);
+
+  const differenceInTime = endDate - startDate;
+
+  const differenceInDays = differenceInTime / (1000 * 3600 * 24) + 1;
+
+  return Math.abs(differenceInDays);
+};
