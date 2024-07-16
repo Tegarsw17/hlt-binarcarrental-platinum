@@ -1,0 +1,13 @@
+.btn-go {
+  width: 43px;
+  height: 36px;
+  border-radius: 0px 2px 2px 0px;
+  border: 1px solid;
+  padding: 8px 12px;
+  background-color: #0d28a6;
+  color: white;
+  font:
+    400 14px 'Rubik',
+    sans-serif;
+  line-height: 20px;
+}

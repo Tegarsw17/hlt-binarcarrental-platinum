@@ -12,3 +12,24 @@
   color: white;
   width: 63px;
 }
+
+.side-font {
+  font:
+    700 14px 'Arial',
+    sans-serif;
+  line-height: 20px;
+  /* height: 42px; */
+}
+
+.header-side-font {
+  color: #8a8a8a;
+}
+
+.side-font-pick {
+  background-color: #cfd4ed;
+  color: #151515;
+}
+
+.btn-sidebar-active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
