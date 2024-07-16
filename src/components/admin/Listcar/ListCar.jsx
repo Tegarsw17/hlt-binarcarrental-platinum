@@ -15,15 +15,22 @@ import {
   formatDate,
 } from '../../../utils/formatUtil';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const ListCar = () => {
   // todo button delete dan edit akan dibuatkan komponen terpisah dan di panggil
   const { namecar } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { listcar, loading, error } = useSelector((state) => state.listSlice);
   const isVisible = useSelector((state) => state.popupSlice.isVisible);
 
   const handleDelete = (id) => {
     dispatch(showPopupDelete(id));
+  };
+
+  const handleEdit = (id) => {
+    // console.log(id);
+    navigate(`/admin/editcars/${id}`);
   };
 
   useEffect(() => {
@@ -76,7 +83,10 @@ const ListCar = () => {
                   <img src={imgTrash} alt="" />
                   delete
                 </button>
-                <button className="d-flex justify-content-center align-items-center gap-10">
+                <button
+                  onClick={() => handleEdit(item.id)}
+                  className="d-flex justify-content-center align-items-center gap-10"
+                >
                   <img src={imgEdit} alt="" />
                   edit
                 </button>
