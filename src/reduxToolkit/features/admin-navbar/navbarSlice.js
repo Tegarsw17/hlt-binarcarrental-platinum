@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isOpen: false,
+  isActive: '',
 };
 
 const navbarSlice = createSlice({
@@ -11,8 +12,11 @@ const navbarSlice = createSlice({
     showNavbar: (state) => {
       state.isOpen = !state.isOpen;
     },
+    setActive: (state, action) => {
+      state.isActive = action.payload;
+    },
   },
 });
 
-export const { showNavbar } = navbarSlice.actions;
+export const { showNavbar, setActive } = navbarSlice.actions;
 export default navbarSlice.reducer;

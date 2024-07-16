@@ -1,15 +1,16 @@
 import './index.css';
+import { setActive } from '../../../../reduxToolkit/features/admin-navbar/navbarSlice';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import iconhome from '../../../../assets/fi_home.png';
 import icontruck from '../../../../assets/fi_truck.png';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 const SideNavbar = () => {
-  const [isActive, setIsActive] = useState('Dashboard');
-  const { isOpen } = useSelector((state) => state.navbarSlice);
+  const { isOpen, isActive } = useSelector((state) => state.navbarSlice);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClick = (values) => {
-    setIsActive(values);
+    dispatch(setActive(values));
 
     if (values === 'dashboard') {
       navigate('/admin/dashboard');
@@ -27,14 +28,14 @@ const SideNavbar = () => {
         <div className="w-full h-16 "></div>
         <button
           onClick={() => handleClick('dashboard')}
-          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar ${isActive === 'dashboard' ? ' btn-sidebar-active' : ''}`}
+          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar ${isActive.includes('dashboard') || isActive === 'dashboard' ? ' btn-sidebar-active' : ''}`}
         >
           <img src={iconhome} alt="" />
           <span className="flex  items-center justify-center">Dashboard</span>
         </button>
         <button
           onClick={() => handleClick('cars')}
-          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar  ${isActive !== 'dashboard' ? 'btn-sidebar-active' : ''}`}
+          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar  ${isActive.includes('cars') ? 'btn-sidebar-active' : ''}`}
         >
           <img src={icontruck} alt="" />
           <span className="flex items-center justify-center ">Cars</span>
