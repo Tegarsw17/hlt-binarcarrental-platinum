@@ -1,10 +1,14 @@
+.admin-page-color {
+  margin: 0 auto;
+  background-color: #f4f5f7;
+}
+
 .admin-tag-page {
   font:
     400 12px 'Text S/Light',
     sans-serif;
   line-height: 18px;
   margin: 0;
-  margin-top: 32px;
 }
 
 .admin-tag-page span {
