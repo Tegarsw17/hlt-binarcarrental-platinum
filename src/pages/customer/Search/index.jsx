@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const Search = () => {
   const navigate = useNavigate();
   const navigateToCarPage = (queries) => {
-    navigate('/car', { state: queries });
+    const searchParams = new URLSearchParams(queries).toString();
+    navigate(`/car?${searchParams}`);
   };
 
   return (

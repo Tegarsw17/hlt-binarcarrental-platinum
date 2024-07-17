@@ -19,6 +19,10 @@
   font-weight: 400;
 }
 
+.payment-instruction-list li {
+  list-style-type: disc;
+}
+
 .bank-pay-title {
   font-weight: 700;
 }
