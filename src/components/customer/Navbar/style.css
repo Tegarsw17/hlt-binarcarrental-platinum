@@ -2,12 +2,12 @@
   background-color: #f1f3ff;
 }
 
-.navbar {
-  max-width: 1055px;
+.navbar-cust {
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 24px 269px 0px 136px;
+  padding: 24px 0px 0px 0px;
 }
 
 .navbar-link {

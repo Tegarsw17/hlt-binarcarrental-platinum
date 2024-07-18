@@ -117,7 +117,7 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
             </select>
           </div>
           <button
-            style={{ display: isDisabled ? 'none' : '' }}
+            style={{ display: isDisabled ? 'none' : '', alignSelf: 'center' }}
             type="submit"
             className="search-button"
           >

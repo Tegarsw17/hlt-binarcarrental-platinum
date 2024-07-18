@@ -35,7 +35,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar-wrapper">
-      <div className="navbar">
+      <div className="navbar-cust">
         <Link to={'/'}>
           <Logo />
         </Link>

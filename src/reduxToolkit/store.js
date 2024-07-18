@@ -4,24 +4,10 @@ import listSlice from './features/admin-list/listSlice';
 import popupSlice from './features/admin-popup/popupSlice';
 import navbarReducer from './features/admin-navbar/navbarSlice';
 import deletecarSlice from './features/admin-deletecar/deletecarSlice';
-<<<<<<< HEAD
 import authSlices from './features/customer-auth/loginSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-
-const persistConfig = {
-  key: 'auth',
-  storage,
-};
-
-const authReducer = persistReducer(persistConfig, authSlices);
-
-const store = configureStore({
-  reducer: { listSlice, popupSlice, deletecarSlice, authReducer },
-=======
 import listOrderSlice from './features/admin-listorder/listOrderSlice';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import {
   FLUSH,
   REHYDRATE,
@@ -32,11 +18,19 @@ import {
 } from 'redux-persist';
 
 const persistConfig = {
-  key: 'navbarStatus',
-  storage,
+  navbarStatus: {
+    key: 'navbarStatus',
+    storage,
+  },
+  auth: {
+    key: 'auth',
+    storage,
+  },
 };
 
-const navbarSlice = persistReducer(persistConfig, navbarReducer);
+const authReducer = persistReducer(persistConfig.auth, authSlices);
+
+const navbarSlice = persistReducer(persistConfig.navbarStatus, navbarReducer);
 
 const store = configureStore({
   reducer: {
@@ -46,6 +40,7 @@ const store = configureStore({
     popupSlice,
     deletecarSlice,
     listOrderSlice,
+    authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -53,7 +48,6 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
->>>>>>> dev
 });
 
 const persistor = persistStore(store);
