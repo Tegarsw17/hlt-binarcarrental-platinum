@@ -137,6 +137,15 @@
   padding: 8px;
 }
 
+.error-message-calender {
+  background-color: #fa2c5a;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 2px;
+}
+
 @media screen and (max-width: 450px) {
   .car-detail {
     flex-direction: column-reverse;

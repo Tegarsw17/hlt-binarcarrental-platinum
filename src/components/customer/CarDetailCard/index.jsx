@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const CarDetailCard = ({ data, id }) => {
   const navigate = useNavigate();
   const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [form, setForm] = useState({
@@ -27,18 +28,24 @@ const CarDetailCard = ({ data, id }) => {
   };
   const handleDateChange = (ranges) => {
     const { startDate, endDate } = ranges.selection;
-    setForm({
-      ...form,
-      start_rent_at: startDate.toLocaleDateString('en-CA'),
-      finish_rent_at: endDate.toLocaleDateString('en-CA'),
-    });
+    const dayDiff = (endDate - startDate) / (1000 * 60 * 60 * 24);
+    if (dayDiff > 6) {
+      setShowError(true);
+      setErrorMessage('Rent duration cannot exceed 7 days.');
+    } else {
+      setShowError(false);
+      setForm({
+        ...form,
+        start_rent_at: startDate.toLocaleDateString('en-CA'),
+        finish_rent_at: endDate.toLocaleDateString('en-CA'),
+      });
+    }
   };
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     const config = {
       useAuth: true,
     };
@@ -48,18 +55,15 @@ const CarDetailCard = ({ data, id }) => {
         form,
         config
       );
-      console.log(response);
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
         navigate(`/payment/${response.data.id}`);
       }, 2000);
     } catch (error) {
-      console.log(error.response);
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
-        navigate(`/payment/${response.data.id}`);
       }, 2000);
     }
   };
@@ -119,6 +123,11 @@ const CarDetailCard = ({ data, id }) => {
             <p>{formatSizeCar(data.category)}</p>
           </div>
           <div className="car-detail-calender">
+            {showError && (
+              <div className="error-message-calender">
+                <p>{errorMessage}</p>
+              </div>
+            )}
             <label htmlFor="calender">
               Tentukan lama sewa mobil(max. 7 hari)
             </label>
@@ -142,6 +151,7 @@ const CarDetailCard = ({ data, id }) => {
                     ranges={[selectionRange]}
                     onChange={handleDateChange}
                     rangeColors={['#35B0A7']}
+                    minDate={new Date()}
                   />
                 </div>
               )}
