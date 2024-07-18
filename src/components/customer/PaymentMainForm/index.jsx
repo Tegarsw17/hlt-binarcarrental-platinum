@@ -18,7 +18,6 @@ const PaymentMainForm = () => {
     setStep(step - 1);
   };
 
-  console.log(step);
   const steps = [
     <PaymentMethodForm
       bank={bank}
@@ -29,7 +28,6 @@ const PaymentMainForm = () => {
     <PaymentForm bank={bank} id={id} nextStep={nextStep} />,
     <PaymentTicketForm bank={bank} id={id} />,
   ];
-  //   console.log(bank);
   return (
     <div>
       <NavPayment step={step} prevStep={prevStep} bank={bank} id={id} />

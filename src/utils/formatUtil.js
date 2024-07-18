@@ -49,3 +49,23 @@ export const getDaysDifference = (date1, date2) => {
 
   return Math.abs(differenceInDays);
 };
+
+export const formatTimestamp = (timestamp) => {
+  const date = new Date(Number(timestamp));
+
+  const dayNameOptions = { weekday: 'long' };
+  const dayOptions = { day: 'numeric' };
+  const monthOptions = { month: 'long' };
+  const yearOptions = { year: 'numeric' };
+  const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: false };
+
+  const dayName = new Intl.DateTimeFormat('id-ID', dayNameOptions).format(date);
+  const day = new Intl.DateTimeFormat('id-ID', dayOptions).format(date);
+  const month = new Intl.DateTimeFormat('id-ID', monthOptions).format(date);
+  const year = new Intl.DateTimeFormat('id-ID', yearOptions).format(date);
+  const time = new Intl.DateTimeFormat('id-ID', timeOptions)
+    .format(date)
+    .replace('.', ':');
+
+  return `${dayName}, ${day} ${month} ${year} jam ${time} WIB`;
+};

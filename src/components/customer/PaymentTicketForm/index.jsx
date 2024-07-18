@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 import { axiosCustomer } from '../../../helpers/api';
+import { Link } from 'react-router-dom';
 
 const PaymentTicketForm = ({ id }) => {
-  console.log(id);
   const [data, setData] = useState({});
   const config = {
     useAuth: true,
@@ -46,16 +46,11 @@ const PaymentTicketForm = ({ id }) => {
               document={<PDFGenerate data={data} />}
               fileName="receipt.pdf"
             >
-              {/* {({ loading }) =>
-                loading ? 'Loading document...' : 'Download Receipt'
-              } */}
               <FontAwesomeIcon icon={faDownload} /> Unduh
             </PDFDownloadLink>
           </div>
         </div>
         <div className="payment-ticket-content-body">
-          {/* PDF Viewer */}
-
           <PDFViewer
             width="100%"
             height="100%"
@@ -66,6 +61,9 @@ const PaymentTicketForm = ({ id }) => {
           </PDFViewer>
         </div>
       </div>
+      <Link to={'/'} style={{ marginTop: '20px' }}>
+        Back to home
+      </Link>
     </div>
   );
 };

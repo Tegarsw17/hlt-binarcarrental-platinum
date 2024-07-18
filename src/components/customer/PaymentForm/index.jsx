@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faFile, faImage } from '@fortawesome/free-solid-svg-icons';
-import { formatRupiah } from '../../../utils/formatUtil';
+import { faCopy, faImage } from '@fortawesome/free-solid-svg-icons';
+import { formatRupiah, formatTimestamp } from '../../../utils/formatUtil';
 import { Tab, Tabs } from 'react-bootstrap';
 import { paymentInstruction } from '../../../utils/dummyData';
 import { axiosCustomer } from '../../../helpers/api';
@@ -66,7 +66,6 @@ const PaymentForm = ({ bank, id, nextStep }) => {
         formData,
         config
       );
-      console.log('hasil response upload image', response);
       setTimeout(() => {
         nextStep();
       }, 1000);
@@ -100,7 +99,7 @@ const PaymentForm = ({ bank, id, nextStep }) => {
           <div className="bank-pay-card bank-pay-info-deadline">
             <div>
               <p className="bank-pay-title">Selesaikan pembayaran sebelum</p>
-              <p>Rabu, 19 Mei 2022 jam 13.00 WIB</p>
+              <p>{formatTimestamp(initialTargetDate)}</p>
             </div>
             <div className="bank-pay-countdown">
               <Countdown date={initialTargetDate} renderer={renderer} />
