@@ -13,7 +13,8 @@ const ButtonCategory = () => {
   };
 
   useEffect(() => {
-    dispatch(getList({ size }));
+    const namecar = '';
+    dispatch(getList({ size, namecar }));
   }, [size]);
 
   return (
