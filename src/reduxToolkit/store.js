@@ -5,6 +5,7 @@ import popupSlice from './features/admin-popup/popupSlice';
 import navbarReducer from './features/admin-navbar/navbarSlice';
 import deletecarSlice from './features/admin-deletecar/deletecarSlice';
 import authSlices from './features/customer-auth/loginSlice';
+import authAdminSlices from './features/admin-auth/loginAdminSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import listOrderSlice from './features/admin-listorder/listOrderSlice';
@@ -26,7 +27,16 @@ const persistConfig = {
     key: 'auth',
     storage,
   },
+  authAdmin: {
+    key: 'auth_admin',
+    storage,
+  },
 };
+
+const authAdminReducer = persistReducer(
+  persistConfig.authAdmin,
+  authAdminSlices
+);
 
 const authReducer = persistReducer(persistConfig.auth, authSlices);
 
@@ -40,6 +50,7 @@ const store = configureStore({
     popupSlice,
     deletecarSlice,
     listOrderSlice,
+    authAdminReducer,
     authReducer,
   },
   middleware: (getDefaultMiddleware) =>

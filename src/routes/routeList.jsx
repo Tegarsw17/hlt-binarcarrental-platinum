@@ -12,6 +12,7 @@ import Login from '../pages/customer/Login';
 import Register from '../pages/customer/Register';
 import CustomerProtectedRoute from './CustomerProtectedRoute';
 import Dashboard from '../pages/admin/Dashboard/Dashboard';
+import AdminProtectedRoute from './AdminProtectedRoute';
 
 export const routeList = createBrowserRouter([
   {
@@ -61,10 +62,18 @@ export const routeList = createBrowserRouter([
   },
   {
     path: '/admin/listcar/:namecar',
-    element: <AdminListCar />,
+    element: (
+      <AdminProtectedRoute>
+        <AdminListCar />
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/dashboard',
-    element: <Dashboard />,
+    element: (
+      <AdminProtectedRoute>
+        <Dashboard />
+      </AdminProtectedRoute>
+    ),
   },
 ]);
