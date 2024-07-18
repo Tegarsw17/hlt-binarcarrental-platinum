@@ -1,6 +1,6 @@
 import './Dashboard.css';
 import Navbar from '../../../components/admin/Navbar/Navbar';
-import MonthPicker from '../../../components/MonthPicker/MonthPicker';
+import MonthPicker from '../../../components/admin/ChartOrder/MonthPicker/MonthPicker';
 import ChartOrder from '../../../components/admin/ChartOrder/ChartOrder';
 import TableListOrder from '../../../components/admin/TableListOrder/TableListOrder';
 import LimitPage from '../../../components/admin/TableListOrder/Limit/Limit';
@@ -8,7 +8,7 @@ import JumptoPage from '../../../components/admin/TableListOrder/JumptoPage/Jump
 import Paging from '../../../components/admin/TableListOrder/Paging/Paging';
 const Dashboard = () => {
   return (
-    <div className="admin-page-color w-full h-full">
+    <div className="admin-page-color w-full h-full pb-5">
       <Navbar />
       <div className=" flex flex-col justify-center items-center px-52 z-0 pt-24  container gap-component">
         <MonthPicker />

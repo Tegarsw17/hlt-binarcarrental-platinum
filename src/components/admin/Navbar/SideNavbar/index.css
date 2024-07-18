@@ -1,16 +1,21 @@
 .sidebar-container {
   background-color: #0d28a6;
+  width: 70px;
 }
 
 .btn-sidebar {
   width: 70px;
-  height: 64px;
-  margin: 10px 10px 10px 10px;
+  /* height: 64px; */
+  gap: 5px;
+  padding: 10px;
 }
 
-.btn-sidebar span {
+.btn-sidebar p {
   color: white;
-  width: 63px;
+  font-weight: lighter;
+  font-size: 12px;
+  font-family: 'Arial', sans-serif;
+  line-height: 18px;
 }
 
 .side-font {

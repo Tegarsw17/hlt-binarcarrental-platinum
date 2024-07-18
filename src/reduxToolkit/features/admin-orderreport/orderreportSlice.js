@@ -15,7 +15,7 @@ export const getOrderReport = createAsyncThunk(
     try {
       let response;
       response = await axios.get(
-        'https://api-car-rental.binaracademy.org/admin/v2/order?page=1&pageSize=10',
+        `https://api-car-rental.binaracademy.org/admin/order/reports?from=${startDate}&until=${endDate}`,
         payload
       );
       console.log('success get data : ', response.data);
@@ -29,6 +29,8 @@ export const getOrderReport = createAsyncThunk(
 
 const initialState = {
   orderreport: [],
+  days: [],
+  ordercount: [],
   loading: false,
   error: null,
 };
@@ -45,6 +47,10 @@ const orderreportSlice = createSlice({
       .addCase(getOrderReport.fulfilled, (state, action) => {
         state.loading = false;
         state.orderreport = action.payload;
+        state.days = state.orderreport?.map((report) => report.day);
+        state.ordercount = state.orderreport?.map(
+          (report) => report.orderCount
+        );
         // state.headers = Object.keys(state.listorder[0]);
       })
       .addCase(getOrderReport.rejected, (state, action) => {

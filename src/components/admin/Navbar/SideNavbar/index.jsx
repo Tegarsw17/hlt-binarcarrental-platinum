@@ -24,25 +24,33 @@ const SideNavbar = () => {
 
   return (
     <div>
-      <div className="z-30 flex flex-col justify-start items-center pt-4 fixed h-screen w-24 sidebar-container">
+      <div className="z-30 flex flex-col justify-start items-center pt-4 fixed h-screen  sidebar-container">
         <div className="w-full h-16 "></div>
         <button
           onClick={() => handleClick('dashboard')}
-          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar ${isActive.includes('dashboard') || isActive === 'dashboard' ? ' btn-sidebar-active' : ''}`}
+          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar ${isActive.includes('dashboard') ? ' btn-sidebar-active' : ''}`}
         >
           <img src={iconhome} alt="" />
-          <span className="flex  items-center justify-center">Dashboard</span>
+          <p
+            className={`text-center m-0 flex items-center justify-center ${isActive.includes('dashboard') ? 'font-bold' : ''}`}
+          >
+            Dashboard
+          </p>
         </button>
         <button
           onClick={() => handleClick('cars')}
-          className={`flex g-2 flex-col justify-center items-center w-full btn-sidebar  ${isActive.includes('cars') ? 'btn-sidebar-active' : ''}`}
+          className={` flex g-2 flex-col justify-center items-center w-full btn-sidebar  ${isActive.includes('cars') ? 'btn-sidebar-active' : ''}`}
         >
           <img src={icontruck} alt="" />
-          <span className="flex items-center justify-center ">Cars</span>
+          <p
+            className={`text-center m-0 flex items-center justify-center ${isActive.includes('cars') ? 'font-bold' : ''}`}
+          >
+            Cars
+          </p>
         </button>
       </div>
       <div
-        className={`flex justify-start items-start ml-24 z-10 fixed bg-white h-screen w-72 shadow-md ${isOpen ? 'transition translate-x-0' : 'transition -translate-x-80'}`}
+        className={`  flex justify-start items-start ml-16 z-10 fixed bg-white h-screen w-72 shadow-md ${isOpen ? 'transition translate-x-0' : 'transition -translate-x-80'}`}
       >
         {window.location.href.includes('dashboard') ? (
           <div className=" mt-32  w-full h-fit flex flex-col justify-center items-start">
