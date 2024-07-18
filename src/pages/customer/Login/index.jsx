@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import BannerAuthImage from '../../../assets/auth-image.png';
 import Logo from '../../../components/customer/Logo';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from '../../../reduxToolkit/features/customer-auth/loginSlice';
+import AuthTemplate from '../../../components/customer/AuthTemplate';
 
 const Login = () => {
   const [error, setError] = useState(null);
-  const [token, setToken] = useState(null);
+  const [tokens, setTokens] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -29,59 +33,55 @@ const Login = () => {
     try {
       const res = await axios.post(apiURL, payload);
       setError(null);
-      setToken(res.data.access_token);
+      setTokens(res.data.access_token);
       const token = res.data.access_token;
-      localStorage.setItem('access_token', token);
+      dispatch(setToken(token));
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get('redirect') || '/';
       setTimeout(() => {
-        navigate('/');
+        navigate(redirectUrl);
       }, 1000);
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error?.response?.data?.message);
     }
   };
 
+  const accessToken = useSelector((state) => state.authReducer.access_token);
+
+  useEffect(() => {
+    if (accessToken) {
+      navigate('/');
+    }
+  }, [accessToken]);
+
   return (
-    <div className="wrapper-auth">
-      <div className="form-auth-wrap">
-        <div className="form-auth">
-          <Logo />
-          <h1>Welcome Back!</h1>
-          {error && <Alert variant="danger">{error}</Alert>}
-          {token && <Alert variant="success">Login Success</Alert>}
-          <div className="form-auth-content">
-            <label htmlFor="email">Email</label>
-            <input
-              onChange={handleOnChange}
-              name="email"
-              id="email"
-              placeholder="Contoh: johndee@gmail.com"
-              type="text"
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              onChange={handleOnChange}
-              id="password"
-              name="password"
-              placeholder="6+ karakter"
-              type="password"
-            />
-          </div>
-          <button onClick={handleSubmit}>Sign In</button>
-          <p>
-            Don't have an account?{' '}
-            <Link to={'/register'}>Sign Up for free</Link>
-          </p>
-        </div>
+    <AuthTemplate>
+      <h1>Welcome Back!</h1>
+      {error && <Alert variant="danger">{error}</Alert>}
+      {tokens && <Alert variant="success">Login Success</Alert>}
+      <div className="form-auth-content">
+        <label htmlFor="email">Email</label>
+        <input
+          onChange={handleOnChange}
+          name="email"
+          id="email"
+          placeholder="Contoh: johndee@gmail.com"
+          type="text"
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          onChange={handleOnChange}
+          id="password"
+          name="password"
+          placeholder="6+ karakter"
+          type="password"
+        />
       </div>
-      <div className="banner-auth">
-        <div className="banner-auth-content">
-          <h1>BINAR CAR RENTAL</h1>
-          <div className="img-auth">
-            <img src={BannerAuthImage}></img>
-          </div>
-        </div>
-      </div>
-    </div>
+      <button onClick={handleSubmit}>Sign In</button>
+      <p>
+        Don't have an account? <Link to={'/register'}>Sign Up for free</Link>
+      </p>
+    </AuthTemplate>
   );
 };
 
