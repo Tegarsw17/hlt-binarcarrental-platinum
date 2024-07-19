@@ -69,7 +69,12 @@ function Content() {
       );
       console.log(response);
       setTimeout(() => {
-        navigate('/admin/listcar/all');
+        navigate('/admin/listcar/all', {
+          state: {
+            message: 'Data Berhasil Ditambahkan',
+            color: '73CA5C',
+          },
+        });
       }, 1000);
     } catch (error) {
       console.log(error.response);

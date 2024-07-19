@@ -93,7 +93,12 @@ function EditContent() {
       );
       console.log('Car updated successfully');
       setTimeout(() => {
-        navigate('/admin/listcar/all');
+        navigate('/admin/listcar/all', {
+          state: {
+            message: 'Data Berhasil Dirubah',
+            color: '0D28A6',
+          },
+        });
       }, 1000);
     } catch (error) {
       console.log(error.response);
