@@ -1,19 +1,16 @@
 import React from 'react';
 import './style.css';
-import Sidebar from '../../../components/admin/Sidebar';
-import Navbar from '../../../components/admin/Navbar';
+
+import Navbar from '../../../components/admin/Navbar/Navbar';
 import EditContent from '../../../components/admin/EditContent';
 
-function addcars() {
+function EditCar() {
   return (
-    <div className="addcars">
-       <Sidebar />
+    <div className="admin-page-color w-full h-full">
       <Navbar />
       <EditContent />
-      </div>
-    
-  
+    </div>
   );
 }
 
-export default addcars;
+export default EditCar;
