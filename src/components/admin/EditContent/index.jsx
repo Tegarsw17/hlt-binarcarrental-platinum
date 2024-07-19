@@ -91,14 +91,11 @@ function EditContent() {
         formData,
         config
       );
-      console.log('Car updated successfully');
+
       setTimeout(() => {
-        navigate('/admin/listcar/all', {
-          state: {
-            message: 'Data Berhasil Dirubah',
-            color: '0D28A6',
-          },
-        });
+        sessionStorage.setItem('successMessage', 'Data Berhasil Diubah');
+        sessionStorage.setItem('color', '#0D28A6');
+        navigate('/admin/listcar/all');
       }, 1000);
     } catch (error) {
       console.log(error.response);

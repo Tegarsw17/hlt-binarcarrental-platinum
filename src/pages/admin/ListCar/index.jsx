@@ -4,22 +4,24 @@ import ButtonCategory from '../../../components/admin/ButtonCategory/index';
 import ListCar from '../../../components/admin/Listcar/ListCar';
 import Navbar from '../../../components/admin/Navbar/Navbar';
 import Alert from '../../../components/admin/Alert';
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // todo : harus ada akses token sebelum mengakses halaman ini
 const AdminListCar = () => {
-  const location = useLocation();
-  const [message, setMessage] = useState(location.state?.message);
-  const [color, setColor] = useState(location.state?.color);
+  const [message, setMessage] = useState(null);
+  const [color, setColor] = useState(null);
 
   useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => {
-        setMessage('');
-        setColor('');
+    const successMessage = sessionStorage.getItem('successMessage');
+    const color = sessionStorage.getItem('color');
+    if (successMessage) {
+      setMessage(successMessage);
+      setColor(color);
+      setTimeout(() => {
+        sessionStorage.removeItem('successMessage');
+        sessionStorage.removeItem('color');
+        setMessage(null);
+        setColor(null);
       }, 1500);
-
-      return () => clearTimeout(timer);
     }
   }, [message]);
   return (
