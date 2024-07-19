@@ -29,13 +29,13 @@ export const getListOrder = createAsyncThunk(
           payload
         );
       } else {
-        console.log('condition : 2');
+        // console.log('condition : 2');
         response = await axios.get(
           `https://api-car-rental.binaracademy.org/admin/v2/order?sort=${sortBy}%3A${sort}&page=1&pageSize=10`,
           payload
         );
       }
-      // console.log('success get data : ', response.data.orders);
+      console.log('success get data : ', response.data);
       return response?.data;
     } catch (error) {
       // console.log('failed get data : ', error.response.data);

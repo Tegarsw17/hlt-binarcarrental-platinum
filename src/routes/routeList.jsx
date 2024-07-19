@@ -10,7 +10,10 @@ import AdminListCar from '../pages/admin/ListCar/index';
 import Payment from '../pages/customer/Payment';
 import Login from '../pages/customer/Login';
 import Register from '../pages/customer/Register';
+import CustomerProtectedRoute from './CustomerProtectedRoute';
 import Dashboard from '../pages/admin/Dashboard/Dashboard';
+import AdminProtectedRoute from './AdminProtectedRoute';
+
 export const routeList = createBrowserRouter([
   {
     path: '/',
@@ -51,14 +54,26 @@ export const routeList = createBrowserRouter([
   },
   {
     path: '/payment/:id',
-    element: <Payment />,
+    element: (
+      <CustomerProtectedRoute>
+        <Payment />
+      </CustomerProtectedRoute>
+    ),
   },
   {
     path: '/admin/listcar/:namecar',
-    element: <AdminListCar />,
+    element: (
+      <AdminProtectedRoute>
+        <AdminListCar />
+      </AdminProtectedRoute>
+    ),
   },
   {
-    path: '/admin/dashboard',
-    element: <Dashboard />,
+    path: '/admin',
+    element: (
+      <AdminProtectedRoute>
+        <Dashboard />
+      </AdminProtectedRoute>
+    ),
   },
 ]);

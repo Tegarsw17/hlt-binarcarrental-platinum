@@ -1,8 +1,10 @@
 import './Limit.css';
+
 const LimitPage = () => {
   const handleSelectLimit = (value) => {
     console.log(value);
   };
+
   return (
     <div>
       <select

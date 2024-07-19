@@ -20,27 +20,6 @@
 .form-auth p {
   align-self: center;
 }
-
-.form-auth-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-auth input {
-  padding: 10px 15px;
-  border: 1px solid #0000001a;
-  color: #000000;
-}
-
-.form-auth button {
-  background-color: #0d28a6;
-  color: #ffffff;
-  padding: 8px;
-  border-radius: 2px;
-  border-style: none;
-}
-
 .banner-auth {
   display: flex;
   flex-direction: column;
@@ -58,7 +37,6 @@
 }
 
 .banner-auth h1 {
-  /* align-self: center; */
   color: #ffffff;
 }
 
@@ -71,7 +49,6 @@
   width: 100%;
   max-width: 100%;
   height: auto;
-  /* border-radius: 8px; */
 }
 
 @media screen and (max-width: 768px) {

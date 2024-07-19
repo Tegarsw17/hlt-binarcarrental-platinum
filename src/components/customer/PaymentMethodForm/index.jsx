@@ -6,7 +6,6 @@ import PaymentMethodFormDetail from '../PaymentMethodFormDetail';
 import { axiosCustomer } from '../../../helpers/api';
 import { formatDate, formatSizeCar } from '../../../utils/formatUtil';
 const PaymentMethodForm = ({ bank, setBank, id, nextStep }) => {
-  //   console.log(nextStep);
   const [data, setData] = useState({});
   const config = {
     useAuth: true,
@@ -18,7 +17,6 @@ const PaymentMethodForm = ({ bank, setBank, id, nextStep }) => {
         config
       );
       setData(response.data);
-      console.log(typeof response.data.start_rent_at);
     } catch (error) {
       console.log(error);
     }

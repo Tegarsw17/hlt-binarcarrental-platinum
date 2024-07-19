@@ -7,6 +7,7 @@ import {
 import './TableListOrder.css';
 import { formatDate, formatRupiah } from '../../../utils/formatUtil';
 import iconSort from '../../../assets/fi_sort.png';
+import iconRectangle from '../../../assets/Rectangle10.png';
 const TableListOrder = () => {
   const dispatch = useDispatch();
   const [sortAsc, setSortAsc] = useState(true);
@@ -54,22 +55,31 @@ const TableListOrder = () => {
 
   return (
     <div>
+      <p className="text-xl font-bold mb-6">Dashboard</p>
+      <div className="flex items-center gap-2 mb-4">
+        <img className="w-1 h-6" src={iconRectangle} alt="" />
+        <p className="text-sm font-bold m-0">List Order</p>
+      </div>
       <table className="bg-white table-container divide-y divide-gray-200 ">
-        <thead className=" color-thead">
+        <thead className="color-thead">
           <tr>
             {HeaderNames.map((item, index) => (
               <th
                 scope="col"
-                className="w-40 px-2 py-2 text-start text-xs font-medium text-gray-500 capitalize"
+                className={`w-40 px-2 py-2 text-xs font-medium text-gray-500 capitalize`}
                 key={index}
               >
-                <div className="flex items-center justify-between">
+                <div
+                  className={`flex items-center  ${item === 'No' ? 'justify-center' : 'justify-between'}`}
+                >
                   {item}
-                  <button
-                    onClick={() => handleSort(HeaderOrder[index], sortAsc)}
-                  >
-                    <img src={iconSort} alt="" />
-                  </button>
+                  {item === 'No' ? null : (
+                    <button
+                      onClick={() => handleSort(HeaderOrder[index], sortAsc)}
+                    >
+                      <img src={iconSort} alt="" />
+                    </button>
+                  )}
                 </div>
               </th>
             ))}
@@ -81,7 +91,7 @@ const TableListOrder = () => {
               {HeaderOrder.map((col, colindex) => (
                 <td
                   key={colindex}
-                  className="h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700"
+                  className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
                 >
                   {col === 'user_email'
                     ? item.User.email

@@ -27,9 +27,7 @@ const CustomToggle = ({ children, eventKey }) => {
 };
 
 const PaymentMethodFormDetail = ({ data, nextStep, bank }) => {
-  console.log(bank);
   const [click, setClick] = useState(false);
-  // console.log('dari detail', data);
   const handleClick = () => {
     setClick(!click);
   };

@@ -13,7 +13,7 @@ const SideNavbar = () => {
     dispatch(setActive(values));
 
     if (values === 'dashboard') {
-      navigate('/admin/dashboard');
+      navigate('/admin');
     } else if (values === 'cars') {
       const namecar = 'all';
       navigate(`/admin/listcar/${namecar}`);
@@ -21,7 +21,7 @@ const SideNavbar = () => {
   };
 
   // todo : isactive need to store in persisted storage
-
+  console.log(isActive);
   return (
     <div>
       <div className="z-30 flex flex-col justify-start items-center pt-4 fixed h-screen  sidebar-container">
@@ -32,7 +32,7 @@ const SideNavbar = () => {
         >
           <img src={iconhome} alt="" />
           <p
-            className={`text-center m-0 flex items-center justify-center ${isActive.includes('dashboard') ? 'font-bold' : ''}`}
+            className={`text-center m-0 flex items-center justify-center font-sans text-xs ${isActive.includes('dashboard') ? 'font-bold' : 'font-thin'}`}
           >
             Dashboard
           </p>
@@ -43,7 +43,7 @@ const SideNavbar = () => {
         >
           <img src={icontruck} alt="" />
           <p
-            className={`text-center m-0 flex items-center justify-center ${isActive.includes('cars') ? 'font-bold' : ''}`}
+            className={`text-center m-0 flex items-center justify-center font-sans text-xs ${isActive.includes('cars') ? 'font-bold' : 'font-thin'}`}
           >
             Cars
           </p>
@@ -52,7 +52,7 @@ const SideNavbar = () => {
       <div
         className={`  flex justify-start items-start ml-16 z-10 fixed bg-white h-screen w-72 shadow-md ${isOpen ? 'transition translate-x-0' : 'transition -translate-x-80'}`}
       >
-        {window.location.href.includes('dashboard') ? (
+        {isActive.includes('dashboard') ? (
           <div className=" mt-32  w-full h-fit flex flex-col justify-center items-start">
             <h2 className="pl-6 py-3 w-full side-font header-side-font">
               DASHBOARD

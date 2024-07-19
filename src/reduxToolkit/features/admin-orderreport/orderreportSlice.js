@@ -18,10 +18,10 @@ export const getOrderReport = createAsyncThunk(
         `https://api-car-rental.binaracademy.org/admin/order/reports?from=${startDate}&until=${endDate}`,
         payload
       );
-      console.log('success get data : ', response.data);
+      // console.log('success get data : ', response.data);
       return response?.data;
     } catch (error) {
-      console.log('failed get data : ', error.response.data);
+      // console.log('failed get data : ', error.response.data);
       return error.response.data;
     }
   }

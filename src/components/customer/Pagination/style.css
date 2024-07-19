@@ -3,3 +3,13 @@
   justify-content: center;
   margin: 50px;
 }
+
+.page-link {
+  color: #5cb85f !important;
+}
+
+.page-item.active .page-link {
+  background-color: #5cb85f;
+  border: 1px solid #5cb85f;
+  color: #ffffff !important;
+}

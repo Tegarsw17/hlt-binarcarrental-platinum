@@ -5,6 +5,8 @@ import { navbarLink } from '../../../utils/dummyData';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearToken } from '../../../reduxToolkit/features/customer-auth/loginSlice';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(null);
@@ -13,25 +15,27 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const dispatch = useDispatch();
+
+  const accessToken = useSelector((state) => state.authReducer.access_token);
+
   const logout = () => {
-    localStorage.removeItem('access_token');
+    dispatch(clearToken());
     setIsLogin(false);
-    navigate('/');
   };
   const register = () => {
     navigate('/register');
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
+    if (accessToken) {
       setIsLogin(true);
     }
   });
 
   return (
     <div className="navbar-wrapper">
-      <div className="navbar">
+      <div className="navbar-cust">
         <Link to={'/'}>
           <Logo />
         </Link>

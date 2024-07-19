@@ -6,11 +6,19 @@ import TableListOrder from '../../../components/admin/TableListOrder/TableListOr
 import LimitPage from '../../../components/admin/TableListOrder/Limit/Limit';
 import JumptoPage from '../../../components/admin/TableListOrder/JumptoPage/JumptoPage';
 import Paging from '../../../components/admin/TableListOrder/Paging/Paging';
+import iconChevron from '../../../assets/chevron-right.png';
 const Dashboard = () => {
   return (
     <div className="admin-page-color w-full h-full pb-5">
       <Navbar />
       <div className=" flex flex-col justify-center items-center px-52 z-0 pt-24  container gap-component">
+        <div className="self-start flex gap-1 admin-tag-page pl-3 pr-3 items-center">
+          <p className="font-sans text-center text-xs font-bold m-0">
+            Dashboard
+          </p>
+          <img className="w-5 h-5" src={iconChevron} alt="" />
+          <p className="font-sans text-center text-xs m-0">Dashboard</p>
+        </div>
         <MonthPicker />
         <ChartOrder />
         <TableListOrder />
