@@ -1,24 +1,35 @@
+import './TableListOrder.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {
-  getListOrder,
-  getDetailCar,
-} from '../../../reduxToolkit/features/admin-listorder/listOrderSlice';
-import './TableListOrder.css';
+import { getListOrder } from '../../../reduxToolkit/features/admin-listorder/listOrderSlice';
 import { formatDate, formatRupiah } from '../../../utils/formatUtil';
+import { useSearchParams } from 'react-router-dom';
+
 import iconSort from '../../../assets/fi_sort.png';
 import iconRectangle from '../../../assets/Rectangle10.png';
+
 const TableListOrder = () => {
   const dispatch = useDispatch();
-  const [sortAsc, setSortAsc] = useState(true);
+  const { access_token_admin } = useSelector((state) => state.authAdminReducer);
+  const { listorder, loading, error } = useSelector(
+    (state) => state.listOrderSlice
+  );
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [paramsUrl, setParamsUrl] = useState({
+    sortBy: searchParams.get('sortBy') || 'created_at',
+    sortAsc: searchParams.get('sortAsc') || 'desc',
+    page: searchParams.get('page') || 1,
+    pageSize: searchParams.get('pageSize') || 10,
+  });
   const HeaderOrder = [
     'id',
     'user_email',
     'car',
-    'finish_rent_at',
+    'start_rent_at',
     'finish_rent_at',
     'total_price',
-    'category',
+    'created_at',
   ];
   const HeaderNames = [
     'No',
@@ -27,31 +38,45 @@ const TableListOrder = () => {
     'Start Rent',
     'finish Rent',
     'Price',
-    'Category',
+    'Created At',
   ];
-  const { headers, nameCar, listorder, loading, error } = useSelector(
-    (state) => state.listOrderSlice
-  );
 
-  const handleSort = (sortBy, sortAsc) => {
-    setSortAsc(!sortAsc);
-    // console.log(sortBy, sort);
-    sortBy !== 'category' ? dispatch(getListOrder({ sortBy, sortAsc })) : null;
-  };
+  const handleSort = (sortBy) => {
+    // setParamsUrl((prevParams) => {
+    //   const newSortAsc = prevParams.sortAsc === 'asc' ? 'desc' : 'asc';
+    //   return {
+    //     ...prevParams,
+    //     sortBy,
+    //     sortAsc: newSortAsc,
+    //   };
 
-  const getCarName = (id) => {
-    const car = nameCar.find((item) => item.orderId === id);
-    return car ? car.carName : 'null';
+    //   ...prevParams;
+    //   sortBy,
+    //   sortAsc: prevParams.sortAsc === 'asc' ? 'desc' : 'asc';,
+    // });
+
+    setParamsUrl({
+      ...paramsUrl,
+      sortBy,
+      sortAsc: paramsUrl.sortAsc === 'asc' ? 'desc' : 'asc',
+    });
   };
 
   useEffect(() => {
-    const sortBy = '';
-    const sortAsc = true;
-    // dispatch(getListOrder({ sortBy, sortAsc }));
-    dispatch(getListOrder({ sortBy, sortAsc })).then(() =>
-      dispatch(getDetailCar())
-    );
+    setSearchParams(paramsUrl);
+    dispatch(getListOrder(searchParams));
   }, []);
+
+  useEffect(() => {
+    setSearchParams(paramsUrl);
+    const params = Object.fromEntries(searchParams.entries());
+    dispatch(getListOrder(params));
+  }, [paramsUrl, setSearchParams]);
+
+  // const getCarName = (id) => {
+  //   const car = nameCar.find((item) => item.orderId === id);
+  //   return car ? car.carName : 'null';
+  // };
 
   return (
     <div>
@@ -74,9 +99,7 @@ const TableListOrder = () => {
                 >
                   {item}
                   {item === 'No' ? null : (
-                    <button
-                      onClick={() => handleSort(HeaderOrder[index], sortAsc)}
-                    >
+                    <button onClick={() => handleSort(HeaderOrder[index])}>
                       <img src={iconSort} alt="" />
                     </button>
                   )}
@@ -86,26 +109,32 @@ const TableListOrder = () => {
           </tr>
         </thead>
         <tbody>
-          {listorder.map((item, rowindex) => (
-            <tr className="border-b-2" key={rowindex}>
-              {HeaderOrder.map((col, colindex) => (
-                <td
-                  key={colindex}
-                  className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
-                >
-                  {col === 'user_email'
-                    ? item.User.email
-                    : col.includes('car')
-                      ? getCarName(item[col])
+          {loading ? (
+            <p className="text-center flex justify-center items-center">
+              Loading
+            </p>
+          ) : (
+            listorder.map((item, rowindex) => (
+              <tr className="border-b-2" key={rowindex}>
+                {HeaderOrder.map((col, colindex) => (
+                  <td
+                    key={colindex}
+                    className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
+                  >
+                    {col.includes('user_email')
+                      ? item.User.email
                       : col.includes('rent')
                         ? formatDate(item[col])
                         : col.includes('price')
-                          ? formatRupiah(item[col])
-                          : item[col]}
-                </td>
-              ))}
-            </tr>
-          ))}
+                          ? formatRupiah(item['total_price'])
+                          : col.includes('create')
+                            ? formatDate(item['createdAt'])
+                            : item[col]}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

@@ -14,11 +14,8 @@ const LimitPage = () => {
         <option value={'10'} className="">
           10
         </option>
-        <option value={'20'} className="">
-          20
-        </option>
         <option value={'30'} className="">
-          30
+          50
         </option>
       </select>
     </div>
