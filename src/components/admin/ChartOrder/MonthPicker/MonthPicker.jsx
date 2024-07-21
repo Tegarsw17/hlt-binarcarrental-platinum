@@ -2,7 +2,7 @@ import './MonthPicker.css';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { lastDayOfMonth, format } from 'date-fns';
+import { lastDayOfMonth, startOfMonth, format } from 'date-fns';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getOrderReport } from '../../../../reduxToolkit/features/admin-orderreport/orderreportSlice';
@@ -11,10 +11,10 @@ import iconRectangle from '../../../../assets/Rectangle10.png';
 const MonthPicker = () => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(
-    format(new Date('2022-10-01'), 'yyyy-MM-dd')
+    format(startOfMonth(new Date()), 'yyyy-MM-dd')
   );
   const [endDate, setEndDate] = useState(
-    format(lastDayOfMonth(new Date('2022-10-01'), 1), 'yyyy-MM-dd')
+    format(lastDayOfMonth(new Date(), 1), 'yyyy-MM-dd')
   );
 
   const handleChange = (date) => {

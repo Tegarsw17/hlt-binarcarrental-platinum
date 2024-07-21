@@ -1,38 +1,20 @@
 import './JumptoPage.css';
+import useTableAdmin from '../../../../hooks/useTableAdmin';
+import { useSelector } from 'react-redux';
+
 const JumptoPage = () => {
-  const handleSelectPage = (value) => {
-    console.log(value);
-  };
+  const { handleSelectPage } = useTableAdmin();
+  const { countPage } = useSelector((state) => state.listOrderSlice);
+  const arrayPage = Array.from({ length: 40 }, (_, i) => i + 1);
+
   return (
     <div className=" flex justify-center items-center">
       <select className="input-limit" onChange={handleSelectPage}>
-        <option value={'1'} className="">
-          1
-        </option>
-        <option value={'2'} className="">
-          2
-        </option>
-        <option value={'3'} className="">
-          3
-        </option>
-        <option value={'4'} className="">
-          4
-        </option>
-        <option value={'5'} className="">
-          5
-        </option>
-        <option value={'6'} className="">
-          6
-        </option>
-        <option value={'7'} className="">
-          7
-        </option>
-        <option value={'8'} className="">
-          8
-        </option>
-        <option value={'9'} className="">
-          9
-        </option>
+        {arrayPage.map((number, index) => (
+          <option value={number} className="" key={index}>
+            {number}
+          </option>
+        ))}
       </select>
       <button className="btn-go text-center">GO</button>
     </div>

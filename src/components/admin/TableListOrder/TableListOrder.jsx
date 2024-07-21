@@ -1,82 +1,21 @@
 import './TableListOrder.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { getListOrder } from '../../../reduxToolkit/features/admin-listorder/listOrderSlice';
-import { formatDate, formatRupiah } from '../../../utils/formatUtil';
-import { useSearchParams } from 'react-router-dom';
-
 import iconSort from '../../../assets/fi_sort.png';
 import iconRectangle from '../../../assets/Rectangle10.png';
+import useTableAdmin from '../../../hooks/useTableAdmin';
+import { useSelector } from 'react-redux';
+import {
+  formatStatusOrder,
+  formatDate,
+  formatRupiah,
+} from '../../../utils/formatUtil';
 
 const TableListOrder = () => {
-  const dispatch = useDispatch();
-  const { access_token_admin } = useSelector((state) => state.authAdminReducer);
-  const { listorder, loading, error } = useSelector(
+  const { HeaderOrder, HeaderNames, handleSort, handleClickStatus } =
+    useTableAdmin();
+
+  const { statusorder, listorder, loading, error } = useSelector(
     (state) => state.listOrderSlice
   );
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [paramsUrl, setParamsUrl] = useState({
-    sortBy: searchParams.get('sortBy') || 'created_at',
-    sortAsc: searchParams.get('sortAsc') || 'desc',
-    page: searchParams.get('page') || 1,
-    pageSize: searchParams.get('pageSize') || 10,
-  });
-  const HeaderOrder = [
-    'id',
-    'user_email',
-    'car',
-    'start_rent_at',
-    'finish_rent_at',
-    'total_price',
-    'created_at',
-  ];
-  const HeaderNames = [
-    'No',
-    'User Email',
-    'car',
-    'Start Rent',
-    'finish Rent',
-    'Price',
-    'Created At',
-  ];
-
-  const handleSort = (sortBy) => {
-    // setParamsUrl((prevParams) => {
-    //   const newSortAsc = prevParams.sortAsc === 'asc' ? 'desc' : 'asc';
-    //   return {
-    //     ...prevParams,
-    //     sortBy,
-    //     sortAsc: newSortAsc,
-    //   };
-
-    //   ...prevParams;
-    //   sortBy,
-    //   sortAsc: prevParams.sortAsc === 'asc' ? 'desc' : 'asc';,
-    // });
-
-    setParamsUrl({
-      ...paramsUrl,
-      sortBy,
-      sortAsc: paramsUrl.sortAsc === 'asc' ? 'desc' : 'asc',
-    });
-  };
-
-  useEffect(() => {
-    setSearchParams(paramsUrl);
-    dispatch(getListOrder(searchParams));
-  }, []);
-
-  useEffect(() => {
-    setSearchParams(paramsUrl);
-    const params = Object.fromEntries(searchParams.entries());
-    dispatch(getListOrder(params));
-  }, [paramsUrl, setSearchParams]);
-
-  // const getCarName = (id) => {
-  //   const car = nameCar.find((item) => item.orderId === id);
-  //   return car ? car.carName : 'null';
-  // };
 
   return (
     <div>
@@ -95,10 +34,12 @@ const TableListOrder = () => {
                 key={index}
               >
                 <div
-                  className={`flex items-center  ${item === 'No' ? 'justify-center' : 'justify-between'}`}
+                  className={`flex items-center  ${item === 'No' || item === 'status' ? 'justify-center' : 'justify-between'}`}
                 >
                   {item}
-                  {item === 'No' ? null : (
+                  {item === 'No' ||
+                  item === 'status' ||
+                  item === 'car' ? null : (
                     <button onClick={() => handleSort(HeaderOrder[index])}>
                       <img src={iconSort} alt="" />
                     </button>
@@ -110,9 +51,9 @@ const TableListOrder = () => {
         </thead>
         <tbody>
           {loading ? (
-            <p className="text-center flex justify-center items-center">
-              Loading
-            </p>
+            <tr className="text-center flex justify-center items-center">
+              <td>Loading</td>
+            </tr>
           ) : (
             listorder.map((item, rowindex) => (
               <tr className="border-b-2" key={rowindex}>
@@ -121,15 +62,39 @@ const TableListOrder = () => {
                     key={colindex}
                     className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
                   >
-                    {col.includes('user_email')
-                      ? item.User.email
-                      : col.includes('rent')
-                        ? formatDate(item[col])
-                        : col.includes('price')
-                          ? formatRupiah(item['total_price'])
-                          : col.includes('create')
-                            ? formatDate(item['createdAt'])
-                            : item[col]}
+                    {col.includes('user_email') ? (
+                      item.User.email
+                    ) : col.includes('rent') ? (
+                      formatDate(item[col])
+                    ) : col.includes('price') ? (
+                      formatRupiah(item['total_price'])
+                    ) : col.includes('create') ? (
+                      formatDate(item['createdAt'])
+                    ) : col.includes('status') ? (
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="m-0 text-xs">
+                          {formatStatusOrder(item[col])}
+                        </div>
+                        <div className="w-fit flex gap-2 justify-center items-center">
+                          <button
+                            onClick={() => handleClickStatus(item.id, '1')}
+                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'bg-slate-400' : ' text-white bg-blue-900 hover:bg-blue-700  border-b-4 border-blue-700 hover:border-blue-500'}`}
+                            disabled={item[col] ? true : false}
+                          >
+                            confirm
+                          </button>
+                          <button
+                            onClick={() => handleClickStatus(item.id, '0')}
+                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'bg-slate-400' : ' text-white bg-blue-900 hover:bg-blue-700  border-b-4 border-blue-700 hover:border-blue-500'}`}
+                            disabled={item[col] ? false : true}
+                          >
+                            Finish
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      item[col]
+                    )}
                   </td>
                 ))}
               </tr>
