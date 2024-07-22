@@ -16,32 +16,32 @@ import {
 } from '../../../utils/formatUtil';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import useListCarAdmin from '../../../hooks/useListCarAdmin';
 const ListCar = () => {
   // todo button delete dan edit akan dibuatkan komponen terpisah dan di panggil
-  const { namecar } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const { listcar, loading, error } = useSelector((state) => state.listSlice);
   const isVisible = useSelector((state) => state.popupSlice.isVisible);
+  const { handleDelete, handleEdit } = useListCarAdmin();
 
-  const handleDelete = (id) => {
-    dispatch(showPopupDelete(id));
-  };
+  // const handleDelete = (id) => {
+  //   dispatch(showPopupDelete(id));
+  // };
 
-  const handleEdit = (id) => {
-    // console.log(id);
-    navigate(`/admin/editcars/${id}`);
-  };
+  // const handleEdit = (id) => {
+  //   // console.log(id);
+  //   navigate(`/admin/editcars/${id}`);
+  // };
 
-  useEffect(() => {
-    const size = 'all';
-    dispatch(getList({ size, namecar }));
-  }, []);
+  // useEffect(() => {
+  //   const size = 'all';
+  //   dispatch(getList({ size, namecar }));
+  // }, []);
 
-  useEffect(() => {
-    const size = 'all';
-    dispatch(getList({ size, namecar }));
-  }, [namecar]);
+  // useEffect(() => {
+  //   const size = 'all';
+  //   dispatch(getList({ size, namecar }));
+  // }, [namecar]);
 
   return (
     <div className="container max-w-6xl">

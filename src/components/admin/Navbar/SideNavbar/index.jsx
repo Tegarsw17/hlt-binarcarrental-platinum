@@ -15,8 +15,7 @@ const SideNavbar = () => {
     if (values === 'dashboard') {
       navigate('/admin');
     } else if (values === 'cars') {
-      const namecar = 'all';
-      navigate(`/admin/listcar/${namecar}`);
+      navigate(`/admin/listcar`);
     }
   };
 

@@ -1,14 +1,18 @@
 import './Paging.css';
+
+import { Pagination } from 'flowbite-react';
+import useTableAdmin from '../../../../hooks/useTableAdmin';
+
 const Paging = () => {
+  const { currentPage, onPageChange } = useTableAdmin();
+
   return (
-    <div className="btn-page-list">
-      <button>&lt;&lt;</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>...</button>
-      <button>9</button>
-      <button>&gt;&gt;</button>
+    <div className="btn-page-list flex sm:justify-center">
+      <Pagination
+        currentPage={currentPage}
+        totalPages={100}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 };

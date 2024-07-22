@@ -8,9 +8,12 @@ import {
 import { useSearchParams } from 'react-router-dom';
 
 const useTableAdmin = () => {
-  const { access_token_admin } = useSelector((state) => state.authAdminReducer);
   const dispatch = useDispatch();
+  const { access_token_admin } = useSelector((state) => state.authAdminReducer);
+  const { countPage, pageSize } = useSelector((state) => state.listOrderSlice);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [paramsUrl, setParamsUrl] = useState({
     sortBy: searchParams.get('sortBy') || 'created_at',
     sortAsc: searchParams.get('sortAsc') || 'desc',
@@ -70,6 +73,14 @@ const useTableAdmin = () => {
     });
   };
 
+  const onPageChange = (page) => {
+    setParamsUrl({
+      ...paramsUrl,
+      page: page,
+    });
+    setCurrentPage(page);
+  };
+
   useEffect(() => {
     // const updatedUrl = new URLSearchParams(paramsUrl);
     // const params = Object.fromEntries(updatedUrl.entries());
@@ -78,12 +89,16 @@ const useTableAdmin = () => {
   }, [paramsUrl]);
 
   return {
+    countPage,
+    pageSize,
+    currentPage,
     HeaderOrder,
     HeaderNames,
     handleSort,
     handleClickStatus,
     handleSelectLimit,
     handleSelectPage,
+    onPageChange,
   };
 };
 

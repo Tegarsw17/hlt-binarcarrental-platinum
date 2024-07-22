@@ -2,7 +2,7 @@
   background: url('../../../../../assets/fi_search.png') no-repeat scroll 7px
     7px;
   background-color: #ffffff;
-  padding-left: 38px;
+  padding-left: 38px !important;
   background-position: left 12px center;
   width: 174px;
   height: 36px;

@@ -61,7 +61,7 @@ export const routeList = createBrowserRouter([
     ),
   },
   {
-    path: '/admin/listcar/:namecar',
+    path: '/admin/listcar',
     element: (
       <AdminProtectedRoute>
         <AdminListCar />

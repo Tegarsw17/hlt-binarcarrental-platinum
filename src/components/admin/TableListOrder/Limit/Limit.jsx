@@ -2,7 +2,7 @@ import './Limit.css';
 import useTableAdmin from '../../../../hooks/useTableAdmin';
 
 const LimitPage = () => {
-  const { handleSelectLimit } = useTableAdmin();
+  const { pageSize, handleSelectLimit } = useTableAdmin();
   return (
     <div>
       <select
