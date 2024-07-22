@@ -1,11 +1,9 @@
 import './JumptoPage.css';
 import useTableAdmin from '../../../../hooks/useTableAdmin';
-import { useSelector } from 'react-redux';
 
 const JumptoPage = () => {
-  const { handleSelectPage } = useTableAdmin();
-  const { countPage } = useSelector((state) => state.listOrderSlice);
-  const arrayPage = Array.from({ length: 40 }, (_, i) => i + 1);
+  const { handleSelectPage, pageCount } = useTableAdmin();
+  const arrayPage = Array.from({ length: pageCount }, (_, i) => i + 1);
   const handleClick = () => {
     handleSelectPage();
   };

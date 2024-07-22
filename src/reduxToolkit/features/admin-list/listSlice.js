@@ -34,6 +34,7 @@ export const getList = createAsyncThunk(
 
 const initialState = {
   listcar: [],
+  pageCount: 0,
   loading: false,
   error: null,
 };
@@ -50,6 +51,7 @@ const listSlice = createSlice({
       .addCase(getList.fulfilled, (state, action) => {
         state.loading = false;
         state.listcar = action.payload?.cars;
+        state.pageCount = action.payload?.pageCount;
       })
       .addCase(getList.rejected, (state, action) => {
         state.loading = false;

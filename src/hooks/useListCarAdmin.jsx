@@ -7,6 +7,7 @@ const useListCarAdmin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { access_token_admin } = useSelector((state) => state.authAdminReducer);
+  const { pageCount } = useSelector((state) => state.listSlice);
   const [searchParams, setSearchParams] = useSearchParams();
   const [categoryActive, setCategoryActive] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,11 @@ const useListCarAdmin = () => {
   };
 
   const handleEdit = (id) => {
+    searchParams.delete('name');
+    searchParams.delete('category');
+    searchParams.delete('page');
+    searchParams.delete('pageSize');
+    setSearchParams(searchParams);
     navigate(`/admin/editcars/${id}`);
   };
 
@@ -52,6 +58,7 @@ const useListCarAdmin = () => {
     currentPage,
     searchParams,
     paramsUrl,
+    pageCount,
     handleEdit,
     handleDelete,
     setParamsUrl,

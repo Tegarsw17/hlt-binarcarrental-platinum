@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import useListCarAdmin from '../../../../../hooks/useListCarAdmin';
 import { setActive } from '../../../../../reduxToolkit/features/admin-navbar/navbarSlice';
+import { Page } from '@react-pdf/renderer';
 const SearchBox = () => {
   const dispatch = useDispatch();
   const { searchParams, paramsUrl, setParamsUrl, setSearchParams } =
@@ -28,6 +29,8 @@ const SearchBox = () => {
     const updatedParams = {
       ...paramsUrl,
       name: namecar,
+      Page: 1,
+      pageSize: 6,
     };
 
     setParamsUrl(updatedParams);

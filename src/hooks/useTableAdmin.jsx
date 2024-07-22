@@ -10,7 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 const useTableAdmin = () => {
   const dispatch = useDispatch();
   const { access_token_admin } = useSelector((state) => state.authAdminReducer);
-  const { countPage, pageSize } = useSelector((state) => state.listOrderSlice);
+  const { pageCount } = useSelector((state) => state.listOrderSlice);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -87,11 +87,10 @@ const useTableAdmin = () => {
   }, [deferredValue]);
 
   return {
-    countPage,
-    pageSize,
     currentPage,
     HeaderOrder,
     HeaderNames,
+    pageCount,
     handleSort,
     handleClickStatus,
     handleSelectLimit,

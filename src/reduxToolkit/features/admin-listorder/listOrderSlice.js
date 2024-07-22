@@ -6,8 +6,8 @@ import axios from 'axios';
 export const getListOrder = createAsyncThunk(
   'getListOrder',
   async ({ paramsUrl, access_token_admin }) => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
+    // const token =
+    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
 
     // console.log(param);
     const config = {
@@ -39,8 +39,8 @@ export const getListOrder = createAsyncThunk(
 export const patchStatusOrder = createAsyncThunk(
   'patchStatusOrder',
   async ({ id, status, access_token_admin }) => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
+    // const token =
+    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
 
     const config = {
       headers: {
@@ -72,8 +72,7 @@ export const patchStatusOrder = createAsyncThunk(
 const initialState = {
   listorder: [],
   statusorder: [],
-  countPage: 0,
-  pageSize: 0,
+  pageCount: 0,
   loading: false,
   error: null,
 };
@@ -90,8 +89,7 @@ const listSlice = createSlice({
       .addCase(getListOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.listorder = action.payload?.orders;
-        state.countPage = action.payload?.countPage;
-        state.pageSize = action.payload?.countSize;
+        state.pageCount = action.payload?.pageCount;
       })
       .addCase(getListOrder.rejected, (state, action) => {
         state.loading = false;
