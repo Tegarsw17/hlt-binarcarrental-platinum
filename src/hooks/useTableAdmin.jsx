@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDeferredValue, useEffect, useState } from 'react';
 import {
   getListOrder,
   patchStatusOrder,
@@ -20,6 +20,7 @@ const useTableAdmin = () => {
     page: searchParams.get('page') || 1,
     pageSize: searchParams.get('pageSize') || 10,
   });
+  let deferredValue = useDeferredValue(paramsUrl);
   const HeaderOrder = [
     'id',
     'user_email',
@@ -51,7 +52,6 @@ const useTableAdmin = () => {
 
   const handleClickStatus = (id, status) => {
     dispatch(patchStatusOrder({ id, status, access_token_admin }));
-
     setParamsUrl({
       ...paramsUrl,
       idstatus: id,
@@ -82,11 +82,9 @@ const useTableAdmin = () => {
   };
 
   useEffect(() => {
-    // const updatedUrl = new URLSearchParams(paramsUrl);
-    // const params = Object.fromEntries(updatedUrl.entries());
     setSearchParams(paramsUrl);
     dispatch(getListOrder({ paramsUrl, access_token_admin }));
-  }, [paramsUrl]);
+  }, [deferredValue]);
 
   return {
     countPage,

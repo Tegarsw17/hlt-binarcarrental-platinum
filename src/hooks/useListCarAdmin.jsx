@@ -8,6 +8,8 @@ const useListCarAdmin = () => {
   const dispatch = useDispatch();
   const { access_token_admin } = useSelector((state) => state.authAdminReducer);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [categoryActive, setCategoryActive] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
   const [paramsUrl, setParamsUrl] = useState({
     name: searchParams.get('name') || '',
     category: searchParams.get('category') || '',
@@ -24,28 +26,38 @@ const useListCarAdmin = () => {
     navigate(`/admin/editcars/${id}`);
   };
 
-  //   useEffect(() => {
-  //     const size = 'all';
-  //     dispatch(getList({ size, namecar }));
-  //   }, []);
+  const onPageChange = (page) => {
+    setParamsUrl({
+      ...paramsUrl,
+      page: page,
+    });
+    setCurrentPage(page);
+  };
 
-  //   useEffect(() => {
-  //     const size = 'all';
-  //     dispatch(getList({ size, namecar }));
-  //   }, [namecar]);
+  const handleClickCategory = (category) => {
+    setCategoryActive(category);
+    setParamsUrl({
+      ...paramsUrl,
+      category: category,
+    });
+  };
 
   useEffect(() => {
     setSearchParams(paramsUrl);
     dispatch(getList({ paramsUrl, access_token_admin }));
-  }, [searchParams]);
+  }, [deferredValue]);
 
   return {
+    categoryActive,
+    currentPage,
     searchParams,
     paramsUrl,
     handleEdit,
     handleDelete,
     setParamsUrl,
     setSearchParams,
+    onPageChange,
+    handleClickCategory,
   };
 };
 

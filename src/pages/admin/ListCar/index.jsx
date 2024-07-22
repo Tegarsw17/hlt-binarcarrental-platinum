@@ -47,7 +47,7 @@ const AdminListCar = () => {
         </div>
         <ButtonCategory />
         <ListCar />
-        {/* <Paging /> */}
+        <Paging />
       </div>
     </div>
   );
