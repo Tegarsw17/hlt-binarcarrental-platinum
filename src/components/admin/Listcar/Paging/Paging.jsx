@@ -1,10 +1,10 @@
 import './Paging.css';
 
 import { Pagination } from 'flowbite-react';
-import useTableAdmin from '../../../../hooks/useTableAdmin';
+import useListCarAdmin from '../../../../hooks/useListCarAdmin';
 
 const Paging = () => {
-  const { pageCount, currentPage, onPageChange } = useTableAdmin();
+  const { pageCount, currentPage, onPageChange } = useListCarAdmin();
 
   return (
     <div className="btn-page-list flex sm:justify-center">

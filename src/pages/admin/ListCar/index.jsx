@@ -2,6 +2,7 @@ import './index.css';
 import ButtonAddCar from '../../../components/admin/ButtonAddCar/index';
 import ButtonCategory from '../../../components/admin/ButtonCategory/index';
 import ListCar from '../../../components/admin/Listcar/ListCar';
+import Paging from '../../../components/admin/Listcar/Paging/Paging';
 import Navbar from '../../../components/admin/Navbar/Navbar';
 import iconChevron from '../../../assets/chevron-right.png';
 
@@ -46,6 +47,7 @@ const AdminListCar = () => {
         </div>
         <ButtonCategory />
         <ListCar />
+        <Paging />
       </div>
     </div>
   );

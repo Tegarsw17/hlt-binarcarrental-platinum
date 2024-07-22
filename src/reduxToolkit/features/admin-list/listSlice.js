@@ -4,43 +4,26 @@ import axios from 'axios';
 // todo : Token akan dioper bersama dengan size
 export const getList = createAsyncThunk(
   'getMenu',
-  async ({ size, namecar }) => {
-    const payload = {
+  async ({ paramsUrl, access_token_admin }) => {
+    const config = {
       headers: {
-        access_token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc',
+        access_token: access_token_admin,
+      },
+      params: {
+        page: paramsUrl.page,
+        pageSize: paramsUrl.pageSize,
+        name: paramsUrl.name,
+        category: paramsUrl.category,
       },
     };
 
     // console.log('get data : ', size, namecar);
     try {
       let response;
-      if (
-        size === 'all' &&
-        (namecar === '' || namecar === undefined || namecar === 'all')
-      ) {
-        response = await axios.get(
-          'https://api-car-rental.binaracademy.org/admin/v2/car?page=1&pageSize=10',
-          payload
-        );
-      } else if (size === 'all' && namecar !== '') {
-        response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}&page=1&pageSize=10`,
-          payload
-        );
-      } else if (size !== 'all' && (namecar === '' || namecar === undefined)) {
-        response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/car?category=${size}&page=1&pageSize=10`,
-          payload
-        );
-      } else {
-        response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/car?name=${namecar}?category=${size}&page=1&pageSize=10`,
-          payload
-        );
-      }
-      // console.log('success get size : ', size, namecar);
-      // console.log('success get data : ', response.data);
+      response = await axios.get(
+        'https://api-car-rental.binaracademy.org/admin/v2/car',
+        config
+      );
       return response?.data;
     } catch (error) {
       // console.log('failed get data : ', error.response.data);
@@ -51,6 +34,7 @@ export const getList = createAsyncThunk(
 
 const initialState = {
   listcar: [],
+  pageCount: 0,
   loading: false,
   error: null,
 };
@@ -67,6 +51,7 @@ const listSlice = createSlice({
       .addCase(getList.fulfilled, (state, action) => {
         state.loading = false;
         state.listcar = action.payload?.cars;
+        state.pageCount = action.payload?.pageCount;
       })
       .addCase(getList.rejected, (state, action) => {
         state.loading = false;

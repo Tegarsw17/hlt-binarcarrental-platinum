@@ -1,57 +1,21 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import {
-  getListOrder,
-  getDetailCar,
-} from '../../../reduxToolkit/features/admin-listorder/listOrderSlice';
 import './TableListOrder.css';
-import { formatDate, formatRupiah } from '../../../utils/formatUtil';
 import iconSort from '../../../assets/fi_sort.png';
 import iconRectangle from '../../../assets/Rectangle10.png';
+import useTableAdmin from '../../../hooks/useTableAdmin';
+import { useSelector } from 'react-redux';
+import {
+  formatStatusOrder,
+  formatDate,
+  formatRupiah,
+} from '../../../utils/formatUtil';
+
 const TableListOrder = () => {
-  const dispatch = useDispatch();
-  const [sortAsc, setSortAsc] = useState(true);
-  const HeaderOrder = [
-    'id',
-    'user_email',
-    'car',
-    'finish_rent_at',
-    'finish_rent_at',
-    'total_price',
-    'category',
-  ];
-  const HeaderNames = [
-    'No',
-    'User Email',
-    'car',
-    'Start Rent',
-    'finish Rent',
-    'Price',
-    'Category',
-  ];
-  const { headers, nameCar, listorder, loading, error } = useSelector(
+  const { HeaderOrder, HeaderNames, handleSort, handleClickStatus } =
+    useTableAdmin();
+
+  const { statusorder, listorder, loading, error } = useSelector(
     (state) => state.listOrderSlice
   );
-
-  const handleSort = (sortBy, sortAsc) => {
-    setSortAsc(!sortAsc);
-    // console.log(sortBy, sort);
-    sortBy !== 'category' ? dispatch(getListOrder({ sortBy, sortAsc })) : null;
-  };
-
-  const getCarName = (id) => {
-    const car = nameCar.find((item) => item.orderId === id);
-    return car ? car.carName : 'null';
-  };
-
-  useEffect(() => {
-    const sortBy = '';
-    const sortAsc = true;
-    // dispatch(getListOrder({ sortBy, sortAsc }));
-    dispatch(getListOrder({ sortBy, sortAsc })).then(() =>
-      dispatch(getDetailCar())
-    );
-  }, []);
 
   return (
     <div>
@@ -70,13 +34,13 @@ const TableListOrder = () => {
                 key={index}
               >
                 <div
-                  className={`flex items-center  ${item === 'No' ? 'justify-center' : 'justify-between'}`}
+                  className={`flex items-center  ${item === 'No' || item === 'status' ? 'justify-center' : 'justify-between'}`}
                 >
                   {item}
-                  {item === 'No' ? null : (
-                    <button
-                      onClick={() => handleSort(HeaderOrder[index], sortAsc)}
-                    >
+                  {item === 'No' ||
+                  item === 'status' ||
+                  item === 'car' ? null : (
+                    <button onClick={() => handleSort(HeaderOrder[index])}>
                       <img src={iconSort} alt="" />
                     </button>
                   )}
@@ -86,26 +50,56 @@ const TableListOrder = () => {
           </tr>
         </thead>
         <tbody>
-          {listorder.map((item, rowindex) => (
-            <tr className="border-b-2" key={rowindex}>
-              {HeaderOrder.map((col, colindex) => (
-                <td
-                  key={colindex}
-                  className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
-                >
-                  {col === 'user_email'
-                    ? item.User.email
-                    : col.includes('car')
-                      ? getCarName(item[col])
-                      : col.includes('rent')
-                        ? formatDate(item[col])
-                        : col.includes('price')
-                          ? formatRupiah(item[col])
-                          : item[col]}
-                </td>
-              ))}
+          {loading ? (
+            <tr className="text-center flex justify-center items-center">
+              <td>Loading</td>
             </tr>
-          ))}
+          ) : (
+            listorder.map((item, rowindex) => (
+              <tr className="border-b-2" key={rowindex}>
+                {HeaderOrder.map((col, colindex) => (
+                  <td
+                    key={colindex}
+                    className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
+                  >
+                    {col.includes('user_email') ? (
+                      item.User.email
+                    ) : col.includes('rent') ? (
+                      formatDate(item[col])
+                    ) : col.includes('price') ? (
+                      formatRupiah(item['total_price'])
+                    ) : col.includes('create') ? (
+                      formatDate(item['createdAt'])
+                    ) : col.includes('status') ? (
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="m-0 text-xs">
+                          {formatStatusOrder(item[col])}
+                        </div>
+                        <div className="w-fit flex gap-2 justify-center items-center">
+                          <button
+                            onClick={() => handleClickStatus(item.id, '1')}
+                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'bg-slate-400' : ' text-white bg-blue-900 hover:bg-blue-700  border-b-4 border-blue-700 hover:border-blue-500'}`}
+                            disabled={item[col] ? true : false}
+                          >
+                            confirm
+                          </button>
+                          <button
+                            onClick={() => handleClickStatus(item.id, '0')}
+                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'bg-slate-400' : ' text-white bg-blue-900 hover:bg-blue-700  border-b-4 border-blue-700 hover:border-blue-500'}`}
+                            disabled={item[col] ? false : true}
+                          >
+                            Finish
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      item[col]
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

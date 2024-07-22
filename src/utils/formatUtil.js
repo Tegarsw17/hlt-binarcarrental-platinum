@@ -69,3 +69,11 @@ export const formatTimestamp = (timestamp) => {
 
   return `${dayName}, ${day} ${month} ${year} jam ${time} WIB`;
 };
+
+export const formatStatusOrder = (status) => {
+  if (status === false) {
+    return 'Menunggu Konfirmasi';
+  } else if (status === true) {
+    return 'Terkonfirmasi';
+  }
+};

@@ -5,43 +5,19 @@ import imgEdit from '../../../assets/img-edit.png';
 import iconUsers from '../../../assets/fi_users.png';
 import iconClock from '../../../assets/fi_clock.png';
 import Popupdelete from '../PopupDelete/index';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getList } from '../../../reduxToolkit/features/admin-list/listSlice';
-import { showPopupDelete } from '../../../reduxToolkit/features/admin-popup/popupSlice';
+import { useSelector } from 'react-redux';
 import {
   formatRupiah,
   formatSizeCar,
   formatDate,
 } from '../../../utils/formatUtil';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import useListCarAdmin from '../../../hooks/useListCarAdmin';
 const ListCar = () => {
   // todo button delete dan edit akan dibuatkan komponen terpisah dan di panggil
-  const { namecar } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const { listcar, loading, error } = useSelector((state) => state.listSlice);
   const isVisible = useSelector((state) => state.popupSlice.isVisible);
-
-  const handleDelete = (id) => {
-    dispatch(showPopupDelete(id));
-  };
-
-  const handleEdit = (id) => {
-    // console.log(id);
-    navigate(`/admin/editcars/${id}`);
-  };
-
-  useEffect(() => {
-    const size = 'all';
-    dispatch(getList({ size, namecar }));
-  }, []);
-
-  useEffect(() => {
-    const size = 'all';
-    dispatch(getList({ size, namecar }));
-  }, [namecar]);
+  const { handleDelete, handleEdit } = useListCarAdmin();
 
   return (
     <div className="container max-w-6xl">

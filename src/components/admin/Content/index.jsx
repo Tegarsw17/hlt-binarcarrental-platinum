@@ -71,11 +71,15 @@ function Content() {
       setTimeout(() => {
         sessionStorage.setItem('successMessage', 'Data Berhasil Ditambahkan');
         sessionStorage.setItem('color', '#73CA5C');
-        navigate('/admin/listcar/all');
+        navigate('/admin/listcar');
       }, 1000);
     } catch (error) {
       console.log(error.response);
     }
+  };
+
+  const handleCancel = () => {
+    navigate('/admin/listcar');
   };
 
   return (
@@ -177,7 +181,10 @@ function Content() {
           </div>
         </div>
         <div className="flex gap-4 mt-10">
-          <button className="px-3 py-2 bg-[#ffffff] border-[1px] border-[#0D28A6] text-[#0D28A6] font-bold text-sm">
+          <button
+            onClick={handleCancel}
+            className="px-3 py-2 bg-[#ffffff] border-[1px] border-[#0D28A6] text-[#0D28A6] font-bold text-sm"
+          >
             Cancel
           </button>
           <button

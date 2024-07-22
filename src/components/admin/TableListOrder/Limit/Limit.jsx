@@ -1,10 +1,8 @@
 import './Limit.css';
+import useTableAdmin from '../../../../hooks/useTableAdmin';
 
 const LimitPage = () => {
-  const handleSelectLimit = (value) => {
-    console.log(value);
-  };
-
+  const { handleSelectLimit } = useTableAdmin();
   return (
     <div>
       <select
@@ -14,11 +12,11 @@ const LimitPage = () => {
         <option value={'10'} className="">
           10
         </option>
-        <option value={'20'} className="">
-          20
+        <option value={'50'} className="">
+          50
         </option>
-        <option value={'30'} className="">
-          30
+        <option value={'100'} className="">
+          100
         </option>
       </select>
     </div>

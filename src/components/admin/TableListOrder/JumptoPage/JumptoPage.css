@@ -11,3 +11,7 @@
     sans-serif;
   line-height: 20px;
 }
+
+.input-limit option {
+  border: solid 1px #dddddd;
+}

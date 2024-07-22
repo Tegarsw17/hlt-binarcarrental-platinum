@@ -15,13 +15,11 @@ const SideNavbar = () => {
     if (values === 'dashboard') {
       navigate('/admin');
     } else if (values === 'cars') {
-      const namecar = 'all';
-      navigate(`/admin/listcar/${namecar}`);
+      navigate(`/admin/listcar`);
     }
   };
 
-  // todo : isactive need to store in persisted storage
-  console.log(isActive);
+  // console.log(isActive);
   return (
     <div>
       <div className="z-30 flex flex-col justify-start items-center pt-4 fixed h-screen  sidebar-container">

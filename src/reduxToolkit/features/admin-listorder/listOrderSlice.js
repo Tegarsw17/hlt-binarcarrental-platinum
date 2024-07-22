@@ -1,87 +1,78 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import axios from 'axios';
 
 // todo : Token akan dioper
 export const getListOrder = createAsyncThunk(
   'getListOrder',
-  async ({ sortBy, sortAsc }) => {
-    const payload = {
+  async ({ paramsUrl, access_token_admin }) => {
+    // const token =
+    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
+
+    // console.log(param);
+    const config = {
       headers: {
-        access_token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc',
+        access_token: access_token_admin,
+      },
+      params: {
+        page: paramsUrl.page,
+        pageSize: paramsUrl.pageSize,
+        sort: `${paramsUrl.sortBy}:${paramsUrl.sortAsc}`,
       },
     };
 
+    // console.log(config.params);
     try {
       let response;
-      let sort;
-      if (sortAsc === true) {
-        sort = 'asc';
-      } else {
-        sort = 'desc';
-      }
+      response = await axios.get(
+        'https://api-car-rental.binaracademy.org/admin/v2/order',
+        config
+      );
 
-      // console.log('get : ', sortBy, sort);
-      if (sortBy === '') {
-        // console.log('condition : 1');
-        response = await axios.get(
-          'https://api-car-rental.binaracademy.org/admin/v2/order?page=1&pageSize=10',
-          payload
-        );
-      } else {
-        // console.log('condition : 2');
-        response = await axios.get(
-          `https://api-car-rental.binaracademy.org/admin/v2/order?sort=${sortBy}%3A${sort}&page=1&pageSize=10`,
-          payload
-        );
-      }
-      console.log('success get data : ', response.data);
       return response?.data;
     } catch (error) {
-      // console.log('failed get data : ', error.response.data);
       return error.response.data;
     }
   }
 );
 
-export const getDetailCar = createAsyncThunk(
-  'getDetailCar',
-  async (_, { getState }) => {
-    const orders = getState().orders;
-    const payload = {
+export const patchStatusOrder = createAsyncThunk(
+  'patchStatusOrder',
+  async ({ id, status, access_token_admin }) => {
+    // const token =
+    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
+
+    const config = {
       headers: {
-        access_token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc',
+        access_token: access_token_admin,
       },
     };
 
-    try {
-      const carPromises = orders.map((order) =>
-        axios
-          .get(
-            `https://api-car-rental.binaracademy.org/admin/car/${order.CarId}`,
-            payload
-          )
-          .then((response) => ({
-            orderId: order.id,
-            carName: response.data.name,
-          }))
-      );
+    const data = {
+      status: { status },
+    };
 
-      const carDetails = await Promise.all(carPromises);
-      console.log('success get car detail : ', carDetails);
-      return carDetails;
+    // console.log(token);
+    try {
+      let response;
+      response = await axios.patch(
+        `https://api-car-rental.binaracademy.org/admin/order/${id}`,
+        data,
+        config
+      );
+      // console.log('success patch status', response.data);
+      return response?.data;
     } catch (error) {
-      console.log('failed get car detail : ', error.response.data);
+      // console.log('failed patch status', response.data);
       return error.response.data;
     }
   }
 );
 
 const initialState = {
-  // headers: [],
-  nameCar: [],
   listorder: [],
+  statusorder: [],
+  pageCount: 0,
   loading: false,
   error: null,
 };
@@ -98,20 +89,20 @@ const listSlice = createSlice({
       .addCase(getListOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.listorder = action.payload?.orders;
-        // state.headers = Object.keys(state.listorder[0]);
+        state.pageCount = action.payload?.pageCount;
       })
       .addCase(getListOrder.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(getDetailCar.pending, (state) => {
+      .addCase(patchStatusOrder.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getDetailCar.fulfilled, (state, action) => {
+      .addCase(patchStatusOrder.fulfilled, (state, action) => {
         state.loading = false;
-        state.nameCar = action.payload;
+        state.statusorder = action.payload;
       })
-      .addCase(getDetailCar.rejected, (state, action) => {
+      .addCase(patchStatusOrder.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

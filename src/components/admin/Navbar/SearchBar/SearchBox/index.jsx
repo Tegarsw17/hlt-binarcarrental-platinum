@@ -1,8 +1,15 @@
 import './index.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import useListCarAdmin from '../../../../../hooks/useListCarAdmin';
+import { setActive } from '../../../../../reduxToolkit/features/admin-navbar/navbarSlice';
+import { Page } from '@react-pdf/renderer';
 const SearchBox = () => {
+  const dispatch = useDispatch();
+  const { searchParams, paramsUrl, setParamsUrl, setSearchParams } =
+    useListCarAdmin();
+
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -17,13 +24,23 @@ const SearchBox = () => {
   };
 
   const handleClick = () => {
-    if (searchTerm) {
-      const size = 'all';
-      const namecar = searchTerm;
+    dispatch(setActive('cars'));
+    const namecar = searchTerm;
+    const updatedParams = {
+      ...paramsUrl,
+      name: namecar,
+      Page: 1,
+      pageSize: 6,
+    };
 
-      navigate(`/admin/listcar/${namecar}`);
-      // dispatch(getList({ size, namecar }));
-    }
+    setParamsUrl(updatedParams);
+    setSearchParams(updatedParams);
+    setTimeout(() => {
+      navigate({
+        pathname: '/admin/listcar',
+        search: `?${new URLSearchParams(updatedParams).toString()}`,
+      });
+    }, 0);
   };
 
   return (
