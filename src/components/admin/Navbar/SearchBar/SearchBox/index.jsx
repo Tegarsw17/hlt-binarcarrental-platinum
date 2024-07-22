@@ -1,10 +1,14 @@
 import './index.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import useListCarAdmin from '../../../../../hooks/useListCarAdmin';
-
+import { setActive } from '../../../../../reduxToolkit/features/admin-navbar/navbarSlice';
 const SearchBox = () => {
-  const { paramsUrl, setParamsUrl, setSearchParams } = useListCarAdmin();
+  const dispatch = useDispatch();
+  const { searchParams, paramsUrl, setParamsUrl, setSearchParams } =
+    useListCarAdmin();
+
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -19,17 +23,21 @@ const SearchBox = () => {
   };
 
   const handleClick = () => {
-    if (searchTerm) {
-      const namecar = searchTerm;
-      navigate(`/admin/listcar`);
-      setSearchParams({
-        ...paramsUrl,
-        name: namecar,
-        size: '',
+    dispatch(setActive('cars'));
+    const namecar = searchTerm;
+    const updatedParams = {
+      ...paramsUrl,
+      name: namecar,
+    };
+
+    setParamsUrl(updatedParams);
+    setSearchParams(updatedParams);
+    setTimeout(() => {
+      navigate({
+        pathname: '/admin/listcar',
+        search: `?${new URLSearchParams(updatedParams).toString()}`,
       });
-      // setSearchParams(paramsUrl);
-      // dispatch(getList({ size, namecar }));
-    }
+    }, 0);
   };
 
   return (

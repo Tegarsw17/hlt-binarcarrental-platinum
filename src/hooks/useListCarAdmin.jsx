@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDeferredValue, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-
 import { getList } from '../reduxToolkit/features/admin-list/listSlice';
 
 const useListCarAdmin = () => {
@@ -13,8 +12,9 @@ const useListCarAdmin = () => {
     name: searchParams.get('name') || '',
     category: searchParams.get('category') || '',
     page: searchParams.get('page') || 1,
-    pageSize: searchParams.get('pageSize') || 10,
+    pageSize: searchParams.get('pageSize') || 6,
   });
+  let deferredValue = useDeferredValue(paramsUrl);
 
   const handleDelete = (id) => {
     dispatch(showPopupDelete(id));
@@ -37,9 +37,10 @@ const useListCarAdmin = () => {
   useEffect(() => {
     setSearchParams(paramsUrl);
     dispatch(getList({ paramsUrl, access_token_admin }));
-  }, [paramsUrl]);
+  }, [searchParams]);
 
   return {
+    searchParams,
     paramsUrl,
     handleEdit,
     handleDelete,

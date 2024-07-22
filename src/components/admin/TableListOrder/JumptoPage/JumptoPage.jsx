@@ -6,6 +6,9 @@ const JumptoPage = () => {
   const { handleSelectPage } = useTableAdmin();
   const { countPage } = useSelector((state) => state.listOrderSlice);
   const arrayPage = Array.from({ length: 40 }, (_, i) => i + 1);
+  const handleClick = () => {
+    handleSelectPage();
+  };
 
   return (
     <div className=" flex justify-center items-center">
@@ -16,7 +19,9 @@ const JumptoPage = () => {
           </option>
         ))}
       </select>
-      <button className="btn-go text-center">GO</button>
+      <button onClick={handleClick} className="btn-go text-center">
+        GO
+      </button>
     </div>
   );
 };
