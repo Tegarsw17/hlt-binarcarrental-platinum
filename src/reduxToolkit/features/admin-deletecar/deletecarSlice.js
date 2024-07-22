@@ -1,29 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // todo : Token akan dioper bersama dengan id
-export const deleteCar = createAsyncThunk('deleteCar', async ({ idCar }) => {
-  console.log('id : ', idCar);
-  const payload = {
-    headers: {
-      access_token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc',
-    },
-  };
-
-  try {
-    // let iddummy = 0;
-    response = await axios.delete(
-      `https://api-car-rental.binaracademy.org/admin/car/${idCar}`,
-      payload
-    );
-    console.log('Success delete data : ', response);
-    return response?.message;
-  } catch (error) {
-    console.log('failed delete data : ', error.response.data);
-    return error.response.data;
+export const deleteCar = createAsyncThunk(
+  'deleteCar',
+  async ({ idCar, access_token_admin }) => {
+    const navigate = useNavigate();
+    const payload = {
+      headers: {
+        access_token: access_token_admin,
+      },
+    };
+    try {
+      // let iddummy = 0;
+      let response;
+      response = await axios.delete(
+        `https://api-car-rental.binaracademy.org/admin/car/${idCar}`,
+        payload
+      );
+      setTimeout(() => {
+        sessionStorage.setItem('successMessage', 'Data Berhasil Dihapus');
+        sessionStorage.setItem('color', '#000000');
+        navigate('/admin/listcar');
+      }, 0);
+      return response?.data.message;
+    } catch (error) {
+      console.log('failed delete data : ', error.response.data);
+      return error.response.data;
+    }
   }
-});
+);
 
 const initialState = {
   message: null,

@@ -2,12 +2,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDeferredValue, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getList } from '../reduxToolkit/features/admin-list/listSlice';
+import { deleteCar } from '../reduxToolkit/features/admin-deletecar/deletecarSlice';
+import {
+  hidePopupDelete,
+  showPopupDelete,
+} from '../reduxToolkit/features/admin-popup/popupSlice';
 
 const useListCarAdmin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { access_token_admin } = useSelector((state) => state.authAdminReducer);
   const { pageCount } = useSelector((state) => state.listSlice);
+  const { idCar } = useSelector((state) => state.popupSlice);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [categoryActive, setCategoryActive] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,15 +26,24 @@ const useListCarAdmin = () => {
   });
   let deferredValue = useDeferredValue(paramsUrl);
 
+  const handleConfirmDeleteCar = () => {
+    dispatch(deleteCar({ idCar, access_token_admin }));
+    dispatch(hidePopupDelete());
+
+    setParamsUrl({
+      ...paramsUrl,
+    });
+  };
+
+  const handleCancelDeleteCar = () => {
+    dispatch(hidePopupDelete());
+  };
+
   const handleDelete = (id) => {
     dispatch(showPopupDelete(id));
   };
 
   const handleEdit = (id) => {
-    searchParams.delete('name');
-    searchParams.delete('category');
-    searchParams.delete('page');
-    searchParams.delete('pageSize');
     setSearchParams(searchParams);
     navigate(`/admin/editcars/${id}`);
   };
@@ -65,6 +81,8 @@ const useListCarAdmin = () => {
     setSearchParams,
     onPageChange,
     handleClickCategory,
+    handleCancelDeleteCar,
+    handleConfirmDeleteCar,
   };
 };
 
