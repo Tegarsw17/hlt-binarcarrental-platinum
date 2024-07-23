@@ -1,6 +1,7 @@
 import './index.css';
 import ButtonAddCar from '../../../components/admin/ButtonAddCar/index';
 import ButtonCategory from '../../../components/admin/ButtonCategory/index';
+import Tag from '../../../components/admin/Tag/Tag';
 import ListCar from '../../../components/admin/Listcar/ListCar';
 import Paging from '../../../components/admin/Listcar/Paging/Paging';
 import Navbar from '../../../components/admin/Navbar/Navbar';
@@ -27,24 +28,14 @@ const AdminListCar = () => {
       }, 1500);
     }
   }, [message]);
+
   return (
     <div className="admin-container w-full h-full pb-5">
       <Navbar />
+      {message && <Alert message={message} color={color} />}
       <div className=" px-52 z-0 pt-24 flex container gap-component">
-        <div className="flex gap-1 admin-tag-page pl-3 pr-3 items-center">
-          <p className="font-sans text-center text-xs font-bold m-0">Cars</p>
-          <img className="w-5 h-5" src={iconChevron} alt="" />
-          <p className="font-sans text-center text-xs m-0">List</p>
-        </div>
-        {/* <h4 className="flex flex-row gap-1 admin-tag-page pl-3 pr-3">
-          <span>Cars &gt;</span>
-          <p>List</p>
-        </h4> */}
-        {message && <Alert message={message} color={color} />}
-        <div className="flex justify-between pl-3">
-          <h2 className="header-title-admin">List Car</h2>
-          <ButtonAddCar />
-        </div>
+        <Tag tags="Cars" subTags="List" />
+        <ButtonAddCar />
         <ButtonCategory />
         <ListCar />
         <Paging />

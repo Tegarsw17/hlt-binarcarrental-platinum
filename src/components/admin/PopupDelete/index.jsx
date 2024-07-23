@@ -1,30 +1,14 @@
 import imgdelete from '../../../assets/img-BeepBeep.png';
 import './index.css';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { hidePopupDelete } from '../../../reduxToolkit/features/admin-popup/popupSlice';
-import { deleteCar } from '../../../reduxToolkit/features/admin-deletecar/deletecarSlice';
-import { getList } from '../../../reduxToolkit/features/admin-list/listSlice';
+import useListCarAdmin from '../../../hooks/useListCarAdmin';
+
 //  todo : ID nantinya akan digunakan untuk delete data car,
 //  todo : perlu membuat deletecarSlice
 //
 const PopupDelete = () => {
-  const dispatch = useDispatch();
-  const { idCar } = useSelector((state) => state.popupSlice);
-
-  const handleConfirm = () => {
-    // todo : delete data dengan slice, id masih pakai dummy agar data awet
-    console.log('id sebelum pada komponen : ', idCar);
-    dispatch(deleteCar({ idCar }));
-    dispatch(hidePopupDelete());
-
-    const size = 'all';
-    dispatch(getList({ size }));
-  };
-
-  const handleClose = () => {
-    dispatch(hidePopupDelete());
-  };
+  // const dispatch = useDispatch();
+  const { handleConfirmDeleteCar, handleCancelDeleteCar } = useListCarAdmin();
 
   return (
     <div>
@@ -38,13 +22,13 @@ const PopupDelete = () => {
         </p>
         <div className="flex gap-4 btn-popup-delete">
           <button
-            onClick={() => handleConfirm()}
+            onClick={() => handleConfirmDeleteCar()}
             className="size-btn-delete text-center"
           >
             Ya
           </button>
           <button
-            onClick={() => handleClose()}
+            onClick={() => handleCancelDeleteCar()}
             className="size-btn-delete text-center"
           >
             Tidak
