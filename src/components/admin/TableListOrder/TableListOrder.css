@@ -14,3 +14,18 @@
   line-height: 20px;
   color: #000000;
 }
+
+.btn-color-disabled {
+  background-color: #cfd4ed !important;
+}
+
+.btn-color-enabled {
+  background-color: #586b90 !important;
+}
+
+.btn-color-enabled-hover:hover {
+  background-color: #3b517d !important;
+}
+.minimun-body-table {
+  min-height: 516px;
+}

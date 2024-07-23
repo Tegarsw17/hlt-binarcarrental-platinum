@@ -10,12 +10,9 @@ import {
 } from '../../../utils/formatUtil';
 
 const TableListOrder = () => {
+  const { listorder } = useSelector((state) => state.listOrderSlice);
   const { HeaderOrder, HeaderNames, handleSort, handleClickStatus } =
     useTableAdmin();
-
-  const { statusorder, listorder, loading, error } = useSelector(
-    (state) => state.listOrderSlice
-  );
 
   return (
     <div>
@@ -39,7 +36,8 @@ const TableListOrder = () => {
                   {item}
                   {item === 'No' ||
                   item === 'status' ||
-                  item === 'car' ? null : (
+                  item === 'car' ||
+                  item === 'Price' ? null : (
                     <button onClick={() => handleSort(HeaderOrder[index])}>
                       <img src={iconSort} alt="" />
                     </button>
@@ -49,57 +47,51 @@ const TableListOrder = () => {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {loading ? (
-            <tr className="text-center flex justify-center items-center">
-              <td>Loading</td>
-            </tr>
-          ) : (
-            listorder.map((item, rowindex) => (
-              <tr className="border-b-2" key={rowindex}>
-                {HeaderOrder.map((col, colindex) => (
-                  <td
-                    key={colindex}
-                    className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
-                  >
-                    {col.includes('user_email') ? (
-                      item.User.email
-                    ) : col.includes('rent') ? (
-                      formatDate(item[col])
-                    ) : col.includes('price') ? (
-                      formatRupiah(item['total_price'])
-                    ) : col.includes('create') ? (
-                      formatDate(item['createdAt'])
-                    ) : col.includes('status') ? (
-                      <div className="flex flex-col items-center justify-center">
-                        <div className="m-0 text-xs">
-                          {formatStatusOrder(item[col])}
-                        </div>
-                        <div className="w-fit flex gap-2 justify-center items-center">
-                          <button
-                            onClick={() => handleClickStatus(item.id, '1')}
-                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'bg-slate-400' : ' text-white bg-blue-900 hover:bg-blue-700  border-b-4 border-blue-700 hover:border-blue-500'}`}
-                            disabled={item[col] ? true : false}
-                          >
-                            confirm
-                          </button>
-                          <button
-                            onClick={() => handleClickStatus(item.id, '0')}
-                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'bg-slate-400' : ' text-white bg-blue-900 hover:bg-blue-700  border-b-4 border-blue-700 hover:border-blue-500'}`}
-                            disabled={item[col] ? false : true}
-                          >
-                            Finish
-                          </button>
-                        </div>
+        <tbody className="minimun-body-table">
+          {listorder.map((item, rowindex) => (
+            <tr className="border-b-2" key={rowindex}>
+              {HeaderOrder.map((col, colindex) => (
+                <td
+                  key={colindex}
+                  className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
+                >
+                  {col.includes('user_email') ? (
+                    item.User.email
+                  ) : col.includes('rent') ? (
+                    formatDate(item[col])
+                  ) : col.includes('price') ? (
+                    formatRupiah(item['total_price'])
+                  ) : col.includes('create') ? (
+                    formatDate(item['createdAt'])
+                  ) : col.includes('status') ? (
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="m-0 text-xs">
+                        {formatStatusOrder(item[col])}
                       </div>
-                    ) : (
-                      item[col]
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))
-          )}
+                      <div className="w-fit flex gap-2 justify-center items-center">
+                        <button
+                          onClick={() => handleClickStatus(item.id, '1')}
+                          className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled btn-color-enabled-hover '}`}
+                          disabled={item[col] ? true : false}
+                        >
+                          confirm
+                        </button>
+                        <button
+                          onClick={() => handleClickStatus(item.id, '0')}
+                          className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled  btn-color-enabled-hover '}`}
+                          disabled={item[col] ? false : true}
+                        >
+                          Finish
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    item[col]
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

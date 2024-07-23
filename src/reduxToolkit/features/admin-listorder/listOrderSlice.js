@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 
 import axios from 'axios';
 
@@ -6,10 +6,6 @@ import axios from 'axios';
 export const getListOrder = createAsyncThunk(
   'getListOrder',
   async ({ paramsUrl, access_token_admin }) => {
-    // const token =
-    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
-
-    // console.log(param);
     const config = {
       headers: {
         access_token: access_token_admin,
@@ -20,8 +16,6 @@ export const getListOrder = createAsyncThunk(
         sort: `${paramsUrl.sortBy}:${paramsUrl.sortAsc}`,
       },
     };
-
-    // console.log(config.params);
     try {
       let response;
       response = await axios.get(
@@ -39,20 +33,15 @@ export const getListOrder = createAsyncThunk(
 export const patchStatusOrder = createAsyncThunk(
   'patchStatusOrder',
   async ({ id, status, access_token_admin }) => {
-    // const token =
-    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc';
-
     const config = {
       headers: {
         access_token: access_token_admin,
       },
     };
-
     const data = {
       status: { status },
     };
 
-    // console.log(token);
     try {
       let response;
       response = await axios.patch(
@@ -60,10 +49,8 @@ export const patchStatusOrder = createAsyncThunk(
         data,
         config
       );
-      // console.log('success patch status', response.data);
       return response?.data;
     } catch (error) {
-      // console.log('failed patch status', response.data);
       return error.response.data;
     }
   }
@@ -73,6 +60,7 @@ const initialState = {
   listorder: [],
   statusorder: [],
   pageCount: 0,
+  currentPages: 0,
   loading: false,
   error: null,
 };
@@ -90,6 +78,7 @@ const listSlice = createSlice({
         state.loading = false;
         state.listorder = action.payload?.orders;
         state.pageCount = action.payload?.pageCount;
+        state.currentPages = action.payload?.currentPage;
       })
       .addCase(getListOrder.rejected, (state, action) => {
         state.loading = false;

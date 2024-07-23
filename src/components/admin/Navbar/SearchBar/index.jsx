@@ -10,7 +10,7 @@ import { clearTokenAdmin } from '../../../../reduxToolkit/features/admin-auth/lo
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isOpenAccorLogout, setIsOpenAccorLogout] = useState(false);
+  const [isOpenAccorLogout, setIsOpenAccorLogout] = useState(true);
   const handleClickLogout = () => {
     setIsOpenAccorLogout(!isOpenAccorLogout);
     // console.log(isOpenAccorLogout);

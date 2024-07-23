@@ -77,3 +77,7 @@ export const formatStatusOrder = (status) => {
     return 'Terkonfirmasi';
   }
 };
+
+export const numberToArray = (number) => {
+  return Array.from({ length: number }, (_, i) => i + 1);
+};

@@ -20,8 +20,8 @@ const ListCar = () => {
   const { handleDelete, handleEdit } = useListCarAdmin();
 
   return (
-    <div className="container max-w-6xl">
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 ">
+    <div className="flex justify-center items-center container max-w-6xl">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
         {listcar.map((item) => (
           // <div className="col-md-4 size-card-container">
           <div

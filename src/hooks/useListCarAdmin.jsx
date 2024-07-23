@@ -18,6 +18,8 @@ const useListCarAdmin = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [categoryActive, setCategoryActive] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
   const [paramsUrl, setParamsUrl] = useState({
     name: searchParams.get('name') || '',
     category: searchParams.get('category') || '',
@@ -48,6 +50,13 @@ const useListCarAdmin = () => {
     navigate(`/admin/editcars/${id}`);
   };
 
+  const handleSelectLimit = (value) => {
+    setParamsUrl({
+      ...paramsUrl,
+      pageSize: value.target.value,
+    });
+  };
+
   const onPageChange = (page) => {
     setParamsUrl({
       ...paramsUrl,
@@ -66,10 +75,13 @@ const useListCarAdmin = () => {
 
   useEffect(() => {
     setSearchParams(paramsUrl);
+    setCurrentPage(paramsUrl.page);
+    setPageSize(paramsUrl.pageSize);
     dispatch(getList({ paramsUrl, access_token_admin }));
   }, [deferredValue]);
 
   return {
+    pageSize,
     categoryActive,
     currentPage,
     searchParams,
@@ -83,6 +95,7 @@ const useListCarAdmin = () => {
     handleClickCategory,
     handleCancelDeleteCar,
     handleConfirmDeleteCar,
+    handleSelectLimit,
   };
 };
 

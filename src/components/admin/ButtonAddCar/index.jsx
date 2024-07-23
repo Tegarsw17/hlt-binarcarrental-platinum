@@ -7,9 +7,9 @@ const ButtonAddCar = () => {
     navigate(`/admin/addcars`);
   };
   return (
-    <div className="flex justify-between pl-3">
+    <div className="w-full flex justify-between items-center">
       <h2 className="header-title-admin">List Car</h2>
-      <div className="justify-self-end mr-20">
+      <div className="justify-self-end">
         <button
           onClick={handleClick}
           className="flex gap-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-3 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
