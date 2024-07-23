@@ -110,3 +110,39 @@ hr {
   align-items: center;
   gap: 8px;
 }
+
+@media screen and (max-width: 768px) {
+  .payment-content{
+    margin: 0px 15px;
+  }
+
+  .order-detail{
+    margin: 0px 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .order-detail p{
+    font-size: 10px;
+  }
+
+  .order-detail-column{
+    flex: none;
+  }
+
+  .payment-content{
+    flex-direction: column;
+  }
+
+  .payment-content-wrapper{
+    margin: 0px 5px;
+  }
+
+  .bank-transfer{
+    width: 100%;
+  }
+
+  .car-price-detail{
+    width: 100%;
+  }
+}

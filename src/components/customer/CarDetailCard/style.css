@@ -146,6 +146,15 @@
   padding: 2px;
 }
 
+@media screen and (max-width: 768px) {
+.car-detail{
+  padding: 20px;
+}
+.rdrMonth{
+  width: 100% !important;
+}
+}
+
 @media screen and (max-width: 450px) {
   .car-detail {
     flex-direction: column-reverse;
@@ -157,6 +166,7 @@
   }
   .car-detail-image {
     width: 90%;
+    padding: 15px 24px;
   }
 
   .car-detail-image div:nth-child(3) {

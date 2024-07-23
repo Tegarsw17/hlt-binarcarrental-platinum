@@ -70,3 +70,29 @@
   background-color: #0d28a6;
   color: #ffffff;
 }
+
+@media screen and (max-width: 768px) {
+  .navpayment-wrapper {
+    margin: 0px 20px;
+    width: 725px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navpayment-wrapper {
+    width: 380px;
+  }
+
+  .navpayment-progres{
+    gap: 5px;
+  }
+
+  .navpayment-list{
+    width: 5px;
+  }
+
+  /* .navpayment-progres{
+    flex-direction: column;
+    align-items: flex-start;
+  } */
+}

@@ -61,3 +61,17 @@
   border-radius: 2px;
   font-weight: bold;
 }
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+  .payment-ticket-content{
+    width: 370px;
+  }
+
+  .payment-ticket-content-body{
+    width: 100%;
+  }
+}

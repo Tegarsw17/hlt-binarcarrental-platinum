@@ -181,3 +181,13 @@
   font-weight: bold;
   margin: 0px 2px;
 }
+
+@media screen and (max-width: 480px) {
+  .bank-pay-info{
+    width: 100%;
+  }
+
+  .bank-pay-confirm{
+    width: 100%;
+  }
+}
