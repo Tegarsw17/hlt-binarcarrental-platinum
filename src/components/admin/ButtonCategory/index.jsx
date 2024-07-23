@@ -1,7 +1,7 @@
 import useListCarAdmin from '../../../hooks/useListCarAdmin';
 import './index.css';
-const ButtonCategory = () => {
-  const { categoryActive, handleClickCategory } = useListCarAdmin();
+const ButtonCategory = ({ categoryActive, handleClickCategory }) => {
+  // const { categoryActive, handleClickCategory } = useListCarAdmin();
 
   return (
     <div className="container d-flex btn-category-container">

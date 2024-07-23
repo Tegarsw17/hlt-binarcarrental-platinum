@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isVisible: false,
+  popUpDeleteVisible: false,
   idCar: null,
 };
 
@@ -10,11 +10,11 @@ const popupSlice = createSlice({
   initialState,
   reducers: {
     showPopupDelete: (state, action) => {
-      state.isVisible = true;
+      state.popUpDeleteVisible = true;
       state.idCar = action.payload;
     },
     hidePopupDelete: (state) => {
-      state.isVisible = false;
+      state.popUpDeleteVisible = false;
       state.idCar = null;
     },
   },

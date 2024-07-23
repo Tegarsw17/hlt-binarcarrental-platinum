@@ -3,7 +3,6 @@ import orderreportSlice from './features/admin-orderreport/orderreportSlice';
 import listSlice from './features/admin-list/listSlice';
 import popupSlice from './features/admin-popup/popupSlice';
 import navbarReducer from './features/admin-navbar/navbarSlice';
-import deletecarSlice from './features/admin-deletecar/deletecarSlice';
 import authSlices from './features/customer-auth/loginSlice';
 import authAdminSlices from './features/admin-auth/loginAdminSlice';
 import storage from 'redux-persist/lib/storage';
@@ -48,7 +47,6 @@ const store = configureStore({
     navbarSlice,
     listSlice,
     popupSlice,
-    deletecarSlice,
     listOrderSlice,
     authAdminReducer,
     authReducer,

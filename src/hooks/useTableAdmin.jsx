@@ -11,8 +11,10 @@ const useTableAdmin = () => {
   const dispatch = useDispatch();
   const { access_token_admin } = useSelector((state) => state.authAdminReducer);
   const { pageCount } = useSelector((state) => state.listOrderSlice);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   const [paramsUrl, setParamsUrl] = useState({
     sortBy: searchParams.get('sortBy') || 'created_at',
@@ -20,7 +22,7 @@ const useTableAdmin = () => {
     page: searchParams.get('page') || 1,
     pageSize: searchParams.get('pageSize') || 10,
   });
-  let deferredValue = useDeferredValue(paramsUrl);
+  let deferredValue = useDeferredValue(paramsUrl || currentPage);
   const HeaderOrder = [
     'id',
     'user_email',
@@ -52,10 +54,14 @@ const useTableAdmin = () => {
 
   const handleClickStatus = (id, status) => {
     dispatch(patchStatusOrder({ id, status, access_token_admin }));
+    const getUrls = window.location.search;
+    const params = new URLSearchParams(getUrls);
+
     setParamsUrl({
-      ...paramsUrl,
-      idstatus: id,
-      status: status,
+      sortBy: params.get('sortBy') || 'created_at',
+      sortAsc: params.get('sortAsc') || 'desc',
+      page: params.get('page') || page,
+      pageSize: params.get('pageSize') || pageSize,
     });
   };
 
@@ -66,36 +72,36 @@ const useTableAdmin = () => {
     });
   };
 
-  const handleSelectPage = (value) => {
-    setParamsUrl({
-      ...paramsUrl,
-      page: value.target.value,
-    });
-  };
-
   const onPageChange = (page) => {
     setParamsUrl({
       ...paramsUrl,
       page: page,
     });
-    setCurrentPage(page);
   };
+
+  // const handleSelectPage = (value) => {
+  //   const page = value.target.value;
+  //   onPageChange(page);
+  // };
 
   useEffect(() => {
     setSearchParams(paramsUrl);
+    setCurrentPage(paramsUrl.page);
+    setPageSize(paramsUrl.pageSize);
     dispatch(getListOrder({ paramsUrl, access_token_admin }));
   }, [deferredValue]);
 
   return {
     currentPage,
+    pageSize,
+    pageCount,
     HeaderOrder,
     HeaderNames,
-    pageCount,
     handleSort,
     handleClickStatus,
     handleSelectLimit,
-    handleSelectPage,
     onPageChange,
+    // handleSelectPage,
   };
 };
 
