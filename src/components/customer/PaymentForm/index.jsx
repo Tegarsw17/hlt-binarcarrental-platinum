@@ -13,10 +13,29 @@ const PaymentForm = ({ bank, id, nextStep }) => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const fileInputRef = useRef(null);
   const [numberValue, setNumberValue] = useState('54104257877');
-  const [totalValue, setTotalValue] = useState(1000000);
+  const [totalValue, setTotalValue] = useState(null);
 
   const [initialTargetDate] = useState(Date.now() + 24 * 60 * 60 * 1000);
   const [confirmationTargetDate, setConfirmationTargetDate] = useState(null);
+
+  const config = {
+    useAuth: true,
+  };
+  const getApiOrderbyId = async () => {
+    try {
+      const response = await axiosCustomer.get(
+        `https://api-car-rental.binaracademy.org/customer/order/${id}`,
+        config
+      );
+      setTotalValue(response.data.total_price);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getApiOrderbyId();
+  }, []);
 
   useEffect(() => {
     setConfirmationTargetDate(Date.now() + 10 * 60 * 1000);
