@@ -61,3 +61,7 @@
   font-weight: 700;
   margin-top: 24px;
 }
+
+.accordion-collapse.collapse.show{
+  visibility: visible;
+}
