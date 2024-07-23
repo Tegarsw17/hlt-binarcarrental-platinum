@@ -1,4 +1,4 @@
-/* .card-admin-container {
+.card-admin-container {
   width: 351px;
   height: 482px;
 
@@ -22,6 +22,8 @@
 }
 .card-font p {
   margin: 0px;
+  /* gap: 16px; */
+  /* height: 362px; */
 }
 
 .card-font span {
@@ -63,7 +65,7 @@
 .admin-card-btn-container button:nth-child(2) {
   background-color: #5cb85f;
   color: #ffffff;
-
+  /* border: 2px solid #ffffff; */
   gap: 10px;
 }
 
@@ -77,4 +79,4 @@
 
 .max-width-container {
   width: 1101px !important;
-} */
+}

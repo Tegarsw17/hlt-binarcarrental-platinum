@@ -11,7 +11,7 @@ const LimitPage = ({ pageSize, handleSelectLimit }) => {
           className="flex justify-center input-limit"
           onChange={handleSelectLimit}
         >
-          <option disabled selected value={pageSize}>
+          <option disabled defaultValue value={pageSize}>
             {pageSize}
           </option>
           <option value={'10'}>10</option>

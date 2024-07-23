@@ -1,14 +1,23 @@
 import imgdelete from '../../../assets/img-BeepBeep.png';
 import './index.css';
 
-import useListCarAdmin from '../../../hooks/useListCarAdmin';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { hidePopupDelete } from '../../../reduxToolkit/features/admin-popup/popupSlice';
+import useDeleteCar from '../../../hooks/useDeleteCar';
 
-//  todo : ID nantinya akan digunakan untuk delete data car,
-//  todo : perlu membuat deletecarSlice
-//
-const PopupDelete = () => {
-  // const dispatch = useDispatch();
-  const { handleConfirmDeleteCar, handleCancelDeleteCar } = useListCarAdmin();
+const PopupDelete = ({ idCar }) => {
+  const dispatch = useDispatch();
+  const { handleDelete } = useDeleteCar();
+  const { access_token_admin } = useSelector((state) => state.authAdminReducer);
+
+  const handleConfirmDeleteCar = () => {
+    handleDelete(idCar, access_token_admin);
+  };
+
+  const handleCancelDeleteCar = () => {
+    dispatch(hidePopupDelete());
+  };
 
   return (
     <div>
