@@ -203,12 +203,6 @@ function EditContent() {
               </option>
             </select>
           </div>
-          <div className="flex items-baseline gap-2">
-            <p className="w-[147px]">CreatedAt</p>-
-          </div>
-          <div className="flex items-baseline gap-2">
-            <p className="w-[147px]">UpdateAt</p>-
-          </div>
         </div>
         <div className="flex gap-4 mt-10">
           <button
