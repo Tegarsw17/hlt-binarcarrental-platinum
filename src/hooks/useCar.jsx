@@ -24,7 +24,7 @@ const useCar = () => {
             minPrice: minPrice,
             maxPrice: maxprice,
             page,
-            pageSize: 10,
+            pageSize: 9,
           },
           timeout: 10000,
         }
@@ -57,7 +57,6 @@ const useCar = () => {
     const newParams = { ...Object.fromEntries(searchParams), page };
     setSearchParams(newParams);
     setLoading(true);
-    handleSearch(newParams, page);
     setCurentPage(page);
   };
   return { data, loading, totalPages, curentPage, handlePageChange };
