@@ -67,6 +67,7 @@
   border: none;
   font-size: 14px;
   font-weight: bold;
+  margin-top: 5px;
 }
 
 .align-items-end .col {
@@ -83,7 +84,7 @@
   gap: 10px;
 }
 
-.form-group {
+.form-group.customer {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -93,7 +94,7 @@
   color: #000000;
 }
 
-.input-field {
+.input-field.customer {
   padding: 7px;
   border: 1px solid #ddd;
   border-radius: 5px;

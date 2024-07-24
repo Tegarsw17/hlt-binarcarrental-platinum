@@ -38,22 +38,22 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
             sendQueryApi();
           }}
         >
-          <div className="form-group">
+          <div className="form-group customer">
             <label htmlFor="car_name">Nama Mobil</label>
             <input
               type="text"
               name="name"
               value={form.name}
               placeholder="Ketik nama/tipe mobil"
-              className="input-field"
+              className="input-field customer"
               onChange={handleOnChange}
               disabled={isDisabled}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group customer">
             <label htmlFor="category">Kategori</label>
             <select
-              className="input-field"
+              className="input-field customer"
               name="category"
               value={form.category}
               onChange={handleOnChange}
@@ -73,10 +73,10 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
               </option>
             </select>
           </div>
-          <div className="form-group">
+          <div className="form-group customer">
             <label htmlFor="price">Harga</label>
             <select
-              className="input-field"
+              className="input-field customer"
               name="price"
               value={form.price}
               onChange={handleOnChange}
@@ -96,10 +96,10 @@ const SearchCar = ({ isDisabled = false, onSearch }) => {
               </option>
             </select>
           </div>
-          <div className="form-group">
+          <div className="form-group customer">
             <label htmlFor="status">Status</label>
             <select
-              className="input-field"
+              className="input-field customer"
               name="status"
               value={form.status}
               onChange={handleOnChange}
