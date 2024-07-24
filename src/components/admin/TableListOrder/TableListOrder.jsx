@@ -66,7 +66,7 @@ const TableListOrder = () => {
                   ) : col.includes('status') ? (
                     <div className="flex flex-col items-center justify-center">
                       <div className="m-0 text-xs">
-                        {formatStatusOrder(item[col])}
+                        {formatStatusOrder(item[col], item['updatedAt'])}
                       </div>
                       <div className="w-fit flex gap-2 justify-center items-center">
                         <button

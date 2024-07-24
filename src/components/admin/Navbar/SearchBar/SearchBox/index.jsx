@@ -1,46 +1,18 @@
 import './index.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import useListCarAdmin from '../../../../../hooks/useListCarAdmin';
-import { setActive } from '../../../../../reduxToolkit/features/admin-navbar/navbarSlice';
-import { Page } from '@react-pdf/renderer';
 const SearchBox = () => {
-  const dispatch = useDispatch();
-  const { searchParams, paramsUrl, setParamsUrl, setSearchParams } =
-    useListCarAdmin();
-
-  const navigate = useNavigate();
+  const { searchParams, handleClickSearch } = useListCarAdmin();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
-      handleClick();
+      handleClickSearch(searchTerm);
     }
   };
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-  };
-
-  const handleClick = () => {
-    dispatch(setActive('cars'));
-    const namecar = searchTerm;
-    const updatedParams = {
-      ...paramsUrl,
-      name: namecar,
-      Page: 1,
-      pageSize: 6,
-    };
-
-    setParamsUrl(updatedParams);
-    setSearchParams(updatedParams);
-    setTimeout(() => {
-      navigate({
-        pathname: '/admin/listcar',
-        search: `?${new URLSearchParams(updatedParams).toString()}`,
-      });
-    }, 0);
   };
 
   return (
@@ -50,9 +22,13 @@ const SearchBox = () => {
         onChange={handleChange}
         type="text"
         placeholder="Search"
+        defaultValue={searchParams.get('name') || ''}
         className="search-bar-input"
       />
-      <button onClick={handleClick} className="search-bar-button">
+      <button
+        onClick={() => handleClickSearch(searchTerm)}
+        className="search-bar-button"
+      >
         <span>Search</span>
       </button>
     </div>

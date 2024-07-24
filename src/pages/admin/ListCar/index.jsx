@@ -12,9 +12,10 @@ import { useEffect, useState } from 'react';
 
 const AdminListCar = () => {
   const {
+    category,
     pageCount,
     currentPage,
-    categoryActive,
+    // categoryActive,
     onPageChange,
     handleClickCategory,
   } = useListCarAdmin();
@@ -44,7 +45,7 @@ const AdminListCar = () => {
         <Tag tags="Cars" subTags="List" />
         <ButtonAddCar />
         <ButtonCategory
-          categoryActive={categoryActive}
+          category={category}
           handleClickCategory={handleClickCategory}
         />
         <ListCar />

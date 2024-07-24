@@ -20,6 +20,7 @@ import {
 const persistConfig = {
   navbarStatus: {
     key: 'navbarStatus',
+    key: 'carName',
     storage,
   },
   auth: {
@@ -30,6 +31,10 @@ const persistConfig = {
     key: 'auth_admin',
     storage,
   },
+  // carName: {
+  //   key: 'carName',
+  //   storage,
+  // },
 };
 
 const authAdminReducer = persistReducer(
@@ -38,8 +43,8 @@ const authAdminReducer = persistReducer(
 );
 
 const authReducer = persistReducer(persistConfig.auth, authSlices);
-
 const navbarSlice = persistReducer(persistConfig.navbarStatus, navbarReducer);
+// const searchSlice = persistReducer(persistConfig.carName, navbarReducer);
 
 const store = configureStore({
   reducer: {
@@ -50,6 +55,7 @@ const store = configureStore({
     listOrderSlice,
     authAdminReducer,
     authReducer,
+    // searchSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

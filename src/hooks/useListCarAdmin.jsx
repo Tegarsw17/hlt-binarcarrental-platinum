@@ -3,22 +3,21 @@ import { useDeferredValue, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getList } from '../reduxToolkit/features/admin-list/listSlice';
 import {
-  hidePopupDelete,
-  showPopupDelete,
-} from '../reduxToolkit/features/admin-popup/popupSlice';
+  setSearchCar,
+  setActive,
+} from '../reduxToolkit/features/admin-navbar/navbarSlice';
 
 // Custom hook to manage the admin car list
 const useListCarAdmin = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { access_token_admin } = useSelector((state) => state.authAdminReducer);
-  const { pageCount } = useSelector((state) => state.listSlice);
+  const { carName } = useSelector((state) => state.navbarSlice);
+  const { currentPage, pageCount } = useSelector((state) => state.listSlice);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [categoryActive, setCategoryActive] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  // const [pageCount, setPageCount] = useState(6);
-
+  const [category, setCategoryActive] = useState('');
   const [paramsUrl, setParamsUrl] = useState({
     name: searchParams.get('name') || '',
     category: searchParams.get('category') || '',
@@ -28,41 +27,57 @@ const useListCarAdmin = () => {
 
   let deferredValue = useDeferredValue(paramsUrl);
 
-  const onPageChange = (page) => {
+  const onPageChange = (pages) => {
     setParamsUrl({
       ...paramsUrl,
-      page: page,
+      name: carName,
+      page: pages,
     });
-    setCurrentPage(page);
   };
 
   const handleClickCategory = (category) => {
     setCategoryActive(category);
     setParamsUrl({
       ...paramsUrl,
+      name: '',
       category: category,
-      page: 1,
     });
-    setCurrentPage(1);
+  };
+
+  const handleClickSearch = (props) => {
+    !window.location.pathname.includes('/admin/listcar')
+      ? dispatch(setActive('cars'))
+      : '';
+
+    const updatedParams = {
+      ...paramsUrl,
+      name: props,
+    };
+
+    setParamsUrl(updatedParams);
+    setSearchCar(props);
+    setTimeout(() => {
+      navigate({
+        pathname: '/admin/listcar',
+        search: `?${new URLSearchParams(updatedParams).toString()}`,
+      });
+    }, 0);
   };
 
   useEffect(() => {
-    console.log(paramsUrl.page);
     setSearchParams(paramsUrl);
-    setCurrentPage(paramsUrl.page);
     dispatch(getList({ paramsUrl, access_token_admin }));
   }, [deferredValue]);
 
   return {
-    categoryActive,
+    carName,
+    category,
     currentPage,
     searchParams,
-    paramsUrl,
     pageCount,
-    setParamsUrl,
-    setSearchParams,
     onPageChange,
     handleClickCategory,
+    handleClickSearch,
   };
 };
 
