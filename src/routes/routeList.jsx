@@ -21,18 +21,6 @@ export const routeList = createBrowserRouter([
   },
 
   {
-    path: '/admin/login',
-    element: <LoginAdmin />,
-  },
-  {
-    path: '/admin/addcars',
-    element: <AddCars />,
-  },
-  {
-    path: '/admin/editcars/:id',
-    element: <EditCars />,
-  },
-  {
     path: '/login',
     element: <Login />,
   },
@@ -61,19 +49,29 @@ export const routeList = createBrowserRouter([
     ),
   },
   {
-    path: '/admin/listcar',
-    element: (
-      <AdminProtectedRoute>
-        <AdminListCar />
-      </AdminProtectedRoute>
-    ),
+    path: '/admin/login',
+    element: <LoginAdmin />,
   },
   {
-    path: '/admin',
-    element: (
-      <AdminProtectedRoute>
-        <Dashboard />
-      </AdminProtectedRoute>
-    ),
+    path: '',
+    element: <AdminProtectedRoute />,
+    children: [
+      {
+        path: '/admin/addcars',
+        element: <AddCars />,
+      },
+      {
+        path: '/admin/editcars/:id',
+        element: <EditCars />,
+      },
+      {
+        path: '/admin/listcar',
+        element: <AdminListCar />,
+      },
+      {
+        path: '/admin',
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);
