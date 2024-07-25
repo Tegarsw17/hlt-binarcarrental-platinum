@@ -18,15 +18,17 @@ const Dashboard = () => {
   return (
     <div className="admin-page-color w-full h-full pb-5">
       <Navbar />
-      <div className=" flex flex-col justify-center items-center px-52 z-0 pt-24  container gap-component">
-        <div className="w-full max-w-6xl">
+      <div className=" flex flex-col justify-center items-center px-52 z-0 pt-24 container gap-component">
+        <div className="w-full justify-center items-center max-w-6xl">
           <Tag tags="Dashboard" subTags="Dashboard" />
           <Title title="" subtitle="Rented Car Data Visualization" />
-          <MonthPicker />
-          <ChartOrder />
+          <div className="w-full flex flex-col flex-start">
+            <MonthPicker />
+            <ChartOrder />
+          </div>
           <Title title="Dashboard" subtitle="List Order" />
           <TableListOrder />
-          <div className="w-full max-size-option-table flex justify-between items-center">
+          <div className="w-full max-size-option-table flex justify-between items-center mt-3">
             <div className="flex justify-between items-center gap-6">
               <LimitPage
                 pageSize={pageSize}

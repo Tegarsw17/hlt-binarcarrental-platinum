@@ -80,7 +80,7 @@ const ChartOrder = () => {
   };
   // console.log('get day : ', orderreport.day);
   return (
-    <div className="chart-order-container relative flex justify-center items-center w-fit">
+    <div className="chart-order-container relative flex justify-start items-start w-fit">
       {/* <canvas className="relative canvas-container  w-full"> */}
       <Bar data={data} options={options} />
       {/* </canvas> */}
