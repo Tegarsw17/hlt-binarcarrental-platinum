@@ -1,7 +1,8 @@
 import './TableListOrder.css';
 import iconSort from '../../../assets/fi_sort.png';
-import iconRectangle from '../../../assets/Rectangle10.png';
+
 import useTableAdmin from '../../../hooks/useTableAdmin';
+
 import { useSelector } from 'react-redux';
 import {
   formatStatusOrder,
@@ -16,11 +17,6 @@ const TableListOrder = () => {
 
   return (
     <div>
-      <p className="text-xl font-bold mb-6">Dashboard</p>
-      <div className="flex items-center gap-2 mb-4">
-        <img className="w-1 h-6" src={iconRectangle} alt="" />
-        <p className="text-sm font-bold m-0">List Order</p>
-      </div>
       <table className="bg-white table-container divide-y divide-gray-200 ">
         <thead className="color-thead">
           <tr>

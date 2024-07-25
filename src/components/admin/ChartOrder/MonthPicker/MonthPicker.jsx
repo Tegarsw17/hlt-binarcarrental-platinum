@@ -6,7 +6,6 @@ import { lastDayOfMonth, startOfMonth, format } from 'date-fns';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getOrderReport } from '../../../../reduxToolkit/features/admin-orderreport/orderreportSlice';
-import iconRectangle from '../../../../assets/Rectangle10.png';
 
 const MonthPicker = () => {
   const dispatch = useDispatch();
@@ -27,20 +26,16 @@ const MonthPicker = () => {
     dispatch(getOrderReport({ startDate, endDate }));
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getOrderReport({ startDate, endDate }));
-  // }, [startDate]);
-
   const handleclick = () => {
     dispatch(getOrderReport({ startDate, endDate }));
   };
 
   return (
     <div className="date-container self-start flex flex-col items-center">
-      <div className="self-start flex items-center gap-2 mb-4">
+      {/* <div className="self-start flex items-center gap-2 mb-4">
         <img className="w-1 h-6" src={iconRectangle} alt="" />
         <p className=" text-sm font-bold m-0">Rented Car Data Visualization</p>
-      </div>
+      </div> */}
       <div className="flex flex-col self-start items-center">
         <p className="text-black font-title-btn font-normal text-xs leading-4 place-self-start">
           month
@@ -52,6 +47,7 @@ const MonthPicker = () => {
             dateFormat="MMMM - yyyy"
             showMonthYearPicker
             className="input-date-container"
+            id="date-picker-order"
           />
           <button onClick={handleclick} className="btn-go">
             GO

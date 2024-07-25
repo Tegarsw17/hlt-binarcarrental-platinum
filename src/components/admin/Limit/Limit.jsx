@@ -8,6 +8,7 @@ const LimitPage = ({ pageSize, handleSelectLimit }) => {
       </p>
       <div>
         <select
+          id="limit-select"
           className="flex justify-center input-limit"
           onChange={handleSelectLimit}
         >

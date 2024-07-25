@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isOpen: false,
   isActive: '',
-  carName: '',
+  searchCarName: '',
 };
 
 const navbarSlice = createSlice({
@@ -17,7 +17,7 @@ const navbarSlice = createSlice({
       state.isActive = action.payload;
     },
     setSearchCar: (state, action) => {
-      state.carName = action.payload;
+      state.searchCarName = action.payload;
     },
   },
 });

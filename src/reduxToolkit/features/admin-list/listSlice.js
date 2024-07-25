@@ -17,7 +17,7 @@ export const getList = createAsyncThunk(
       },
     };
 
-    // console.log('get data : ', paramsUrl.category);
+    // console.log('send to API : ', paramsUrl);
     try {
       let response;
       response = await axios.get(
@@ -35,9 +35,8 @@ export const getList = createAsyncThunk(
 
 const initialState = {
   listcar: [],
-  pageCount: 0,
+  pageCount: 1,
   currentPage: 0,
-  nameCar: '',
   loading: false,
   error: null,
 };
@@ -52,10 +51,11 @@ const listSlice = createSlice({
         state.loading = true;
       })
       .addCase(getList.fulfilled, (state, action) => {
+        const arrayCars = action.payload?.cars || [];
         state.loading = false;
-        state.listcar = action.payload?.cars;
-        state.pageCount = action.payload?.pageCount;
+        state.listcar = arrayCars;
         state.currentPage = action.payload?.page;
+        state.pageCount = action.payload?.pageCount;
       })
       .addCase(getList.rejected, (state, action) => {
         state.loading = false;

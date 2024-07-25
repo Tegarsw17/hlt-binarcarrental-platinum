@@ -1,11 +1,7 @@
-import useListCarAdmin from '../../../hooks/useListCarAdmin';
 import './index.css';
 const ButtonCategory = ({ category, handleClickCategory }) => {
-  // const { categoryActive, handleClickCategory } = useListCarAdmin();
-
-  // console.log('get cat:', category);
   return (
-    <div className="container d-flex btn-category-container">
+    <div className="container flex btn-category-container mb-2">
       <button
         className={`base-btn-category ${category === '' ? 'btn-actived' : ''}`}
         onClick={() => handleClickCategory('')}
