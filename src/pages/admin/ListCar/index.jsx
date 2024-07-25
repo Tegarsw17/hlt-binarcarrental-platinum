@@ -6,15 +6,17 @@ import Tag from '../../../components/admin/Tag/Tag';
 import ListCar from '../../../components/admin/Listcar/ListCar';
 import useListCarAdmin from '../../../hooks/useListCarAdmin';
 import Paging from '../../../components/admin/Paging/Paging';
-
+import JumptoPage from '../../../components/admin/JumptoPage/JumptoPage';
 import Alert from '../../../components/admin/Alert';
 import { useEffect, useState } from 'react';
+import Title from '../../../components/admin/Title/Title';
 
 const AdminListCar = () => {
   const {
+    category,
     pageCount,
     currentPage,
-    categoryActive,
+    // categoryActive,
     onPageChange,
     handleClickCategory,
   } = useListCarAdmin();
@@ -37,22 +39,36 @@ const AdminListCar = () => {
   }, [message]);
 
   return (
-    <div className="admin-container w-full h-full pb-5">
+    <div className="admin-container w-full h-full min-h-svh pb-5">
       <Navbar />
       {message && <Alert message={message} color={color} />}
       <div className=" flex flex-col justify-center items-center px-52 z-0 pt-24 container gap-component">
-        <Tag tags="Cars" subTags="List" />
-        <ButtonAddCar />
-        <ButtonCategory
-          categoryActive={categoryActive}
-          handleClickCategory={handleClickCategory}
-        />
+        <div className="w-full max-w-6xl gap-component mb-2">
+          <Tag tags="Cars" subTags="List" />
+          <div className="w-full flex flex-row justify-between items-center px-2">
+            <Title title="" subtitle="List Car" />
+            <ButtonAddCar />
+          </div>
+          <ButtonCategory
+            category={category}
+            handleClickCategory={handleClickCategory}
+          />
+        </div>
         <ListCar />
-        <Paging
-          pageCount={pageCount}
-          currentPage={2 + (currentPage - 2)}
-          onPageChange={onPageChange}
-        />
+        <div className="p-2 w-full max-w-6xl flex flex-row items-center justify-between">
+          <div>
+            <JumptoPage
+              pageCount={pageCount}
+              currentPage={currentPage}
+              onPageChange={onPageChange}
+            />
+          </div>
+          <Paging
+            pageCount={pageCount}
+            currentPage={2 + (currentPage - 2)}
+            onPageChange={onPageChange}
+          />
+        </div>
       </div>
     </div>
   );

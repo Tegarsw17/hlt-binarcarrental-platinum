@@ -1,30 +1,27 @@
-import useListCarAdmin from '../../../hooks/useListCarAdmin';
 import './index.css';
-const ButtonCategory = ({ categoryActive, handleClickCategory }) => {
-  // const { categoryActive, handleClickCategory } = useListCarAdmin();
-
+const ButtonCategory = ({ category, handleClickCategory }) => {
   return (
-    <div className="container d-flex btn-category-container">
+    <div className="container flex btn-category-container mb-2">
       <button
-        className={`base-btn-category ${categoryActive === '' ? 'btn-actived' : ''}`}
+        className={`base-btn-category ${category === '' ? 'btn-actived' : ''}`}
         onClick={() => handleClickCategory('')}
       >
         All
       </button>
       <button
-        className={`base-btn-category ${categoryActive === 'small' ? 'btn-actived' : ''}`}
+        className={`base-btn-category ${category === 'small' ? 'btn-actived' : ''}`}
         onClick={() => handleClickCategory('small')}
       >
         2 - 4 People
       </button>
       <button
-        className={`base-btn-category ${categoryActive === 'medium' ? 'btn-actived' : ''}`}
+        className={`base-btn-category ${category === 'medium' ? 'btn-actived' : ''}`}
         onClick={() => handleClickCategory('medium')}
       >
         4 - 6 People
       </button>
       <button
-        className={`base-btn-category ${categoryActive === 'large' ? 'btn-actived' : ''}`}
+        className={`base-btn-category ${category === 'large' ? 'btn-actived' : ''}`}
         onClick={() => handleClickCategory('large')}
       >
         6 - 8 People

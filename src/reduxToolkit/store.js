@@ -38,7 +38,6 @@ const authAdminReducer = persistReducer(
 );
 
 const authReducer = persistReducer(persistConfig.auth, authSlices);
-
 const navbarSlice = persistReducer(persistConfig.navbarStatus, navbarReducer);
 
 const store = configureStore({
@@ -50,6 +49,8 @@ const store = configureStore({
     listOrderSlice,
     authAdminReducer,
     authReducer,
+
+    // searchSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

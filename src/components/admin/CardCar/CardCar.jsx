@@ -14,10 +14,10 @@ import {
   formatSizeCar,
   formatDate,
 } from '../../../utils/formatUtil';
-const CardCar = () => {
+const CardCar = ({ listcar }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { listcar } = useSelector((state) => state.listSlice);
+  // const { listcar } = useSelector((state) => state.listSlice);
 
   const handleEdit = (id) => {
     navigate(`/admin/editcars/${id}`);

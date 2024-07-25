@@ -20,6 +20,7 @@ const JumptoPage = ({ pageCount, currentPage, onPageChange }) => {
       </p>
       <div className=" flex justify-center items-center">
         <select
+          id="jump-to-page"
           className="input-limit"
           onChange={handleChangePage}
           value={selectedPage}
