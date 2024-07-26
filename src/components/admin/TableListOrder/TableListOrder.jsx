@@ -53,6 +53,8 @@ const TableListOrder = () => {
                 >
                   {col.includes('user_email') ? (
                     item.User.email
+                  ) : col.includes('car') ? (
+                    item.Car.name
                   ) : col.includes('rent') ? (
                     formatDate(item[col])
                   ) : col.includes('price') ? (
