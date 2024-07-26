@@ -16,7 +16,7 @@ const TableListOrder = () => {
     useTableAdmin();
 
   return (
-    <div>
+    <div className="mb-2">
       <table className="bg-white table-container divide-y divide-gray-200 ">
         <thead className="color-thead">
           <tr>
@@ -54,7 +54,7 @@ const TableListOrder = () => {
                   {col.includes('user_email') ? (
                     item.User.email
                   ) : col.includes('car') ? (
-                    item.Car.name !== null ? (
+                    item.Car !== null ? (
                       item.Car.name
                     ) : (
                       '-'
@@ -66,27 +66,35 @@ const TableListOrder = () => {
                   ) : col.includes('create') ? (
                     formatDate(item['createdAt'])
                   ) : col.includes('status') ? (
-                    <div className="flex flex-col items-center justify-center">
-                      <div className="m-0 text-xs">
-                        {formatStatusOrder(item[col], item['updatedAt'])}
+                    item.Car === null ? (
+                      <div className="flex justify-center items-center text-center size-p-table">
+                        <p className="text-neutral-700 font-sans text-center m-0  text-sm">
+                          Car not found :(
+                        </p>
                       </div>
-                      <div className="w-fit flex gap-2 justify-center items-center">
-                        <button
-                          onClick={() => handleClickStatus(item.id, '1')}
-                          className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled btn-color-enabled-hover '}`}
-                          disabled={item[col] ? true : false}
-                        >
-                          confirm
-                        </button>
-                        <button
-                          onClick={() => handleClickStatus(item.id, '0')}
-                          className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled  btn-color-enabled-hover '}`}
-                          disabled={item[col] ? false : true}
-                        >
-                          Finish
-                        </button>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="m-0 text-xs">
+                          {formatStatusOrder(item[col], item['updatedAt'])}
+                        </div>
+                        <div className="w-fit flex gap-2 justify-center items-center">
+                          <button
+                            onClick={() => handleClickStatus(item.id, '1')}
+                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled btn-color-enabled-hover '}`}
+                            disabled={item[col] ? true : false}
+                          >
+                            confirm
+                          </button>
+                          <button
+                            onClick={() => handleClickStatus(item.id, '0')}
+                            className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled  btn-color-enabled-hover '}`}
+                            disabled={item[col] ? false : true}
+                          >
+                            Finish
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    )
                   ) : (
                     item[col]
                   )}
