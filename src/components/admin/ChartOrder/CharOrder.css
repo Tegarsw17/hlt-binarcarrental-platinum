@@ -1,0 +1,10 @@
+.chart-order-container {
+  /* height: 576px; */
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.chart-order-container canvas {
+  height: 376px;
+  width: 1100px;
+}

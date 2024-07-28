@@ -3,11 +3,30 @@ import Home from '../pages/customer/Home';
 import Search from '../pages/customer/Search';
 import Car from '../pages/customer/Car';
 import CarDetail from '../pages/customer/CarDetail';
-import AdminShowCar from '../pages/admin/ShowCar';
+import LoginAdmin from '../pages/admin/Login';
+import AddCars from '../pages/admin/AddCars';
+import EditCars from '../pages/admin/EditCars';
+import AdminListCar from '../pages/admin/ListCar/index';
+import Payment from '../pages/customer/Payment';
+import Login from '../pages/customer/Login';
+import Register from '../pages/customer/Register';
+import CustomerProtectedRoute from './CustomerProtectedRoute';
+import Dashboard from '../pages/admin/Dashboard/Dashboard';
+import AdminProtectedRoute from './AdminProtectedRoute';
+
 export const routeList = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
   {
     path: '/search',
@@ -22,7 +41,37 @@ export const routeList = createBrowserRouter([
     element: <CarDetail />,
   },
   {
-    path: '/admin/showcar',
-    element: <AdminShowCar />,
+    path: '/payment/:id',
+    element: (
+      <CustomerProtectedRoute>
+        <Payment />
+      </CustomerProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/login',
+    element: <LoginAdmin />,
+  },
+  {
+    path: '',
+    element: <AdminProtectedRoute />,
+    children: [
+      {
+        path: '/admin/addcars',
+        element: <AddCars />,
+      },
+      {
+        path: '/admin/editcars/:id',
+        element: <EditCars />,
+      },
+      {
+        path: '/admin/listcar',
+        element: <AdminListCar />,
+      },
+      {
+        path: '/admin',
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);

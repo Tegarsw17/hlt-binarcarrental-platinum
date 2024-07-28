@@ -43,7 +43,7 @@
 .form-control-custom::placeholder {
   font-size: 12px;
   font-weight: 300;
-  color: #999999;
+  /* color: #999999; */
   font-family: 'Rubik', sans-serif;
 }
 
@@ -67,6 +67,7 @@
   border: none;
   font-size: 14px;
   font-weight: bold;
+  margin-top: 5px;
 }
 
 .align-items-end .col {
@@ -83,13 +84,17 @@
   gap: 10px;
 }
 
-.form-group {
+.form-group.customer {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.input-field {
+.input-field::placeholder {
+  color: #000000;
+}
+
+.input-field.customer {
   padding: 7px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -98,7 +103,7 @@
   font-size: 12px;
   font-weight: 300;
   font-family: 'Rubik';
-  color: #999999;
+  color: #000000;
 }
 
 .input-field:focus {
@@ -151,13 +156,14 @@
 
 .form-group select:disabled {
   background-color: #d0d0d0;
+  color: #9ca3af;
 }
 
 @media screen and (max-width: 768px) {
   .search-car {
     bottom: 10px;
     max-width: 500px;
-    height: 350px;
+    height: 400px;
   }
 
   .search-bar {
@@ -167,5 +173,6 @@
 @media screen and (max-width: 450px) {
   .search-car {
     margin: 0 20px;
+    height: 400px;
   }
 }

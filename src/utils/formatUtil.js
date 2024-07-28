@@ -30,3 +30,55 @@ export const minMaxPriceValue = (priceRange) => {
     return ['', ''];
   }
 };
+
+export const formatDate = (dateString) => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-GB', options).format(date);
+};
+
+export const getDaysDifference = (date1, date2) => {
+  const startDate = new Date(date1);
+  const endDate = new Date(date2);
+
+  const differenceInTime = endDate - startDate;
+
+  const differenceInDays = differenceInTime / (1000 * 3600 * 24) + 1;
+
+  return Math.abs(differenceInDays);
+};
+
+export const formatTimestamp = (timestamp) => {
+  const date = new Date(Number(timestamp));
+
+  const dayNameOptions = { weekday: 'long' };
+  const dayOptions = { day: 'numeric' };
+  const monthOptions = { month: 'long' };
+  const yearOptions = { year: 'numeric' };
+  const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: false };
+
+  const dayName = new Intl.DateTimeFormat('id-ID', dayNameOptions).format(date);
+  const day = new Intl.DateTimeFormat('id-ID', dayOptions).format(date);
+  const month = new Intl.DateTimeFormat('id-ID', monthOptions).format(date);
+  const year = new Intl.DateTimeFormat('id-ID', yearOptions).format(date);
+  const time = new Intl.DateTimeFormat('id-ID', timeOptions)
+    .format(date)
+    .replace('.', ':');
+
+  return `${dayName}, ${day} ${month} ${year} jam ${time} WIB`;
+};
+
+export const formatStatusOrder = (status, updates) => {
+  if (status === false) {
+    return 'Menunggu Konfirmasi';
+  } else if (status === true) {
+    const done = `Terkonfirmasi ${formatDate(updates)}`;
+    return done;
+  }
+};
+
+export const numberToArray = (number) => {
+  return Array.from({ length: number }, (_, i) => i + 1);
+};

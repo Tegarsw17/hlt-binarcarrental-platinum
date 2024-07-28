@@ -1,37 +1,35 @@
 import axios from 'axios';
+import { store } from '../reduxToolkit/store';
 
 const axiosCustomer = axios.create();
 
 axiosCustomer.interceptors.request.use(
   (config) => {
     if (config.useAuth) {
-      const token = localStorage.getItem('access_token');
+      const state = store.getState();
+      const token = state.authReducer.access_token;
       if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+        config.headers['access_token'] = `${token}`;
       } else {
         console.warn('No token found in localStorage');
       }
     }
-    // console.log("Request config:", config); // Log the config for debugging
     return config;
   },
   (error) => {
-    // console.error("Request error:", error);
     return Promise.reject(error);
   }
 );
 
 axiosCustomer.interceptors.response.use(
   (response) => {
-    // console.log("Response data:", response.data);
     return response;
   },
   (error) => {
-    // console.log("Response error:", error.response);
     if (error.response.status === 401) {
-      console.log('anda tidak memiliki akses');
+      const currentPath = window.location.pathname + window.location.search;
+      window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
     }
-    // console.error("Response error:", error.response);
     return Promise.reject(error);
   }
 );

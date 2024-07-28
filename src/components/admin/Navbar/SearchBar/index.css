@@ -1,0 +1,51 @@
+.search-navbar-wrapper {
+  margin: 0 auto;
+}
+
+.icon-profile-admin {
+  border-radius: 50%;
+}
+
+.search-bar-input {
+  background: url('../../../assets/fi_search.png') no-repeat scroll 7px 7px;
+  background-color: #ffffff;
+  padding-left: 38px;
+  background-position: left 12px center;
+  width: 174px;
+  height: 36px;
+  border: 1px solid #d0d0d0;
+}
+
+.search-bar-button {
+  border: 1px solid #0d28a6;
+  color: #0d28a6;
+  background-color: #ffffff;
+  width: 71px;
+  height: 36px;
+  border-radius: 2px;
+  padding: 8px, 12px;
+}
+.search-bar-button span {
+  font-size:
+    700 14px 'Arial',
+    sans-serif;
+  line-height: 20px;
+}
+
+.icon-profile-admin {
+  background-color: #cfd4ed;
+}
+
+.icon-profile-admin span {
+  font:
+    700 16px 'Arial',
+    sans-serif;
+  line-height: 24px;
+}
+
+.box-name-admin {
+  font:
+    400 14px 'Arial',
+    sans-serif;
+  line-height: 20px;
+}

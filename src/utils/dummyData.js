@@ -182,3 +182,26 @@ export const detailCar = {
     ],
   },
 };
+
+export const paymentInstruction = [
+  'Masukkan kartu ATM, lalu PIN',
+  "Pilih menu 'Transaksi Lainnya' - 'Transfer' - 'Ke Rek BCA Virtual Account'",
+  'Masukkan nomor BCA Virtual Account: 70020+Order ID \n Contoh \n No. Peserta: 12345678, maka ditulis 7002012345678',
+  'Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk menyelesaikan transaksi',
+  'Ambil dan simpanlah bukti transaksi tersebut',
+];
+export const itemListadmin = [
+  {
+    id: 1,
+    name: 'Toyota Avanza',
+    category: 'medium',
+    price: 100000,
+    status: false,
+    start_rent_at: '2022-01-01',
+    finish_rent_at: '2022-01-02',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/0/0d/2019_Toyota_Avanza_1.3_G_F653RM_%2820200228%29.jpg',
+    createdAt: '2024-07-04T12:50:48.786Z',
+    updateAt: '2024-07-04T12:50:48.786Z',
+  },
+];

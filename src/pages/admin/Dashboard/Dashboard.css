@@ -1,0 +1,20 @@
+.admin-page-color {
+  /* margin: 0 auto; */
+  background-color: #f4f5f7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.gap-component {
+  gap: 24px;
+  flex-direction: column;
+}
+
+.max-size-option-table {
+  max-width: 1100px;
+}
+
+.font-title-btn {
+  font-family: Arial, Helvetica, sans-serif;
+}

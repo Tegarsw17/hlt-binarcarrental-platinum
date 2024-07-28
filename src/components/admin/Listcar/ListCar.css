@@ -1,0 +1,80 @@
+/* .card-admin-container {
+  width: 351px;
+  height: 482px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-font {
+  font: 400 14px 'Arial';
+  line-height: 20px;
+  color: #000000;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 303px;
+  height: 362px;
+}
+.card-font p {
+  margin: 0px;
+}
+
+.card-font span {
+  font: 700 16px 'Arial';
+  line-height: 24px;
+}
+.card-img-size {
+  height: 222px;
+  width: 303px;
+  padding: 31px 17px;
+}
+
+.admin-card-btn-container {
+  display: flex;
+  width: 303px;
+  gap: 16px;
+  padding-top: 24px;
+}
+.admin-card-btn-container button {
+  width: 143.5px;
+  height: 48px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+
+  padding: 8px 12px;
+  border-radius: 2px !important;
+  border: 1px;
+  gap: 10px;
+}
+
+.admin-card-btn-container button:nth-child(1) {
+  background-color: #ffffff;
+  color: #fa2c5a;
+  border: 2px solid #fa2c5a;
+  gap: 10px;
+}
+
+.admin-card-btn-container button:nth-child(2) {
+  background-color: #5cb85f;
+  color: #ffffff;
+
+  gap: 10px;
+}
+
+.max-card-width {
+  max-width: 351px !important;
+}
+
+.size-card-container {
+  margin: 24px !important;
+}
+
+.max-width-container {
+  width: 1101px !important;
+} */

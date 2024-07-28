@@ -1,0 +1,64 @@
+.wrapper-auth {
+  display: flex;
+  height: 100vh;
+}
+
+.form-auth-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-auth {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.form-auth p {
+  align-self: center;
+}
+.banner-auth {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #0d28a6;
+  align-items: end;
+}
+
+.banner-auth-content {
+  height: 100%;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.banner-auth h1 {
+  color: #ffffff;
+}
+
+.img-auth {
+  margin-top: 20px;
+  display: flex;
+}
+
+.img-auth img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .banner-auth {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .form-auth {
+    margin: 10px;
+  }
+}
