@@ -8,8 +8,11 @@ import { Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '../../../reduxToolkit/features/customer-auth/loginSlice';
 import AuthTemplate from '../../../components/customer/AuthTemplate';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
+  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
   const [error, setError] = useState(null);
   const [tokens, setTokens] = useState(null);
   const navigate = useNavigate();
@@ -48,11 +51,45 @@ const Login = () => {
 
   const accessToken = useSelector((state) => state.authReducer.access_token);
 
+  const responseMessage = (response) => {
+    setUser(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
+
   useEffect(() => {
     if (accessToken) {
       navigate('/');
     }
   }, [accessToken]);
+
+  useEffect(() => {
+    if (user) {
+      const handleGoogleResponse = async () => {
+        const apiURL = `https://www.googleapis.com/oauth2/v1/userinfo`;
+        const payload = {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+            Accept: 'application/json',
+          },
+          params: {
+            access_token: user.access_token,
+          },
+        };
+
+        try {
+          const res = await axios.get(apiURL, payload);
+          setProfile(res.data);
+          setTokens(user.access_token);
+          console.log(res.data);
+        } catch (error) {
+          setError(error);
+        }
+      };
+      handleGoogleResponse();
+    }
+  }, [user]);
 
   return (
     <AuthTemplate>
@@ -78,9 +115,13 @@ const Login = () => {
         />
       </div>
       <button onClick={handleSubmit}>Sign In</button>
-      <p>
-        Don't have an account? <Link to={'/register'}>Sign Up for free</Link>
-      </p>
+      <div className="relative flex-col justify-center items-center text-center">
+        <p>
+          Don't have an account? <Link to={'/register'}>Sign Up for free</Link>
+        </p>
+        <p>atau</p>
+        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+      </div>
     </AuthTemplate>
   );
 };
