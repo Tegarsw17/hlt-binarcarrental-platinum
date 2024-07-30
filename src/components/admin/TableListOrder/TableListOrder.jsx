@@ -1,4 +1,4 @@
-import './TableListOrder.css';
+import './style.css';
 import iconSort from '../../../assets/fi_sort.png';
 
 import useTableAdmin from '../../../hooks/useTableAdmin';

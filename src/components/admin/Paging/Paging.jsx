@@ -1,4 +1,4 @@
-import './Paging.css';
+import './style.css';
 import { Pagination } from 'flowbite-react';
 const Paging = ({ pageCount, currentPage, onPageChange }) => {
   return (

@@ -1,4 +1,4 @@
-import './index.css';
+import './style.css';
 import { setActive } from '../../../../reduxToolkit/features/admin-navbar/navbarSlice';
 import { useSelector } from 'react-redux';
 import iconhome from '../../../../assets/fi_home.png';
