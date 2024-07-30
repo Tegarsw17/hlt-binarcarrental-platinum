@@ -1,5 +1,5 @@
-import './Dashboard.css';
-import iconChevron from '../../../assets/chevron-right.png';
+import './style.css';
+// import iconChevron from '../../../assets/chevron-right.png';
 
 import Navbar from '../../../components/admin/Navbar/Navbar';
 import MonthPicker from '../../../components/admin/ChartOrder/MonthPicker/MonthPicker';

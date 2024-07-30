@@ -59,7 +59,7 @@ function EditContent() {
         `https://api-car-rental.binaracademy.org/admin/car/${id}`,
         config
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
       setForm({
         name: response.data.name,
@@ -67,7 +67,7 @@ function EditContent() {
         price: response.data.price,
       });
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
     }
   };
 

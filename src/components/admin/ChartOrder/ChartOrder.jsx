@@ -1,7 +1,7 @@
-import './CharOrder.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getOrderReport } from '../../../reduxToolkit/features/admin-orderreport/orderreportSlice';
+import './style.css';
+import { useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+// import { getOrderReport } from '../../../reduxToolkit/features/admin-orderreport/orderreportSlice';
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -13,8 +13,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { useFetcher } from 'react-router-dom';
-import { addMonths, format } from 'date-fns';
+
+import { format } from 'date-fns';
 ChartJS.register(
   CategoryScale,
   LinearScale,

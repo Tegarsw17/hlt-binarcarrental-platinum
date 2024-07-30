@@ -1,4 +1,4 @@
-import './JumptoPage.css';
+import './style.css';
 // import useTableAdmin from '../../../../hooks/useTableAdmin';
 import { numberToArray } from '../../../utils/formatUtil';
 import { useState } from 'react';

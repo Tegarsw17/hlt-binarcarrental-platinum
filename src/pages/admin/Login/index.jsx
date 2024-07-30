@@ -46,7 +46,7 @@ function LoginAdmin() {
           navigate(redirectUrl);
         }, 1000);
       }
-      console.log(role);
+      // console.log(role);
     } catch (error) {
       setError(error?.response?.data.message);
     }

@@ -1,4 +1,4 @@
-import './index.css';
+import './style.css';
 const ButtonCategory = ({ category, handleClickCategory }) => {
   return (
     <div className="container flex btn-category-container mb-2">

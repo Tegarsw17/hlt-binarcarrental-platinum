@@ -1,5 +1,5 @@
 import imgdelete from '../../../assets/img-BeepBeep.png';
-import './index.css';
+import './style.css';
 
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';

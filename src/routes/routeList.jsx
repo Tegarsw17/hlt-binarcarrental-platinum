@@ -1,18 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom';
+
+// customer routes
+import CustomerProtectedRoute from './CustomerProtectedRoute';
 import Home from '../pages/customer/Home';
 import Search from '../pages/customer/Search';
 import Car from '../pages/customer/Car';
 import CarDetail from '../pages/customer/CarDetail';
-import LoginAdmin from '../pages/admin/Login';
-import AddCars from '../pages/admin/AddCars';
-import EditCars from '../pages/admin/EditCars';
-import AdminListCar from '../pages/admin/ListCar/index';
 import Payment from '../pages/customer/Payment';
 import Login from '../pages/customer/Login';
 import Register from '../pages/customer/Register';
-import CustomerProtectedRoute from './CustomerProtectedRoute';
-import Dashboard from '../pages/admin/Dashboard/Dashboard';
+
+// admin routes
 import AdminProtectedRoute from './AdminProtectedRoute';
+import LoginAdmin from '../pages/admin/Login';
+import Dashboard from '../pages/admin/Dashboard';
+import AdminListCar from '../pages/admin/ListCar';
+import AddCars from '../pages/admin/AddCars';
+import EditCars from '../pages/admin/EditCars';
 
 export const routeList = createBrowserRouter([
   {
