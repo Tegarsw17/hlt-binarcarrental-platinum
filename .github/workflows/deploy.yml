@@ -34,5 +34,5 @@ jobs:
           git pull origin main
           npm install
           npm run build
-          pm2 reload /root/ecosystem.config.js
+          pm2 reload /root/ecosystem.config.js --only binarrent
         debug: true
