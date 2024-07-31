@@ -1,4 +1,4 @@
-import './index.css';
+import './style.css';
 import LogoWeb from '../../../../assets/logo.png';
 import ButtonBurger from '../../ButtonBurger/index';
 import SearchBox from './SearchBox/index';
@@ -13,7 +13,6 @@ const SearchBar = () => {
   const [isOpenAccorLogout, setIsOpenAccorLogout] = useState(true);
   const handleClickLogout = () => {
     setIsOpenAccorLogout(!isOpenAccorLogout);
-    // console.log(isOpenAccorLogout);
   };
   const handleLogout = () => {
     dispatch(clearTokenAdmin());

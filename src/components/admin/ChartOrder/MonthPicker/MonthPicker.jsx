@@ -1,4 +1,4 @@
-import './MonthPicker.css';
+import './style.css';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,7 +19,6 @@ const MonthPicker = () => {
   const handleChange = (date) => {
     setStartDate(format(date, 'yyyy-MM-dd'));
     setEndDate(format(lastDayOfMonth(date), 'yyyy-MM-dd'));
-    // console.log(startDate, ' and ', endDate);
   };
 
   useEffect(() => {

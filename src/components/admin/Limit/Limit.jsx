@@ -1,4 +1,4 @@
-import './Limit.css';
+import './style.css';
 
 const LimitPage = ({ pageSize, handleSelectLimit }) => {
   return (

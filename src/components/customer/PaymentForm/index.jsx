@@ -28,9 +28,7 @@ const PaymentForm = ({ bank, id, nextStep }) => {
         config
       );
       setTotalValue(response.data.total_price);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -88,9 +86,7 @@ const PaymentForm = ({ bank, id, nextStep }) => {
       setTimeout(() => {
         nextStep();
       }, 1000);
-    } catch (error) {
-      console.log(error.response);
-    }
+    } catch (error) {}
   };
 
   const renderer = ({ hours, minutes, seconds, completed }) => {

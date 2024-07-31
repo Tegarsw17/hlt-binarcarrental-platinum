@@ -7,7 +7,7 @@ const Banner = ({ id, isButtonShow = true }) => {
     <div className="banner-wrapper">
       <div id={id} className="banner">
         <div className="banner-text">
-          <h1>Sewa & Rental Mobil Terbaik di kawasan (Lokasimu)</h1>
+          <h1>Sewa & Rental Mobil Terbaik di kawasan Jakarta</h1>
           <p>
             Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas
             terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu

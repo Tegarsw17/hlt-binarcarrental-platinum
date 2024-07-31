@@ -1,10 +1,10 @@
-import './CardCar.css';
+import './style.css';
 import imgTrash from '../../../assets/img-trash.png';
 import imgEdit from '../../../assets/img-edit.png';
 import iconUsers from '../../../assets/fi_users.png';
 import iconClock from '../../../assets/fi_clock.png';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { showPopupDelete } from '../../../reduxToolkit/features/admin-popup/popupSlice';

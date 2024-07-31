@@ -1,4 +1,4 @@
-import './index.css';
+import './style.css';
 import { setActive } from '../../../../reduxToolkit/features/admin-navbar/navbarSlice';
 import { useSelector } from 'react-redux';
 import iconhome from '../../../../assets/fi_home.png';
@@ -30,7 +30,6 @@ const SideNavbar = () => {
     }
   }, []);
 
-  // console.log(window.location.pathname);
   return (
     <div>
       <div className="z-30 flex flex-col justify-start items-center pt-4 fixed h-screen  sidebar-container">

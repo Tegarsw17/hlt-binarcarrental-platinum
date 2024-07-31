@@ -1,14 +1,14 @@
-import './index.css';
+import './style.css';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 // import { setSearchCar } from '../../../../../reduxToolkit/features/admin-navbar/navbarSlice';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 const SearchBox = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');

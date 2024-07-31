@@ -67,15 +67,12 @@ function Content() {
         formData,
         config
       );
-      console.log(response);
       setTimeout(() => {
         sessionStorage.setItem('successMessage', 'Data Berhasil Ditambahkan');
         sessionStorage.setItem('color', '#73CA5C');
         navigate('/admin/listcar');
       }, 1000);
-    } catch (error) {
-      console.log(error.response);
-    }
+    } catch (error) {}
   };
 
   const handleCancel = () => {

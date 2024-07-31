@@ -59,16 +59,13 @@ function EditContent() {
         `https://api-car-rental.binaracademy.org/admin/car/${id}`,
         config
       );
-      console.log(response.data);
       setData(response.data);
       setForm({
         name: response.data.name,
         category: response.data.category,
         price: response.data.price,
       });
-    } catch (error) {
-      console.log(error.response);
-    }
+    } catch (error) {}
   };
 
   const handleSave = async () => {
@@ -97,9 +94,7 @@ function EditContent() {
         sessionStorage.setItem('color', '#0D28A6');
         navigate('/admin/listcar');
       }, 1000);
-    } catch (error) {
-      console.log(error.response);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

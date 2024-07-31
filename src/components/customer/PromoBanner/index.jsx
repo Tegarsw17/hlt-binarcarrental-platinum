@@ -5,9 +5,7 @@ const PromoBanner = () => {
   return (
     <div className="promo-banner-wrapper">
       <div className="promo-banner">
-        <h1 className="promo-banner-title">
-          Sewa Mobil di (Lokasimu) Sekarang
-        </h1>
+        <h1 className="promo-banner-title">Sewa Mobil di Jakarta Sekarang</h1>
         <p className="promo-banner-desc">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}

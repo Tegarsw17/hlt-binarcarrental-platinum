@@ -40,9 +40,17 @@
   height: 32px;
   border-radius: 50%;
   border: none;
+  background-color: #ffffff;
+  border: 1px solid #c4c4c4;
 }
 
-.testi-btn.prev {
+.testi-btn:hover{
+  background-color: #5cb85f;
+  color: #ffffff;
+  border: 1px solid #5cb85f;
+}
+
+/* .testi-btn.prev {
   background-color: #ffffff;
   border: 1px solid #c4c4c4;
   color: #151515;
@@ -51,7 +59,7 @@
 .testi-btn.next {
   background-color: #5cb85f;
   color: #ffffff;
-}
+} */
 
 .slick-slide > div {
   margin: 0 16px;
