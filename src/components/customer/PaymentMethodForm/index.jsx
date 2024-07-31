@@ -17,9 +17,7 @@ const PaymentMethodForm = ({ bank, setBank, id, nextStep }) => {
         config
       );
       setData(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

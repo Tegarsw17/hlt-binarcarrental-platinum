@@ -17,17 +17,14 @@ export const getList = createAsyncThunk(
       },
     };
 
-    // console.log('send to API : ', paramsUrl);
     try {
       let response;
       response = await axios.get(
         'https://api-car-rental.binaracademy.org/admin/v2/car',
         config
       );
-      // console.log('response : ', response?.data);
       return response?.data;
     } catch (error) {
-      // console.log('failed get data : ', error.response.data);
       return error.response.data;
     }
   }

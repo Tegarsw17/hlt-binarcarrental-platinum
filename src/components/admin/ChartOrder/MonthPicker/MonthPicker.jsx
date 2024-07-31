@@ -19,7 +19,6 @@ const MonthPicker = () => {
   const handleChange = (date) => {
     setStartDate(format(date, 'yyyy-MM-dd'));
     setEndDate(format(lastDayOfMonth(date), 'yyyy-MM-dd'));
-    // console.log(startDate, ' and ', endDate);
   };
 
   useEffect(() => {

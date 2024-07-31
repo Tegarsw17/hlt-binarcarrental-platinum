@@ -15,12 +15,12 @@ const OurService = ({ id }) => {
           <img src={WomanImage}></img>
         </div>
         <div className="our-service-text">
-          <h3>Best Car Rental for any kind of trip in (Lokasimu)!</h3>
+          <h3>Best Car Rental for any kind of trip in Jakarta!</h3>
           <p>
-            Sewa mobil di (Lokasimu) bersama Binar Car Rental jaminan harga
-            lebih murah dibandingkan yang lain, kondisi mobil baru, serta
-            kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding,
-            meeting, dll.
+            Sewa mobil di Jakarta bersama Binar Car Rental jaminan harga lebih
+            murah dibandingkan yang lain, kondisi mobil baru, serta kualitas
+            pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting,
+            dll.
           </p>
           <ul className="our-service-list">
             {ourServiceData.map((item, index) => (

@@ -30,7 +30,6 @@ const SideNavbar = () => {
     }
   }, []);
 
-  // console.log(window.location.pathname);
   return (
     <div>
       <div className="z-30 flex flex-col justify-start items-center pt-4 fixed h-screen  sidebar-container">

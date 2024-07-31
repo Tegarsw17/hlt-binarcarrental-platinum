@@ -13,7 +13,6 @@ const SearchBar = () => {
   const [isOpenAccorLogout, setIsOpenAccorLogout] = useState(true);
   const handleClickLogout = () => {
     setIsOpenAccorLogout(!isOpenAccorLogout);
-    // console.log(isOpenAccorLogout);
   };
   const handleLogout = () => {
     dispatch(clearTokenAdmin());

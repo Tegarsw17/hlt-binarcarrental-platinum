@@ -38,9 +38,7 @@ const useDeleteCar = () => {
         //   behavior: 'smooth', // This provides a smooth scrolling effect
         // });
       }, 0);
-    } catch (error) {
-      console.log('failed delete data : ', error.response.data);
-    }
+    } catch (error) {}
   };
   return {
     handleDelete,

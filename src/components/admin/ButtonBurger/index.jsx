@@ -7,7 +7,6 @@ const ButtonBurger = () => {
 
   const handleClick = () => {
     dispatch(showNavbar());
-    // console.log(isOpen);
   };
 
   return (
