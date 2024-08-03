@@ -180,7 +180,14 @@ function Content() {
           </button>
           <button
             onClick={handleSave}
-            className="px-3 py-2 bg-[#0D28A6] border-[1px] border-[#0D28A6] text-[#ffffff] font-bold text-sm"
+            disabled={
+              !form.name || !form.price || !form.category || !selectedFile
+            }
+            className={`px-3 py-2 border-[1px] text-sm font-bold ${
+              !form.name || !form.price || !form.category || !selectedFile
+                ? 'bg-[#7486d6] border-[#7486d6] text-gray-200'
+                : 'bg-[#0D28A6] border-[#0D28A6] text-[#ffffff]'
+            }`}
           >
             Save
           </button>
