@@ -51,7 +51,9 @@ const CarDetailCard = ({ data, id }) => {
     };
     try {
       const response = await axiosCustomer.post(
-        'https://api-car-rental.binaracademy.org/customer/order',
+        // 'https://api-car-rental.binaracademy.org/customer/order',
+        // 'http://localhost:3100/order',
+        'https://nest-car-rent.onrender.com/order',
         form,
         config
       );
@@ -115,7 +117,7 @@ const CarDetailCard = ({ data, id }) => {
         </div>
         <div className="car-detail-image">
           <div className="car-image-detail" style={{ padding: '28px 0px' }}>
-            <img src={data.image ? data.image : NoImage}></img>
+            <img src={data.imageUrl ? data.imageUrl : NoImage}></img>
           </div>
           <p>{data.name ? data.name : '-'}</p>
           <div className="car-detail-size">

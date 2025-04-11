@@ -15,7 +15,7 @@ const CarList = ({ data }) => {
             name={item.name} // name
             price={item.price} //price
             desc={item.desc} // buat default
-            image={item.image} //image-> buat default jika null
+            image={item.imageUrl} //image-> buat default jika null
           />
         ))}
       </div>

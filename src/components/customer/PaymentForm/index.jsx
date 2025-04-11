@@ -24,7 +24,9 @@ const PaymentForm = ({ bank, id, nextStep }) => {
   const getApiOrderbyId = async () => {
     try {
       const response = await axiosCustomer.get(
-        `https://api-car-rental.binaracademy.org/customer/order/${id}`,
+        // `https://api-car-rental.binaracademy.org/customer/order/${id}`,
+        // `http://localhost:3100/order/${id}`,
+        `https://nest-car-rent.onrender.com/order/${id}`,
         config
       );
       setTotalValue(response.data.total_price);
@@ -79,7 +81,9 @@ const PaymentForm = ({ bank, id, nextStep }) => {
     };
     try {
       const response = await axiosCustomer.put(
-        `https://api-car-rental.binaracademy.org/customer/order/${id}/slip`,
+        // `https://api-car-rental.binaracademy.org/customer/order/${id}/slip`,
+        // `http://localhost:3100/order/${id}/slip`,
+        `https://nest-car-rent.onrender.com/order/${id}/slip`,
         formData,
         config
       );

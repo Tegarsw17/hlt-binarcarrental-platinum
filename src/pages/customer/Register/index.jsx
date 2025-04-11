@@ -28,7 +28,8 @@ const Register = () => {
     };
     try {
       const apiURL =
-        'https://api-car-rental.binaracademy.org/customer/auth/register';
+        // 'https://api-car-rental.binaracademy.org/customer/auth/register';
+        'https://nest-car-rent.onrender.com/auth/register';
       const res = await axios.post(apiURL, payload);
       setError(null);
       setSuccess(res.statusText);

@@ -12,7 +12,9 @@ const CarDetail = () => {
 
   const fetchDetailCar = async (idCar) => {
     try {
-      const apiURL = `https://api-car-rental.binaracademy.org/customer/car/${idCar}`;
+      const apiURL = `https://nest-car-rent.onrender.com/car/${idCar}`;
+      // const apiURL = `http://localhost:3100/car/${idCar}`;
+      // const apiURL = `https://api-car-rental.binaracademy.org/customer/car/${idCar}`;
       const response = await axiosCustomer.get(apiURL);
       setDetailCarData(response.data);
     } catch (error) {

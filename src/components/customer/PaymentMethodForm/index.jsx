@@ -13,7 +13,9 @@ const PaymentMethodForm = ({ bank, setBank, id, nextStep }) => {
   const getApiOrderbyId = async () => {
     try {
       const response = await axiosCustomer.get(
-        `https://api-car-rental.binaracademy.org/customer/order/${id}`,
+        // `https://api-car-rental.binaracademy.org/customer/order/${id}`,
+        // `http://localhost:3100/order/${id}`,
+        `https://nest-car-rent.onrender.com/order/${id}`,
         config
       );
       setData(response.data);

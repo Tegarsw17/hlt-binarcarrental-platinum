@@ -15,7 +15,8 @@ const useCar = () => {
       const { nameCar, capacityCar, priceCar, statusCar } = queries;
       const [minPrice, maxprice] = minMaxPriceValue(priceCar);
       const response = await axiosCustomer.get(
-        'https://api-car-rental.binaracademy.org/customer/v2/car',
+        // 'https://api-car-rental.binaracademy.org/customer/v2/car',
+        'https://nest-car-rent.onrender.com/car',
         {
           params: {
             name: nameCar,
