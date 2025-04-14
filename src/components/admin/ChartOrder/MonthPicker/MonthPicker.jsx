@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { lastDayOfMonth, startOfMonth, format } from 'date-fns';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getOrderReport } from '../../../../reduxToolkit/features/admin-orderreport/orderreportSlice';
 
 const MonthPicker = () => {
@@ -16,17 +16,19 @@ const MonthPicker = () => {
     format(lastDayOfMonth(new Date(), 1), 'yyyy-MM-dd')
   );
 
+  const { access_token_admin } = useSelector((state) => state.authAdminReducer);
+
   const handleChange = (date) => {
     setStartDate(format(date, 'yyyy-MM-dd'));
     setEndDate(format(lastDayOfMonth(date), 'yyyy-MM-dd'));
   };
 
   useEffect(() => {
-    dispatch(getOrderReport({ startDate, endDate }));
+    dispatch(getOrderReport({ startDate, endDate, access_token_admin }));
   }, []);
 
   const handleclick = () => {
-    dispatch(getOrderReport({ startDate, endDate }));
+    dispatch(getOrderReport({ startDate, endDate, access_token_admin }));
   };
 
   return (

@@ -4,18 +4,19 @@ import axios from 'axios';
 // todo : Token akan dioper
 export const getOrderReport = createAsyncThunk(
   'getOrderReport',
-  async ({ startDate, endDate }) => {
+  async ({ startDate, endDate, access_token_admin }) => {
     const payload = {
       headers: {
-        access_token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc',
+        Authorization: `Bearer ${access_token_admin}`,
       },
     };
 
     try {
       let response;
       response = await axios.get(
-        `https://api-car-rental.binaracademy.org/admin/order/reports?from=${startDate}&until=${endDate}`,
+        // `https://api-car-rental.binaracademy.org/admin/order/reports?from=${startDate}&until=${endDate}`,
+        // `http://localhost:3100/admin/order/reports?from=${startDate}&until=${endDate}`,
+        `https://nest-car-rent.onrender.com/admin/order/reports?from=${startDate}&until=${endDate}`,
         payload
       );
       return response?.data;

@@ -25,7 +25,7 @@ const Dashboard = () => {
           <MonthPicker />
           <ChartOrder />
           <Title title="Dashboard" subtitle="List Order" />
-          <TableListOrder />
+          <TableListOrder currentPage={currentPage} pageSize={pageSize} />
           <div className="w-full max-size-option-table flex justify-between items-center">
             <div className="flex justify-between items-center gap-6">
               <LimitPage

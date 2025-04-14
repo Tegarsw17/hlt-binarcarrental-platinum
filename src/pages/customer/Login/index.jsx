@@ -31,6 +31,7 @@ const Login = () => {
     const apiURL =
       // 'https://api-car-rental.binaracademy.org/customer/auth/login';
       'https://nest-car-rent.onrender.com/auth/login';
+    // 'http://localhost:3100/auth/login';
     try {
       const res = await axios.post(apiURL, payload);
       setError(null);

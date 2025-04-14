@@ -27,7 +27,9 @@ function LoginAdmin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = { ...form };
-    const apiURL = 'https://api-car-rental.binaracademy.org/admin/auth/login';
+    // const apiURL = 'http://localhost:3100/admin/auth/login';
+    const apiURL = 'https://nest-car-rent.onrender.com/admin/auth/login';
+    // const apiURL = 'https://api-car-rental.binaracademy.org/admin/auth/login';
     try {
       const res = await axios.post(apiURL, payload);
       setError(null);

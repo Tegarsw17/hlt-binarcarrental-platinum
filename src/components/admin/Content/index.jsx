@@ -58,12 +58,15 @@ function Content() {
       headers: {
         'Content-Type': 'multipart/form-data',
         access_token: accessToken,
+        Authorization: `Bearer ${accessToken}`,
       },
     };
 
     try {
       const response = await axios.post(
-        'https://api-car-rental.binaracademy.org/admin/car',
+        // 'https://api-car-rental.binaracademy.org/admin/car',
+        'https://nest-car-rent.onrender.com/admin/car',
+        // 'http://localhost:3100/admin/car',
         formData,
         config
       );

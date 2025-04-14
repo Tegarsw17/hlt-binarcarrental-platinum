@@ -14,13 +14,16 @@ const useDeleteCar = () => {
     const payload = {
       headers: {
         access_token: access_token_admin,
+        Authorization: `Bearer ${access_token_admin}`,
       },
     };
 
     try {
       let response;
       response = await axios.delete(
-        `https://api-car-rental.binaracademy.org/admin/car/${idCar}`,
+        // `https://api-car-rental.binaracademy.org/admin/car/${idCar}`,
+        // `http://localhost:3100/admin/car/${idCar}`,
+        `https://nest-car-rent.onrender.com/admin/car/${idCar}`,
         payload
       );
       setTimeout(() => {

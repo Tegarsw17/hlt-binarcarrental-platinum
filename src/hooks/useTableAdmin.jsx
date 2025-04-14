@@ -30,7 +30,7 @@ const useTableAdmin = () => {
     'start_rent_at',
     'finish_rent_at',
     'total_price',
-    'created_at',
+    'createdAt',
     'status',
   ];
   const HeaderNames = [

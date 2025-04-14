@@ -56,7 +56,9 @@ function EditContent() {
     };
     try {
       const response = await axios.get(
-        `https://api-car-rental.binaracademy.org/admin/car/${id}`,
+        // `https://api-car-rental.binaracademy.org/admin/car/${id}`,
+        // `http://localhost:3100/car/${id}`,
+        `https://nest-car-rent.onrender.com/car/${id}`,
         config
       );
       setData(response.data);
@@ -84,7 +86,9 @@ function EditContent() {
     }
     try {
       await axios.put(
-        `https://api-car-rental.binaracademy.org/admin/car/${id}`,
+        // `https://api-car-rental.binaracademy.org/admin/car/${id}`,
+        `http://localhost:3100/admin/car/${id}`,
+        `https://nest-car-rent.onrender.com/admin/car/${id}`,
         formData,
         config
       );

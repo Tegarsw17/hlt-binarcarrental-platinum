@@ -10,7 +10,7 @@ import {
   formatRupiah,
 } from '../../../utils/formatUtil';
 
-const TableListOrder = () => {
+const TableListOrder = ({ currentPage, pageSize }) => {
   const { listorder } = useSelector((state) => state.listOrderSlice);
   const { HeaderOrder, HeaderNames, handleSort, handleClickStatus } =
     useTableAdmin();
@@ -51,8 +51,14 @@ const TableListOrder = () => {
                   key={colindex}
                   className={`h-3 w-40 px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-700 ${col === 'id' ? 'text-center' : ''}`}
                 >
-                  {col.includes('user_email') ? (
-                    item.User.email
+                  {col === 'id' ? (
+                    (currentPage - 1) * pageSize + rowindex + 1
+                  ) : col.includes('user_email') ? (
+                    item.User !== null ? (
+                      item.User.email
+                    ) : (
+                      '-'
+                    )
                   ) : col.includes('car') ? (
                     item.Car !== null ? (
                       item.Car.name
@@ -79,14 +85,14 @@ const TableListOrder = () => {
                         </div>
                         <div className="w-fit flex gap-2 justify-center items-center">
                           <button
-                            onClick={() => handleClickStatus(item.id, '1')}
+                            onClick={() => handleClickStatus(item.id, true)}
                             className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled btn-color-enabled-hover '}`}
                             disabled={item[col] ? true : false}
                           >
                             confirm
                           </button>
                           <button
-                            onClick={() => handleClickStatus(item.id, '0')}
+                            onClick={() => handleClickStatus(item.id, false)}
                             className={`text-center font-sans text-xs font-semibold rounded py-1 px-4 border  ${!item[col] ? 'btn-color-disabled' : ' text-white btn-color-enabled  btn-color-enabled-hover '}`}
                             disabled={item[col] ? false : true}
                           >

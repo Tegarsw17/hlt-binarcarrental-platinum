@@ -17,6 +17,7 @@ const useCar = () => {
       const response = await axiosCustomer.get(
         // 'https://api-car-rental.binaracademy.org/customer/v2/car',
         'https://nest-car-rent.onrender.com/car',
+        // 'http://localhost:3100/car',
         {
           params: {
             name: nameCar,

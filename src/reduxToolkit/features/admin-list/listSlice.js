@@ -20,7 +20,9 @@ export const getList = createAsyncThunk(
     try {
       let response;
       response = await axios.get(
-        'https://api-car-rental.binaracademy.org/admin/v2/car',
+        // 'http://localhost:3100/car',
+        'https://nest-car-rent.onrender.com/car',
+        // 'https://api-car-rental.binaracademy.org/admin/v2/car',
         config
       );
       return response?.data;

@@ -38,7 +38,7 @@ const CardCar = ({ listcar }) => {
             <div className="card-font">
               <img
                 className="card-img-size card-img-top"
-                src={item.image}
+                src={item.imageUrl}
                 alt=""
               />
               <p>

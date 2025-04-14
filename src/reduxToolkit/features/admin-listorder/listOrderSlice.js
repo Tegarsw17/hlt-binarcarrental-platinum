@@ -9,6 +9,7 @@ export const getListOrder = createAsyncThunk(
     const config = {
       headers: {
         access_token: access_token_admin,
+        Authorization: `Bearer ${access_token_admin}`,
       },
       params: {
         page: paramsUrl.page,
@@ -19,7 +20,9 @@ export const getListOrder = createAsyncThunk(
     try {
       let response;
       response = await axios.get(
-        'https://api-car-rental.binaracademy.org/admin/v2/order',
+        // 'http://localhost:3100/admin/order',
+        'https://nest-car-rent.onrender.com/admin/order',
+        // 'https://api-car-rental.binaracademy.org/admin/v2/order',
         config
       );
 
@@ -36,6 +39,7 @@ export const patchStatusOrder = createAsyncThunk(
     const config = {
       headers: {
         access_token: access_token_admin,
+        Authorization: `Bearer ${access_token_admin}`,
       },
     };
     const data = {
@@ -45,7 +49,9 @@ export const patchStatusOrder = createAsyncThunk(
     try {
       let response;
       response = await axios.patch(
-        `https://api-car-rental.binaracademy.org/admin/order/${id}`,
+        // `https://api-car-rental.binaracademy.org/admin/order/${id}`,
+        `https://nest-car-rent.onrender.com/admin/order/${id}`,
+        // `http://localhost:3100/admin/order/${id}`,
         data,
         config
       );
@@ -76,7 +82,10 @@ const listSlice = createSlice({
       })
       .addCase(getListOrder.fulfilled, (state, action) => {
         state.loading = false;
-        state.listorder = action.payload?.orders;
+        // state.listorder = action.payload?.orders;
+        state.listorder = Array.isArray(action.payload?.orders)
+          ? action.payload.orders
+          : [];
         state.pageCount = action.payload?.pageCount;
         state.currentPages = action.payload?.currentPage;
       })

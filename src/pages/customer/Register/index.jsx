@@ -30,6 +30,7 @@ const Register = () => {
       const apiURL =
         // 'https://api-car-rental.binaracademy.org/customer/auth/register';
         'https://nest-car-rent.onrender.com/auth/register';
+      // 'http://localhost:3100/auth/register';
       const res = await axios.post(apiURL, payload);
       setError(null);
       setSuccess(res.statusText);
